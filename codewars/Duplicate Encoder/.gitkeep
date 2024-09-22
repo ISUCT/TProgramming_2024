@@ -1,0 +1,12 @@
+def duplicate_encode(word):   
+    letter_storage = list(word.lower())
+    final_string = ""
+    for i in range(len(letter_storage)):
+        if letter_storage.count(letter_storage[i]) == 1:
+            final_string += "("
+        else:
+            final_string += ")"
+    return final_string
+   
+if __name__ == "__main__":
+    print(duplicate_encode(input()))

@@ -1,0 +1,10 @@
+def deep_count(a):
+    sum = 0
+    for element in a:
+        sum += 1
+        if isinstance(element, list) == True:
+            sum += deep_count(element)
+    return sum
+
+if __name__ == "__main__":
+    print(deep_count(list(input())))

@@ -1,0 +1,30 @@
+def is_solved(board):
+    if there_are_empty_spots(board):
+        return -1
+    return the_result_of_the_game(board)
+    
+def there_are_empty_spots(board):
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == 0 and the_result_of_the_game(board) == 0:
+                return True
+    return False
+
+def the_result_of_the_game(board: tuple):
+    diagonal_1 = set([board[i][i] for i in range(len(board))])
+    diagonal_2 = set([board[i][len(board[0])-i-1] for i in range(len(board))])
+    for i in range(3):
+        line = set(board[i])
+        column = set(tuple(x[i] for x in board))
+        if len(line) == 1 and list(line)[0] != 0:
+            return list(line)[0]
+        elif len(column) == 1 and list(column)[0] != 0:
+            return list(column)[0]
+        elif len(diagonal_1) == 1 and list(diagonal_1)[0] != 0:
+            return list(diagonal_1)[0]
+        elif len(diagonal_2) == 1 and list(diagonal_2)[0] != 0:
+            return list(diagonal_2)[0]
+    return 0
+       
+if __name__ == "__main__":
+    print(is_solved(input()))

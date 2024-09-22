@@ -1,0 +1,19 @@
+def reverse_function(snail_map):
+    return [list(reversed(row)) for row in reversed(snail_map)]
+
+def snail(snail_map):
+    if not snail_map or not snail_map[0]:
+        return []   
+    result = []
+    total_elements = len(snail_map) * len(snail_map[0])
+    while len(result) < total_elements:
+        result.extend(snail_map[0])  
+        snail_map = snail_map[1:]  
+        if snail_map:
+            for row in snail_map:
+                result.append(row.pop())
+        snail_map = reverse_function(snail_map)
+    return result
+
+if __name__ == "__main__":
+    print(snail(input()))

@@ -1,0 +1,14 @@
+def tower_builder(n_floors):
+    tower = list()
+    for i in range(n_floors):
+        if i == 0:
+            tower_sector = (" " * (n_floors - 1)) + "*" + (" " * (n_floors - 1))
+            tower.append(tower_sector)
+        else:
+            tower_sector = (" " * (n_floors - 1 - i)) + ("*" * (1 + (i * 2))) + (" " * (n_floors - 1 - i))
+            tower.append(tower_sector)
+            
+    return tower
+
+if __name__ == '__main__':
+    print(tower_builder(int(input())))

@@ -1,0 +1,15 @@
+def anagram_difference(w1, w2):
+    count_w1 = [0] * 26
+    count_w2 = [0] * 26
+    removed_chars = 0
+    for char in w1:
+        count_w1[ord(char) - ord('a')] += 1
+    for char in w2:
+        count_w2[ord(char) - ord('a')] += 1
+    for i in range(26):
+        removed_chars += abs(count_w1[i] - count_w2[i])
+    
+    return removed_chars
+
+if __name__ == "__main__":
+    print(anagram_difference(input(), input()))
