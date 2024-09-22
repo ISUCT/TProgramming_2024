@@ -1,0 +1,15 @@
+function flattenMap(map) {
+    let res = {};
+
+    function iter(level, key) {
+        Object.keys(level).forEach(function (i) {
+            if (level[i] !== null && !Array.isArray(level[i]) && typeof level[i] === 'object') {
+                return iter(level[i], key.concat(i));
+            }
+            res[key.concat(i).join('/')] = level[i];
+        });
+    }
+  
+    iter(map, []);
+    return res;
+}
