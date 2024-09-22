@@ -1,1 +1,20 @@
+class TreeNode:
+    def init(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
 
+def maxSumm(root:TreeNode) -> int:
+    if root is None:
+        return 0
+    def maxPath(node, current_summ):
+        if node is None:
+            return float('-inf')
+        current_summ += node.value
+        if node.left is None and node.right is None:
+            return current_summ
+        leftS = maxPath(node.left, current_summ)
+        rightS = maxPath(node.right, current_summ)
+        return max(leftS, rightS)
+    
+    return maxPath(root, 0)

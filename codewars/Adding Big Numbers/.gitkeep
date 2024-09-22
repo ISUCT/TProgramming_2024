@@ -1,0 +1,24 @@
+function adding(a, b) {
+    while (a.length < b.length) {
+        a = '0' + a;
+    }
+
+    while (b.length < a.length) {
+        b = '0' + b;
+    }
+    
+    let bigNumber = 0;
+    let result = '';
+
+    for (let i = a.length - 1; i >= 0; i--) {
+        const summ = parseInt(a[i]) + parseInt(b[i]) + bigNumber;
+        result = (summ % 10) + result; 
+        bigNumber = Math.floor(summ / 10); 
+    }
+
+    if (bigNumber > 0) {
+        result = bigNumber + result;
+    }
+
+    return result;
+}
