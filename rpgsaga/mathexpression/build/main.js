@@ -3,9 +3,6 @@ function solveTaskA(xBeg, xEnd, xStep) {
     let res = new Array(Math.round((xEnd - xBeg) / xStep), 0);
     let index = 0;
     for (let x = xBeg; x <= xEnd; x += xStep) {
-        if (x == -2.5) {
-            throw new Error("'x' doesn't belong to the function's domain.");
-        }
         res[index] = solveExpression(2.5, x);
         index++;
     }
@@ -14,14 +11,14 @@ function solveTaskA(xBeg, xEnd, xStep) {
 function solveTaskB(xArr) {
     let res = new Array(xArr.length, 0);
     for (let i in xArr) {
-        if (xArr[i] == -2.5) {
-            throw new Error("'x' doesn't belong to the function's domain.");
-        }
         res[i] = solveExpression(2.5, xArr[i]);
     }
     return res;
 }
 function solveExpression(b, x) {
+    if (x == -2.5) {
+        throw new Error("'x' doesn't belong to the function's domain.");
+    }
     return (1 + Math.pow(Math.sin(degToRad(Math.pow(b, 3) + Math.pow(x, 3))), 2)) / Math.pow(Math.pow(b, 3) + Math.pow(x, 3), 1 / 3);
 }
 function degToRad(deg) {
