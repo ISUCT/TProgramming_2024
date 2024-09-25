@@ -1,0 +1,9 @@
+function ArrayDeep(arr) {
+    return arr.reduce((prev, curr) => {
+        if (Array.isArray(curr)) {
+            return prev + ArrayDeep(curr)
+        } else {
+            return prev
+        }
+    }, arr.length)
+}

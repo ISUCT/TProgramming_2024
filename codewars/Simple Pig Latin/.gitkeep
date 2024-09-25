@@ -1,0 +1,14 @@
+export const pigIt = (a: string):string => {
+    let b = a.split(' ')
+    let res = ''
+    for (let i = 0; i < b.length; i++) {
+        if (b[i].length > 1) {
+        b[i] += b[i][0] + 'ay'
+        res += a[i].substring(1, b[i].length) + ' '
+    }
+    else {
+        res += b[i]
+    }
+    }
+    return res
+}

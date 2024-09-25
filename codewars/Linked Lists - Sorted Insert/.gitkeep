@@ -1,0 +1,15 @@
+def sorted_insert(head, data):
+    p = None
+    node_j = head
+    node_i = Node(data)
+    while node_j:
+        if node_j.data > data:
+            node_i.next = node_j
+            break
+        p = node_j
+        node_j = node_j.next
+    else:
+        node_i.next = None
+    if p:
+        p.next = node_i
+    return head if p else node_i

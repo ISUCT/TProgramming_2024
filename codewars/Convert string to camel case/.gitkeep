@@ -1,0 +1,16 @@
+export function toCamelCase(str:string):string{
+  let a: string = ""
+  let res: string = ""
+  for (let i = 0; i < str.length; i++) {
+      if (str[i] === '-' || str[i] === '_') {
+          a = str[i+1].toUpperCase()
+          res += a
+          i++    
+      }
+      else {
+          a = str[i]
+          res += a
+      }
+  }
+  return res
+}

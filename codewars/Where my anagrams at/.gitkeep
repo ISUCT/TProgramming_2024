@@ -1,0 +1,11 @@
+function anagrams(word, words){
+    word = word.split('').sort().join()
+    res = []
+    for (let i = 0; i < words.length; i++){
+        let curr = words[i]
+        if (word === curr.split('').sort().join()){
+            res.push(words[i])
+        }
+    }
+    return res
+}

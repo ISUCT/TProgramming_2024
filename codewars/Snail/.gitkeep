@@ -1,0 +1,20 @@
+snail = function(array) {
+  function rotate(array) {
+    let carry = [];
+    for(let i = 0; i < array.length; i++) {
+      ins_len = array[i].length;
+      for(let j = 0; j < ins_len; j++) {
+        if(carry[ins_len - 1 - j] === undefined) carry[ins_len - 1 - j] = [];
+        carry[ins_len - 1 - j][i] = array[i][j];
+      }
+    }
+    return carry;
+  }
+
+  res = [];
+  do {
+    res = res.concat(array.shift());
+    array = rotate(array);
+  } while(array.length);
+  return res
+}
