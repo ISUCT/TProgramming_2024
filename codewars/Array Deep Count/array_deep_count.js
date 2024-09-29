@@ -1,13 +1,13 @@
 function deepCount(a) {
-    let k = 0
+    let k = 0;
     const recursion = arr => {
-      k += arr.length
+      k += arr.length;
       for (let i of arr) {
         if (Array.isArray(i) ) {
-          recursion(i)
+          recursion(i);
         }
       }
     }
-    recursion(a)
-    return k
+    recursion(a);
+    return k;
   }

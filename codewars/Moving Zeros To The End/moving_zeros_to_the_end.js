@@ -1,17 +1,16 @@
 function moveZeros(arr) {
-    let res = []
-    let k = 0
+    let res = [];
+    let k = 0;
     for (i = 0; i < arr.length; i++) {
       if (arr[i] !== 0) {
-        res.push(arr[i])
+        res.push(arr[i]);
       } else {
-        k++
+        k++;
       }
     }
-    
     while (k) {
-      res.push(0)
-      k--
+      res.push(0);
+      k--;
     }
-  return res
+  return res;
   }

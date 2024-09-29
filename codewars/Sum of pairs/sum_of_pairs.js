@@ -8,5 +8,5 @@ function sumPairs(ints, s) {
         }
         seen[currentNum] = i;
     }
-    return undefined
+    return undefined;
 }
