@@ -1,38 +1,30 @@
 function add(a, b) {
-    let items = [a, b].sort((a,b)=> b-a);
-    items[0] = items[0].split('').reverse().map(Number);
-    items[1] = items[1].split('').reverse().map(Number);
+    let items = [a, b].sort((a, b) => b - a);
+    items[0] = items[0].split('').map(Number);
+    items[1] = items[1].split('').map(Number);
+    let firstNumIdx = items[0].length - 1;
+    let secondNumIdx = items[1].length - 1;
     let ans = []
     let remains = 0;
-    for (let i = 0; i <= items[1].length; i++){
-        if ((items[0][i]+items[1][i] + remains >= 10) && (i == items[1].length-1)) {
-            ans.push ((items[0][i]+items[1][i]+remains) % 10)
-            if (items[0].length == items[1].length) {
-                ans.push (remains)
-            } else if (items[0][i+1] + remains >= 10) {
-                ans.push((items[0][i+1] + remains) % 10);
-                ans.push(~~(((items[0][i+1]+remains)/10)));
-            } else {
-                ans.push (items[0][i+1] + remains)
-            } continue;
-        }
-        if (items[0][i]+items[1][i]+remains < 10) {
-            ans.push(items[0][i]+items[1][i]+remains);
+    while (firstNumIdx >= 0 || secondNumIdx >= 0 || remains > 0) {
+        let num1 = firstNumIdx >= 0 ? parseInt(items[0][firstNumIdx], 10) : 0;
+        let num2 = secondNumIdx >= 0 ? parseInt(items[1][secondNumIdx], 10) : 0;
+        let sum = num1 + num2 + remains;
+        if (sum >= 10 && secondNumIdx > 0) {
+            ans.push((sum) % 10);
+            remains = ~~((sum) / 10);
+        } else if (sum < 10 && secondNumIdx > 0) {
+            ans.push(sum);
             remains = 0;
-            continue;
+        } else if (sum >= 10 && secondNumIdx <= 0) {
+            ans.push((sum) % 10);
+            remains = ~~((sum) / 10);
+        } else if (sum < 10 && secondNumIdx <= 0) {
+            ans.push(sum);
+            remains = 0;
         }
-        if (items[0][i]+items[1][i]+remains >= 10) {
-            ans.push((items[0][i]+items[1][i]+remains) % 10);
-            remains = ~~((items[0][i]+items[1][i]+remains)/10);
-            continue;
-        }
+        firstNumIdx--;
+        secondNumIdx--;
     }
-    if (items[0].length == items[1].length) {
-        return (ans.reverse().join(''));
-    } else {
-        return (((items[0].slice(ans.length).reverse()).join('')) + ans.reverse().join(''))
-    }
-  }
-
-console.log(add('63829983432984289347293874', '90938498237058927340892374089'))
-console.log("91002328220491911630239667963")
+    return ans.reverse().join('');
+}
