@@ -10,8 +10,8 @@ function taskA (a, xstart, xend, xstep) {
 }
 function taskB (a, arr) {
     const y = [];
-    for (let i = 0; i < arr.length; i++) {
-        y.push(formula(arr[i], a))
+    for (i of arr) {
+        y.push(formula(i, a))
     }
     return y
 }
@@ -22,13 +22,13 @@ let xstart = 1.2;
 let xend = 3.7;
 let xstep = 0.5;
 let yTaskA = taskA(a, xstart, xend, xstep);
-for (let i = 0; i < yTaskA.length; i++) {
-    console.log(`y = ${yTaskA[i]}`)
+for (i of yTaskA) {
+    console.log(`y = ${i}`)
 }
 
 console.log("Задача B");
 let arr = [1.28, 1.36, 2.47, 3.68, 4.56];
 let yTaskB = taskB(a, arr);
-for (let i = 0; i < yTaskB.length; i++) {
-    console.log(`y = ${yTaskB[i]}`)
+for (i of yTaskB) {
+    console.log(`y = ${i}`)
 }
