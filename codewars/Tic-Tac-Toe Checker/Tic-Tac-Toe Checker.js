@@ -28,5 +28,3 @@ function isSolved(board) {
     if (zerosCheckers) return -1;
     return 0;
   }
-
-  console.log(isSolved([[2,2,2,2],[0,0,1,0],[0,1,0,0],[1,0,0,0]]))
