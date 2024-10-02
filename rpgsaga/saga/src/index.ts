@@ -24,6 +24,17 @@ const task_b = (xs: number[]): number[] => {
 
 export {func, log, task_a, task_b};
 
-console.log(func(4));
+import Employee from "./Employee";
+
+let a: Employee = new Employee("Ivan", 17);
+let b: Employee = new Employee("Vlad", -17);
+let c: Employee = new Employee("Mikhail", 17, 20000);
+
+console.log(a)
+console.log(b)
+console.log(c)
+b.SetAge(10);
+console.log(b);
+
 console.log(task_a(1.2, 5.2, 0.8));
 console.log(task_b([1.9, 2.15, 2.34, 2.73, 3.16]));
