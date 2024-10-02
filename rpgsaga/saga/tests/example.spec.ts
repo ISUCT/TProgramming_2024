@@ -42,4 +42,3 @@ describe('Testing functions from 1 laboratory work', () => {
         expect(res[0]).toBeNaN();
     });
 })
-

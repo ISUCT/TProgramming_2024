@@ -13,8 +13,8 @@ export function task_A(a: number, b: number, x_start: number, x_end: number, x_s
 
 export function task_B(a: number, b: number, list_of_x: Array<number>): Array<number> {
     let list_of_answers = []
-    for (let i = 0; i < list_of_x.length; i++) {
-        list_of_answers.push(solution(a, b, list_of_x[i]))
+    for (let i of list_of_x) {
+        list_of_answers.push(solution(a, b, i))
     } 
     return list_of_answers
 }
@@ -31,4 +31,3 @@ console.log("task A answers:")
 console.log(task_A(a, b, x_start, x_end, x_step))
 console.log("task B answers:")
 console.log(task_B(a, b, list_of_x))
-
