@@ -34,7 +34,7 @@ console.log("task B answers:")
 console.log(task_B(a, b, list_of_x))
 
 
-class Table {
+export class Table {
     private length: number;
     private width: number;
     private height: number;
@@ -49,9 +49,9 @@ class Table {
         return `Table dimensions: Length - ${this.length} sm, Width - ${this.width} sm, Height - ${this.height} sm`;
     }
 
-    setDimensions(width: number, length: number, height: number): void {
-        this.width = width;
+    setDimensions(length: number, width: number, height: number): void {
         this.length = length;
+        this.width = width;
         this.height = height;
     }
 
@@ -60,7 +60,7 @@ class Table {
             return "Small";
         } else if (this.length > 100 && this.length <= 180 && this.width > 60 && this.width <= 90 && this.height > 70 && this.height <= 80) {
             return "Medium";
-        } else if (this.length > 180 && this.length <= 500 && this.width > 90 && this.width <= 300 && this.height > 80 && this.length <= 130) {
+        } else if (this.length > 180 && this.length <= 500 && this.width > 90 && this.width <= 300 && this.height > 80 && this.height <= 130) {
             return "Large";
         } else {
             return "Well, I do not know what kind of table you have there";
