@@ -1,0 +1,21 @@
+function validParentheses(parens) {
+    let c1 = 0
+    let c2 = 0
+    for (let i = 0; i < parens.length; i++){
+        if (parens[i] === '(') {
+            c1++
+            c2--
+        }
+        if (parens[i] === ')'){
+            c1--
+            c2++
+            if(c1 < 0){
+                return false
+            }
+        }
+    }
+    if(c2 < 0){
+      return false
+    }
+    return true
+}

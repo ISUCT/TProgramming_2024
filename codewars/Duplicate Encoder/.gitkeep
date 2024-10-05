@@ -1,0 +1,19 @@
+function duplicateEncode(word){
+    dict = {}
+    let letters = word.toLowerCase().split('')
+    for (let i = 0; i < letters.length; i++) {
+        let x = letters[i]
+        Number(dict[x])
+        if (x === undefined){
+            dict[x] = 1
+        }
+        else {
+            dict[x] = (dict[x] || 0) + 1
+            console.log(dict[x] || 0)
+        }
+    }
+    console.log(dict)
+    return letters.map(function(letters){
+        return dict[letters] === 1 ? '(' : ')'}
+    ).join('')
+}

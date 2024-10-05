@@ -1,0 +1,13 @@
+function towerBuilder(nFloors) { 
+    const f = new Array(nFloors * 2 - 1).fill(' ')
+    f[nFloors - 1] = '*'
+    const res = []
+    let str = ''
+    for (let i = 0; i < nFloors; i++){
+        f[nFloors - 1 - i] = '*'
+        f[nFloors - 1 + i] = '*'
+        str = f.join("")
+        res.push(str)
+    }
+    return res
+}

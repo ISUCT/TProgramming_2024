@@ -1,0 +1,7 @@
+def permutations(s):
+    import itertools
+    res = []
+    p = [*set(itertools.permutations(s))]
+    for i in p:
+        res.append("".join(i))
+    return res

@@ -1,0 +1,18 @@
+export const digitalRoot = (n:number):number => {
+    let sum: number = 0
+
+    function sumofdigits(strd: string) {
+    if (strd.length === 1) {
+        return
+    }
+    sum = 0
+    for (let i = 0; i < strd.length; i++) {
+        sum += Number(strd[i])
+    }
+    strd = String(sum)
+    sumofdigits(strd)
+    }
+
+    sumofdigits(String(493193))
+    return sum
+}

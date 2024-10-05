@@ -1,0 +1,7 @@
+def productFib(_prod):
+    n1 = 0
+    n2 = 1
+    while _prod > n1 * n2:
+        n1, n2 = n2, n1 + n2
+    return [n1, n2, _prod == n1 * n2]
+    pass
