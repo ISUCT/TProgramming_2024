@@ -1,4 +1,4 @@
-import * as pointEngine from '../src/index';
+import * as pointEngine from '../../src/lab1/funcs';
 
 // Let test our task.
 it('should be empty if end >= start.', () => {
@@ -16,7 +16,7 @@ it('Should map values to each point.', () => {
 
   const hasDeviation: Array<boolean> = [];
 
-  results.forEach((v, i, a) => {
+  results.forEach((v, i) => {
     hasDeviation[i] = v - expected[i] > epsilon;
   });
   expect(hasDeviation).toStrictEqual([false, false, false, false, false]);
