@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
-        "types": ["jest", "node"]
-    }
+    "types": ["jest", "node"],
+    "target": "ES5",
+    "module": "CommonJS",
+    "outDir": "out",
+    "sourceMap": true
+  }
 }
