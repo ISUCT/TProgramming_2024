@@ -1,3 +1,5 @@
+import Employee from "./Employee";
+
 const func = (x: number, a: number = 4.1, b: number = 2.7): number => {
     return ((b * Math.sqrt(x)) - (a * log(x, 5))) / (log(Math.abs(x - 1), 10));
 }
@@ -24,17 +26,21 @@ const task_b = (xs: number[]): number[] => {
 
 export {func, log, task_a, task_b};
 
-import Employee from "./Employee";
-
 let a: Employee = new Employee("Ivan", 17);
-let b: Employee = new Employee("Vlad", -17);
+let b: Employee = new Employee("Vlad", 18);
 let c: Employee = new Employee("Mikhail", 17, 20000);
 
 console.log(a)
 console.log(b)
 console.log(c)
-b.SetAge(10);
+b.age = 10;
 console.log(b);
+
+try {
+    c.age = -10;
+} catch(e) {
+    console.log(e.message)
+}
 
 console.log(task_a(1.2, 5.2, 0.8));
 console.log(task_b([1.9, 2.15, 2.34, 2.73, 3.16]));
