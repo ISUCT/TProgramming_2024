@@ -4,15 +4,15 @@ export class Cat {
     return this._age;
   }
   private set age(value: number) {
-    if(value >= 0 && value <= 25) {
+    if (value >= 0 && value <= 25) {
       this._age = value;
       return;
     }
 
-    throw new Error("Age is invalid");
+    throw new Error('Age is invalid');
   }
 
-  private _name: string = "No name";
+  private _name: string = 'No name';
   get name(): string {
     return this._name;
   }
@@ -20,23 +20,23 @@ export class Cat {
     this._name = value;
   }
 
-  private _breed: string = "Unknown";
+  private _breed: string = 'Unknown';
   get breed(): string {
     return this._breed;
   }
 
-  public constructor(age: number, name?: string, breed?: string){
+  public constructor(age: number, name?: string, breed?: string) {
     this.age = age;
 
-    if(name !== undefined) {
+    if (name !== undefined) {
       this._name = name;
     }
 
-    if(breed !== undefined) {
+    if (breed !== undefined) {
       this._breed = breed;
     }
   }
-  
+
   public petTheCat(): string {
     return `Cat ${this.name} says meow!`;
   }

@@ -1,9 +1,8 @@
-function solveTaskA(xBeg: number, xEnd: number, xStep: number): number[]
-{
-  let res: number[] = new Array<number>(Math.round((xEnd - xBeg) / xStep), 0);
+function solveTaskA(xBeg: number, xEnd: number, xStep: number): number[] {
+  const res: number[] = new Array<number>(Math.round((xEnd - xBeg) / xStep), 0);
 
   let index: number = 0;
-  for(let x = xBeg; x <= xEnd; x += xStep) {
+  for (let x = xBeg; x <= xEnd; x += xStep) {
     res[index] = solveExpression(2.5, x);
     index++;
   }
@@ -12,9 +11,9 @@ function solveTaskA(xBeg: number, xEnd: number, xStep: number): number[]
 }
 
 function solveTaskB(xArr: number[]): number[] {
-  let res: number[] = new Array<number>(xArr.length, 0);
+  const res: number[] = new Array<number>(xArr.length, 0);
 
-  for(let i in xArr) {
+  for (const i in xArr) {
     res[i] = solveExpression(2.5, xArr[i]);
   }
 
@@ -22,20 +21,23 @@ function solveTaskB(xArr: number[]): number[] {
 }
 
 function solveExpression(b: number, x: number): number {
-  if(x == -2.5) {
+  if (x === -2.5) {
     throw new Error("'x' doesn't belong to the function's domain.");
   }
 
-  return (1 + Math.pow(Math.sin(degToRad(Math.pow(b, 3) + Math.pow(x, 3))), 2))/Math.pow(Math.pow(b, 3) + Math.pow(x, 3), 1/3);
+  return (
+    (1 + Math.pow(Math.sin(degToRad(Math.pow(b, 3) + Math.pow(x, 3))), 2)) /
+    Math.pow(Math.pow(b, 3) + Math.pow(x, 3), 1 / 3)
+  );
 }
 
 function degToRad(deg: number): number {
-  return (deg * Math.PI) / 180; 
+  return (deg * Math.PI) / 180;
 }
 
 try {
   console.log(solveTaskA(1.28, 3.28, 0.4));
-} catch(err) {
+} catch (err) {
   console.error(err);
 }
 
@@ -43,6 +45,6 @@ const xArr: number[] = [1.1, 2.4, 3.6, 1.7, 3.9];
 
 try {
   console.log(solveTaskB(xArr));
-} catch(err) {
+} catch (err) {
   console.error(err);
 }
