@@ -1,0 +1,13 @@
+function mergeArrays(a, b) {
+    let maxLen = Math.max(a.length, b.length)
+    let res = []
+    for (let i = 0; i < maxLen; i++){
+        if (a[i] !== undefined){
+        res.push(a[i])
+        }
+        if (b[i] !== undefined){
+        res.push(b[i])
+        }
+    }
+    return res
+}

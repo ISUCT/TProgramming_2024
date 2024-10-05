@@ -1,0 +1,25 @@
+def anagram_difference(w1, w2):
+
+    count1 = {}
+    count2 = {}
+
+    for letter in w1:
+        if letter in count1:
+            count1[letter] += 1
+        else:
+            count1[letter] = 1
+
+    for letter in w2:
+        if letter in count2:
+            count2[letter] += 1
+        else:
+            count2[letter] = 1
+
+    deletions = 0
+
+    all_letters = set(count1.keys()).union(set(count2.keys()))
+
+    for letter in all_letters:
+        deletions += abs(count1.get(letter, 0) - count2.get(letter, 0))
+
+    return deletions

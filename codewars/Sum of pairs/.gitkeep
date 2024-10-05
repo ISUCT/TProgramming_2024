@@ -1,0 +1,11 @@
+def sum_pairs(ints, s):
+
+    seen = set()
+
+    for number in ints:
+        complement = s - number
+        if complement in seen:
+            return [complement, number]
+        seen.add(number)
+
+    return None

@@ -1,0 +1,12 @@
+def permutations(s):
+    def unique_permute(chars, k, r):
+        if k == r:
+            result.add(''.join(chars))
+        else:
+            for i in range(k, r + 1):
+                chars[k], chars[i] = chars[i], chars[k]
+                unique_permute(chars, k + 1, r)
+                chars[k], chars[i] = chars[i], chars[k]
+    result = set()
+    unique_permute(list(s), 0, len(s) - 1)
+    return list(result)
