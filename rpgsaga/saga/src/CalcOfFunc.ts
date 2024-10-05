@@ -28,3 +28,5 @@ function getTaskB(numbersX: number[]) {
 
 console.log(getTaskA(xN, xK, xD));
 console.log(getTaskB(numbersX));
+
+export {getTaskA, getTaskB};
