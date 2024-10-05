@@ -1,0 +1,27 @@
+
+name: onlineshop frontend
+
+on: [push,  pull_request]
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.11.x
+          cache: yarn
+          cache-dependency-path: ./onlineshop/source/client/yarn.lock
+      - name: Lint frontend
+        run: |
+          cd ./onlineshop/source/client/
+          yarn install --immutable --immutable-cache --check-cache
+          yarn run lint
+      - name: Test client
+        run: |
+          cd ./onlineshop/source/client/
+          yarn install --immutable --immutable-cache --check-cache
+          yarn run test
