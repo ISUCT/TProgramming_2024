@@ -15,7 +15,7 @@ export function getTaskA(xN: number, xK: number, xD: number) {
 
 export function getTaskB(numbersX: number[]) {
   const ansverB: number[] = [];
-  for (let X of numbersX) {
+  for (const X of numbersX) {
     ansverB.unshift(calculate(X));
   }
   return ansverB;
