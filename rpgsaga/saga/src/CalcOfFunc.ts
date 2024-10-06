@@ -1,7 +1,7 @@
 export function calculate(x: number) {
-    let arcSin2 = (Math.asin(x))**2;
-    let arcCos4 = (Math.acos(x))**4;
-    let y = (arcSin2 + arcCos4)**3
+    const arcSin2 = (Math.asin(x)) ** 2;
+    const arcCos4 = (Math.acos(x)) ** 4;
+    const y = (arcSin2 + arcCos4) ** 3
     return y;
 }
 
