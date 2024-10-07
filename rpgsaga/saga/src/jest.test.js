@@ -9,8 +9,6 @@ describe('Функции tesTaskA и tesTaskB', () => {
 
         const result2 = solvetaskA(2.4);
         expect(result2).toBeDefined();
-
-        // Добавьте больше значений для проверки, если это необходимо
     });
 
     test('Проверка solvetaskB', () => {
