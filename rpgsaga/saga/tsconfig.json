@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
-        "types": ["jest", "node"]
-    }
-}
+      "target": "es2015", 
+      "lib": ["es2015", "dom"],     
+      "types": ["jest", "node"]   
+  }
+} 
