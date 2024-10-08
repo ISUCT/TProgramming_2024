@@ -1,4 +1,4 @@
-export function MathFunction(x: number, a: number = 4.1, b: number = 2.7): number {
+export function mathFunction(x: number, a: number = 4.1, b: number = 2.7): number {
   return a * Math.cbrt(x) - (b * getBaseLog(5, x)) / Math.pow(getBaseLog(10, x - 1), 3);
 }
 
@@ -11,24 +11,24 @@ function getBaseLog(x: number, y: number) {
   return Math.log(y) / Math.log(x);
 }
 
-type list = number[];
+type List = number[];
 
-export function TaskA(xBegin: number, xEnd: number, xDelta: number, a: number = 4.1, b: number = 2.7): list {
-  let stack: list = [];
+export function taskA(xBegin: number, xEnd: number, xDelta: number, a: number = 4.1, b: number = 2.7): List {
+  let stack: List = [];
   for (let i: number = xBegin; i <= xEnd; i += xDelta) {
-    stack.push(MathFunction(i, a, b));
+    stack.push(mathFunction(i, a, b));
   }
   return stack;
 }
 
-export function TaskB(list: number[], a: number = 4.1, b: number = 2.7): list {
-  let stack: list = [];
+export function taskB(list: number[], a: number = 4.1, b: number = 2.7): List {
+  let stack: List = [];
   for (let item of list) {
-    stack.push(MathFunction(item, a, b));
+    stack.push(mathFunction(item, a, b));
   }
   return stack;
 }
 
-console.log(TaskA(xStart, xEnd, xDelta));
-console.log(TaskB(xArray));
+console.log(taskA(xStart, xEnd, xDelta));
+console.log(taskB(xArray));
 
