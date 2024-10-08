@@ -14,7 +14,7 @@ function getBaseLog(x: number, y: number) {
 type List = number[];
 
 export function taskA(xBegin: number, xEnd: number, xDelta: number, a: number = 4.1, b: number = 2.7): List {
-  let stack: List = [];
+  const stack: List = [];
   for (let i: number = xBegin; i <= xEnd; i += xDelta) {
     stack.push(mathFunction(i, a, b));
   }
@@ -22,8 +22,8 @@ export function taskA(xBegin: number, xEnd: number, xDelta: number, a: number = 
 }
 
 export function taskB(list: number[], a: number = 4.1, b: number = 2.7): List {
-  let stack: List = [];
-  for (let item of list) {
+  const stack: List = []; 
+  for (const item of list) { 
     stack.push(mathFunction(item, a, b));
   }
   return stack;
@@ -31,4 +31,3 @@ export function taskB(list: number[], a: number = 4.1, b: number = 2.7): List {
 
 console.log(taskA(xStart, xEnd, xDelta));
 console.log(taskB(xArray));
-
