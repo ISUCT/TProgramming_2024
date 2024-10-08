@@ -1,10 +1,10 @@
 import { log } from "console";
 
-function form(x: number, a: number) {
+function form(x: number, a: number = 2.25) {
     return ((a ** (x ** 2 - 1)) - Math.log((x ** 2) - 1) + Math.cbrt((x ** 2) - 1))
 }
 
-function taskA(xStart: number, xEnd: number, step: number, a: number) {
+function taskA(xStart: number = 1.2, xEnd: number = 2.7, step: number = 0.3, a: number = 2.25) {
     const y: number[] = [];
     const x: number[] = [];
     for (let i: number = xStart; i <= xEnd; i += step) {
@@ -14,7 +14,7 @@ function taskA(xStart: number, xEnd: number, step: number, a: number) {
     return [x, y];
 }
 
-function taskB(a: number, xArr: number[]) {
+function taskB(a: number = 2.25, xArr: number[] = [1.31, 1.39, 1.44, 1.56, 1.92]) {
     const y: number[] = [];
     const x: number[] = [];
     for (let i of xArr) {
@@ -24,18 +24,13 @@ function taskB(a: number, xArr: number[]) {
     return [x, y];
 }
 
-const a: number = 2.25;
 console.log('Задача А');
-const xStart: number = 1.2;
-const xEnd: number = 2.7;
-const step: number = 0.3;
-let [x, y] = taskA(xStart, xEnd, step, a);
+let [x, y] = taskA();
 for (let i of y) {
     console.log(`При x = ${x[y.indexOf(i)].toFixed(1)}, y = ${i.toFixed(2)}`);
 }
 console.log('Задача B');
-const listX: number[] = [1.31, 1.39, 1.44, 1.56, 1.92];
-[x, y] = taskB(a, listX);
+[x, y] = taskB();
 for (let i of y) {
     console.log(`При x = ${x[y.indexOf(i)].toFixed(2)}, y = ${i.toFixed(2)}`);
 }
