@@ -1,7 +1,10 @@
 {
     "compilerOptions": {
       "target": "es2015", 
+      "module": "CommonJS",
+      "outDir": "out",
+      "sourceMap": true,
       "lib": ["es2015", "dom"],     
-      "types": ["jest", "node"]   
+      "types": ["jest", "node"]
   }
-} 
+}
