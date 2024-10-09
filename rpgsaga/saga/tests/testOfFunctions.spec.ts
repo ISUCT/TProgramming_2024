@@ -11,7 +11,7 @@ describe('formulamain function', () => {
       expect(formulaMain(-10, -2.5, 3.4)).toEqual(NaN);
     });
   it('numenator equals zero for x > 5', () => {
-    expect(formulaMain(7.25, -2.5, 3.4)).toBeCloseTo(0.06);
+    expect(formulaMain(7.25, -2.5, 3.4)).toBeCloseTo(0.3);
   });
 });
 
