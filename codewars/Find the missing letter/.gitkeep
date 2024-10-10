@@ -1,0 +1,9 @@
+def find_missing_letter(chars):
+    missing_char = ""
+    for i in range(len(chars) - 1):
+        if ord(chars[i]) + 1 != ord(chars[i + 1]):
+            missing_char = chr(ord(chars[i]) + 1)
+    return missing_char
+
+if __name__ == '__main__':
+    print(find_missing_letter(input()))

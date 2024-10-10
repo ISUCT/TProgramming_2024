@@ -1,0 +1,13 @@
+def move_zeros(lst):
+    final_lst = list()
+    for el in lst:
+        if el != 0:
+            final_lst.append(el)
+    
+    while len(final_lst) < len(lst):
+        final_lst.append(0)
+    
+    return final_lst
+
+if __name__ == "__main__":
+    print(move_zeros(input()))

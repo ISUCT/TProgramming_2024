@@ -1,0 +1,11 @@
+def sum_pairs(ints, s):
+    seen = {}
+    for i, number in enumerate(ints):
+        target = s - number
+        if target in seen:
+            return [target, number]
+        seen[number] = i
+    return None
+
+if __name__ == "__main__":
+    print(sum_pairs(input(), input())) 
