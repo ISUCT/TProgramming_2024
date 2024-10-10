@@ -1,8 +1,6 @@
-// var 22
-
 const nowDate = new Date();
 
-class Film {
+export class Film {
   name: string;
   director: string;
   year: number;
@@ -21,11 +19,23 @@ class Film {
   ) {
     this.name = name;
     this.director = director;
-    this.year = year;
+    if (year < 1895) {
+      throw new Error('Incorrect year');
+    } else {
+      this.year = year;
+    }
     this.country = country;
     this.genre = genre;
-    this.ageLimit = ageLimit;
-    this.filmLengthInMinutes = filmLengthInMinutes;
+    if ([0, 6, 12, 16, 18].includes(ageLimit)) {
+      this.ageLimit = ageLimit;
+    } else {
+      throw new Error('Wrong age limit');
+    }
+    if (filmLengthInMinutes <= 0 && filmLengthInMinutes > 1000) {
+      throw new Error(`Incorrect film's length`);
+    } else {
+      this.filmLengthInMinutes = filmLengthInMinutes;
+    }
   }
   filmInfo(): string {
     const strToReturn = `Film "${this.name}" was shot by ${this.director} in ${this.country} in ${this.year}. Genre of this film is ${this.genre}. This film is ${this.ageLimit}+.`;
@@ -37,7 +47,11 @@ class Film {
   }
 
   public set ageLim(age: number) {
-    this.ageLimit = age;
+    if ([0, 6, 12, 16, 18].includes(age)) {
+      this.ageLimit = age;
+    } else {
+      throw new Error('Wrong age limit');
+    }
   }
 
   playFilm(): void {
@@ -56,13 +70,3 @@ class Film {
     return `=================== Film "${this.name}" was released ${old} years ago. ===================`;
   }
 }
-
-const godFather = new Film('The Godfather', 'Francis Ford Coppola', 1972, 'USA', 'drama', 18, 175);
-const terrifier = new Film('Terrifier', 'Damien Leone', 2016, 'USA', 'horror', 18, 85);
-console.log(godFather.filmInfo());
-console.log(terrifier.filmInfo());
-terrifier.playFilm();
-console.log(terrifier.howOldFilmIs());
-console.log(godFather.howOldFilmIs());
-terrifier.ageLim = 21;
-console.log(terrifier.filmInfo());
