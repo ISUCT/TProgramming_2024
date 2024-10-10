@@ -1,0 +1,15 @@
+def anagramDifference(w1, w2):
+    number_w1 = [0] * 26
+    number_w2 = [0] * 26
+    removedSymbols = 0
+    for symbol in w1:
+        number_w1[ord(symbol) - ord('a')] += 1
+    for symbol in w2:
+        number_w2[ord(symbol) - ord('a')] += 1
+    for i in range(26):
+        removedSymbols += abs(number_w1[i] - number_w2[i])
+    
+    return removedSymbols
+
+if __name__ == "__main__":
+    print(anagramDifference(input(), input()))
