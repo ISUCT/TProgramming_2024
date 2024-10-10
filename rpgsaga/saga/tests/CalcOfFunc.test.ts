@@ -1,5 +1,5 @@
 import { equal } from "assert";
-import { getTaskA, getTaskB } from "../src";
+import { getTaskA, getTaskB } from "../src/CalcOfFunc";
 
 
 describe("getTaskA", () => {
