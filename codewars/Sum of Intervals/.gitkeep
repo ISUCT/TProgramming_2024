@@ -1,0 +1,20 @@
+def sum_of_intervals(intervals):
+    intervals = merge_intervals(intervals)
+    return sum([(end - start) for start, end in intervals])
+
+def merge_intervals(intervals):
+        intervals.sort()
+        result = []
+        start, end = intervals[0][0], intervals[0][1]
+        for i, interval in enumerate(intervals[1:]):
+            new_start, new_end = interval[0], interval[1]
+            if new_start > end:
+                result.append([start, end])
+                start, end = new_start, new_end
+            else:
+                end = max(new_end, end)
+        result.append([start, end])
+        return result
+    
+if __name__ == "__main__":
+    print(sum_of_intervals(input()))
