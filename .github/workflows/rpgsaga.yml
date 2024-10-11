@@ -1,0 +1,26 @@
+
+name: rpg saga
+on: [push,  pull_request]
+
+jobs:
+  saga-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.11.x
+          cache: yarn
+          cache-dependency-path: ./rpgsaga/saga/yarn.lock
+      - name: Lint Saga
+        run: |
+          cd ./rpgsaga/saga
+          yarn install --immutable --immutable-cache --check-cache
+          yarn run lint
+      - name: Test Saga
+        run: |
+          cd ./rpgsaga/saga
+          yarn install --immutable --immutable-cache --check-cache
+          yarn run test
