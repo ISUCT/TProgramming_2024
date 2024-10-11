@@ -1,17 +1,17 @@
-import { znachenie_Funkcii,taskA,taskB } from "../src";
+import { mainSolvefunc,taskA,taskB } from "../src";
 
-describe('Znachenie_Funkcii', () => {
+describe('mainSolvefunc', () => {
   it('should return the correct result for x<1', () => {
-    expect(znachenie_Funkcii(0.2)).toBeCloseTo(1.369);
+    expect(mainSolvefunc(0.2)).toBeCloseTo(1.369);
   });
   it('should return the correct result for x<1', () => {
-    expect(znachenie_Funkcii(0)).toBeCloseTo(1.57);
+    expect(mainSolvefunc(0)).toBeCloseTo(1.57);
   });
   it('should return the correct result for x<1', () => {
-    expect(znachenie_Funkcii(-2)).toBeCloseTo(-0.857);
+    expect(mainSolvefunc(-2)).toBeCloseTo(-0.857);
   });
   it('should return the correct result for x<1', () => {
-    expect(znachenie_Funkcii(10)).toBeCloseTo(-9.657);
+    expect(mainSolvefunc(10)).toBeCloseTo(-9.657);
   });
 });
 
