@@ -1,6 +1,10 @@
 export class Cat {
-  private _age: number = -1;
+  private _age: number | null = null;
   public get age(): number {
+    if(this._age === null) {
+      return -1;
+    }
+
     return this._age;
   }
   private set age(value: number) {
@@ -28,11 +32,11 @@ export class Cat {
   public constructor(age: number, name?: string, breed?: string) {
     this.age = age;
 
-    if (name !== undefined) {
+    if (name) {
       this._name = name;
     }
 
-    if (breed !== undefined) {
+    if (breed) {
       this._breed = breed;
     }
   }
