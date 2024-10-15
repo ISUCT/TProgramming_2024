@@ -19,20 +19,18 @@ export class Employee {
     return this.ageC;
   }
   public set age(age: number) {
-    if (age >= 0) {
-      this.ageC = age;
-      return;
+    if (age < 0) {
+        throw new Error('Возраст не может быть отрицательным.');
     }
-    throw new Error('Возраст не может быть отрицательным.');
+    this.ageC = age;
   }
   public get salary(): number {
     return this.salaryC;
   }
   public set salary(salary: number) {
     if (salary >= 0) {
-      this.salaryC = salary;
-      return;
+      throw new Error('Зарплата не может быть отрицательной.');
     }
-    throw new Error('Заплата не может быть отрицательной.');
+    this.salaryC = salary;
   }
 }
