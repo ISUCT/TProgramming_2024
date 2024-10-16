@@ -13,7 +13,7 @@ export class Dish {
         if (price > 0) {
             this._price = price;
         } else {
-            throw new Error('Цена должна быть больше 0 рублей');
+            throw new Error('Price so low');
         }
     }
 
