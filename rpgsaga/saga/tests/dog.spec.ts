@@ -11,7 +11,7 @@ describe('Dog class methods tests', () => {
     let newDog = new Dog('TestDog', 'Retriever', 20);
 
     it('Age get test', () => {
-      expect(newDog.age).toBe(30);
+      expect(newDog.age).toBe(20);
     });
 
     it('Name get test', () => {
