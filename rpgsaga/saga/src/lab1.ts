@@ -10,17 +10,17 @@ export function calculate(x: number, b: number): number {
   return resA;
 }
 
-export function solvetaskA(xn: number, xk: number, xs: number, b: number): number[] {
-  const solutSize = Math.floor((xk - xn) / xs) + 1;
+export function solveTaskA(xN: number, xK: number, xS: number, b: number): number[] {
+  const solutSize = Math.floor((xK - xN) / xS) + 1;
   const arrSlice: number[] = [];
 
-  for (let x = xn; x <= xk; x += xs) {
+  for (let x = xN; x <= xK; x += xS) {
     arrSlice.push(calculate(x, b));
   }
   return arrSlice;
 }
 
-export function solvetaskB(nums: number[], b: number): number[] {
+export function solveTaskB(nums: number[], b: number): number[] {
   const resB: number[] = [];
   for (const i of nums) {
     resB.unshift(calculate(i, b));
@@ -28,5 +28,4 @@ export function solvetaskB(nums: number[], b: number): number[] {
   return resB;
 }
 
-console.log("Задача Б: " + solvetaskB(nums, b));
-
+console.log("Задача Б: " + solveTaskB(nums, b));
