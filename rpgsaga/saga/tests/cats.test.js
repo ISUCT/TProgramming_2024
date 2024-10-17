@@ -40,7 +40,7 @@ test('Получаем полные сведения о кошке', () => {
 
 test('Меняем имя у кошки', () => {
     const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
-    cat.changecatname('Barsik');
+    cat.changeCatName('Barsik');
     expect(cat.getName).toBe('Barsik');
 });
 
