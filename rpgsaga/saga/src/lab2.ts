@@ -1,48 +1,58 @@
-export class cat{
+export class Cat {
     name: string;
     age: number;
     breed: string;
-    constructor(catname: string, catage: number, catbreed: string){
-        this.name = catname;
-        this.age = catage;
-        this.breed =catbreed;
+  
+    constructor(catName: string, catAge: number, catBreed: string) {
+      this.name = catName;
+      this.age = catAge;
+      this.breed = catBreed;
     }
-    get getname(): string{
-        return this.name;
+  
+    get getName(): string {
+      return this.name;
     }
-    set setname(valuename: string){
-        this.name = valuename;
+  
+    set setName(valueName: string) {
+      this.name = valueName;
     }
-    get getage(): number{
-        return this.age;
+  
+    get getAge(): number {
+      return this.age;
     }
-    set setage(valueage: number){
-        if (valueage < 0 || valueage > 16) {
-            console.error("Cats don't live that long!");
-        } else {
-            this.age = valueage;
-        }
+  
+    set setAge(valueAge: number) {
+      if (valueAge < 0 || valueAge > 16) {
+        console.error("Cats don't live that long!");
+      } else {
+        this.age = valueAge;
+      }
     }
-    get getbreed(): string{
-        return this.name;
+  
+    get getBreed(): string {
+      return this.breed;
     }
-    set setbreed(valuebreed: string){
-        this.breed = valuebreed;
+  
+    set setBreed(valueBreed: string) {
+      this.breed = valueBreed;
     }
-    get getinfo(): string{
-        return `Cat's name: ${this.name}, cat's age: ${this.age}, cat's breed: ${this.breed}`
+  
+    get getInfo(): string {
+      return `Cat's name: ${this.name}, cat's age: ${this.age}, cat's breed: ${this.breed}`;
     }
-    changecatname(newname: string): void{
-        this.name = newname;
+  
+    changeCatName(newName: string): void {
+      this.name = newName;
     }
-    wherefrom(): string{
-        if (this.name === 'Marsik'){
-            return "Russia";
-        }
-        if (this.name === "Kompot"){
-            return "Belarus";
-        } else {
-            return "Ooops... I don't know(";
-        }
+  
+    whereFrom(): string {
+      if (this.name === 'Marsik') {
+        return "Russia";
+      }
+      if (this.name === "Kompot") {
+        return "Belarus";
+      } else {
+        return "Ooops... I don't know(";
+      }
     }
-}
+  }
