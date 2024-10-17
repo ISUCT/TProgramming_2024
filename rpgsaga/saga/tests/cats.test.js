@@ -7,19 +7,19 @@ test('Проверяем конструктор, инициализируем е
     expect(cat.getbreed).toBe('The Lop-eared Scotsman');
 });
 
-test('получаем и устанавливаем имя кошки', () => {
+test('Получаем и устанавливаем имя кошки', () => {
     const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
     cat.setname = 'Barsik';
     expect(cat.getname).toBe('Barsik');
 });
 
-test('получаем и устанавливаем возраст кошки', () => {
+test('Получаем и устанавливаем возраст кошки', () => {
     const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
     cat.setage = 5;
     expect(cat.getage).toBe(5);
 });
 
-test('придумаем недопустимое значение возраста', () => {
+test('Придумаем недопустимое значение возраста', () => {
     console.error = jest.fn();
     const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
     cat.setage = 250; 
@@ -27,24 +27,24 @@ test('придумаем недопустимое значение возрас�
     expect(cat.getage).toBe(2);
 });
 
-test('получаем и устанавливаем породу кошки', () => {
+test('Получаем и устанавливаем породу кошки', () => {
     const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
     cat.setbreed = 'Siamese';
     expect(cat.getbreed).toBe('Siamese');
 });
 
-test('получаем полные сведения о кошке', () => {
+test('Получаем полные сведения о кошке', () => {
     const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
     expect(cat.getinfo).toBe("Cat's name: Marsik, cat's age: 2, cat's breed: The Lop-eared Scotsman");
 });
 
-test('меняем имя у кошки', () => {
+test('Меняем имя у кошки', () => {
     const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
     cat.changecatname('Barsik');
     expect(cat.getname).toBe('Barsik');
 });
 
-test('узнаем откуда родом кошки', () => {
+test('Узнаем откуда родом кошки', () => {
     const cat1 = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
     const cat2 = new Cat('Kompot', 1, 'The mutt');
     const cat3 = new Cat('Simba', 6, 'Siamese');
