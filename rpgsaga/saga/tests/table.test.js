@@ -1,7 +1,7 @@
 import { calculate, solvetaskA, solvetaskB } from '../src';
 const b = 2.5;
 describe('Функции математические', () => {
-    it('calculate: правильное значение для x = 1.28 и b = 2.5', () => {
+    it('calculate: Правильное значение для x = 1.28 и b = 2.5', () => {
         const result = calculate(1.28, b);
         const expectedValue = Math.pow(1 + Math.pow(Math.sin(b), 3) + Math.pow(1.28, 3), 2 / (Math.pow(Math.pow(b, 3) + Math.pow(1.28, 3), 1 / 3)));
         expect(result).toBeCloseTo(expectedValue, 5);
