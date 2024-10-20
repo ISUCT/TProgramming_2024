@@ -1,4 +1,3 @@
-// character.ts
 export class Character {
     private __name: string;
     private __intellect: number;
