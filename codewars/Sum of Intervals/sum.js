@@ -1,0 +1,3 @@
+function sumIntervals(intervals) {
+    
+  }
