@@ -46,7 +46,7 @@ abstract class Player {
     }
   }
 
-  public allowToAttack(opponent: Player): boolean {
+  public allowToAttack(): boolean {
     return this.isAlive;
   }
 }
@@ -70,7 +70,7 @@ class Knight extends Player {
   }
 
   public attack(opponent: Player): void {
-    if (this.allowToAttack(opponent)) {
+    if (this.allowToAttack()) {
       const damage = this.strength;
       Logger.log(
         `(${this.constructor.name}) ${this.name} наносит урон ${damage} противнику (${
@@ -97,7 +97,7 @@ class Vizard extends Player {
   }
 
   public attack(opponent: Player): void {
-    if (this.allowToAttack(opponent)) {
+    if (this.allowToAttack()) {
       const damage = this.strength;
       Logger.log(
         `(${this.constructor.name}) ${this.name} наносит урон ${damage} противнику (${
@@ -133,7 +133,7 @@ class Archer extends Player {
   }
 
   public attack(opponent: Player): void {
-    if (this.allowToAttack(opponent)) {
+    if (this.allowToAttack()) {
       let damage = this.strength;
       if (this.skillUsed) {
         damage += 2;
