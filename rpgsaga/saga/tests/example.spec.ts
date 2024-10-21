@@ -1,4 +1,4 @@
-import { taskA, taskB } from '../src';
+import { taskA, taskB } from '../src/function';
 
 describe('Tests taskA', () => {
   it('should return 6 values', () => {
