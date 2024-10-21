@@ -1,4 +1,4 @@
-import { Person } from '../src/person';
+import { Person } from '../src/funcAndClass/person';
 
 describe('Person class methods tests', () => {
   it('Constructor test', () => {
