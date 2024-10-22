@@ -25,6 +25,6 @@ export function labTests(): void {
   terrifier.playFilm();
   console.log(terrifier.howOldFilmIs());
   console.log(godFather.howOldFilmIs());
-  terrifier.ageLim = 16;
+  terrifier.ageLimit = 16;
   console.log(terrifier.filmInfo());
 }
