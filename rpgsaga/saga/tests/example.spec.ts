@@ -14,6 +14,7 @@ describe('MathFunction', () => {
 
   test('should handle division by zero in denominator', () => {
     const result = mathFunction(1, 2, 3);
+    expect(result).toBeDefined(); // Здесь можно добавить проверку на правильное значение
   });
 });
 
@@ -45,14 +46,6 @@ describe('TaskB', () => {
   test('should return empty list for empty input list', () => {
     const result = taskB([], 2, 3);
     expect(result).toEqual([]);
-  });
-});
-
-describe('Example', () => {
-  it('should return 5 as result of 2 and 3 sum', () => {
-    const a = 3;
-    const b = 2;
-    expect(a + b).toEqual(5);
   });
 });
 
@@ -103,3 +96,10 @@ describe('Cat class', () => {
   });
 });
 
+describe('Example', () => {
+  it('should return 5 as result of 2 and 3 sum', () => {
+    const a = 3;
+    const b = 2;
+    expect(a + b).toEqual(5);
+  });
+});
