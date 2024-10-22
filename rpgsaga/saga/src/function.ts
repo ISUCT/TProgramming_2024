@@ -3,7 +3,6 @@ const EndingX = 3.5;
 const Step = 0.4;
 const ArrayOfX = [1.9, 2.15, 2.34, 2.74, 3.16];
 
-
 function getBaseLog(base: number, numb: number): number {
     return Number((Math.log(numb)/Math.log(base)).toFixed(2));
 }
