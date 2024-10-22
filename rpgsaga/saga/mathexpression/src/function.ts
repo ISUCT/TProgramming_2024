@@ -11,7 +11,7 @@ export function solveTaskA(xBeg: number, xEnd: number, xStep: number): number[] 
 }
 
 export function solveTaskB(xArr: number[]): number[] {
-  const res: number[] = new Array<number>(xArr.length);
+  const res: number[] = new Array<number>();
 
   for (const i in xArr) {
     res.push(solveExpression(DEFAULT_B_VALUE, xArr[i]));
