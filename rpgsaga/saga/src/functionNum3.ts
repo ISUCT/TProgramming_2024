@@ -19,7 +19,7 @@ function taskA(a: number, b: number, xBegin: number, xEnd: number, xDelta: numbe
             }
         } else {
             for (let x = xBegin; x >= xEnd; x += xDelta) {
-                if (Math.pow(x, 2) - 1 <= 0) {
+                if (1 + Math.pow(Math.log10(x / a), 2) <= 0) {
                     continue;
                 }
                 y.push(result(x, a, b));
