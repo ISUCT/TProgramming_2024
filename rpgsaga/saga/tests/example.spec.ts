@@ -1,3 +1,4 @@
+import { Dog } from "../src/Dog";
 import { solution, taskA, taskB } from "../src/Laba1";
 
 describe('Тесты для функций 1 лабораторной работы', () => {
@@ -50,3 +51,42 @@ describe('Тесты для функций 1 лабораторной работ
         expect(res).toEqual(expected);
     });
 })
+
+describe('Dog Class', () => {
+    const dog: Dog = new Dog('Buddy', 5, 'labrador retriever');
+    it('should create a dog with correct properties', () => {
+        expect(dog.name).toBe('Buddy');
+        expect(dog.age).toBe(5);
+        expect(dog.breed).toBe('labrador retriever');
+    });
+    it('should change the dog\'s name', () => {
+        dog.name = 'Max';
+        expect(dog.name).toBe('Max');
+    });
+    it('should throw an error for empty name', () => {
+        expect(() => { dog.name = ''; }).toThrow('Incorrect name');
+    });
+    it('should change the dog\'s age', () => {
+        dog.age = 7;
+        expect(dog.age).toBe(7);
+    });
+    it('should throw an error for incorrect age', () => {
+        expect(() => { dog.age = 0; }).toThrow('Incorrect age');
+        expect(() => { dog.age = 16; }).toThrow('Incorrect age');
+    });
+    it('should throw an error for incorrect breed', () => {
+        expect(() => { dog.breed = 'invalid breed'; }).toThrow('Incorrect breed');
+    });
+    it('should return correct response for known commands', () => {
+        expect(dog.dogCommands('bork')).toBe('Max says: Woof!');
+        expect(dog.dogCommands('sit')).toBe('Max sits down');
+        expect(dog.dogCommands('stay')).toBe('Max stays in place');
+        expect(dog.dogCommands('fetch stick')).toBe('Max fetches the stick');
+    });
+    it('should return unknown command response for unknown commands', () => {
+        expect(dog.dogCommands('jump')).toBe('The dog Max does not know such a command');
+    });
+    it('should return correct routine message', () => {
+        expect(dog.dogRoutine()).toBe('The dog Max loves to play and have fun with his master!');
+    });
+});
