@@ -1,57 +1,57 @@
 import { Logger } from '../utils/output/Logger';
 
 export abstract class Player {
-  protected _health: number;
-  protected _strength: number;
-  protected _name: string;
-  protected _className: string;
+  protected health: number;
+  protected strength: number;
+  protected name: string;
+  protected className: string;
   isAlive: boolean = true;
 
   constructor(gamerHealth: number, gamerStrength: number, gamerName: string) {
     this.health = gamerHealth;
     this.strength = gamerStrength;
-    this._name = gamerName;
+    this.name = gamerName;
   }
 
-  public get health(): number {
-    return this._health;
+  public get hp(): number {
+    return this.health;
   }
 
-  public set health(newHP: number) {
+  public set hp(newHP: number) {
     if (newHP < 0 || newHP > 100) {
       throw new Error('Недопустимый показатель здоровья');
     } else {
-      this._health = newHP;
+      this.health = newHP;
     }
   }
 
-  public get strength(): number {
-    return this._strength;
+  public get sp(): number {
+    return this.strength;
   }
 
-  public set strength(newStrength: number) {
+  public set sp(newStrength: number) {
     if (newStrength < 0) {
       throw new Error('Недопустимый показатель силы');
     } else {
-      this._strength = newStrength;
+      this.strength = newStrength;
     }
   }
 
-  public get name(): string {
-    return this._name;
+  public get playerName(): string {
+    return this.name;
   }
 
-  public get className(): string {
-    return this._className;
+  public get playerClassName(): string {
+    return this.className;
   }
 
   public abstract attack(opponent: Player): void;
 
   public takeDamage(damage: number): void {
-    this._health -= damage;
-    if (this._health <= 0) {
+    this.health -= damage;
+    if (this.health <= 0) {
       this.isAlive = false;
-      Logger.log(`(${this.className}) ${this._name} погибает`);
+      Logger.log(`(${this.className}) ${this.name} погибает`);
     }
   }
 

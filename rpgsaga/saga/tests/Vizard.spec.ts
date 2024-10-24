@@ -3,40 +3,40 @@ import { Vizard } from '../src/classes/Vizard';
 describe('Vizard class methods tests', () => {
   it('Constructor test', () => {
     let newVizard = new Vizard(75, 25, 'Ibragim');
-    expect(newVizard.health).toEqual(75);
-    expect(newVizard.strength).toBe(25);
-    expect(newVizard.name).toBe('Ibragim');
+    expect(newVizard.hp).toEqual(75);
+    expect(newVizard.sp).toBe(25);
+    expect(newVizard.playerName).toBe('Ibragim');
   });
   describe('Get methods tests', () => {
     let newVizard = new Vizard(75, 25, 'Ibragim');
     it('Health get test', () => {
-      expect(newVizard.health).toEqual(75);
+      expect(newVizard.hp).toEqual(75);
     });
     it('Strength get test', () => {
-      expect(newVizard.strength).toBe(25);
+      expect(newVizard.sp).toBe(25);
     });
     it('Name get test', () => {
-      expect(newVizard.name).toBe('Ibragim');
+      expect(newVizard.playerName).toBe('Ibragim');
     });
   });
   describe('Set methods tests', () => {
     let newVizard = new Vizard(75, 25, 'Ibragim');
     it('Health basic test', () => {
-      newVizard.health = 35;
-      expect(newVizard.health).toEqual(35);
+      newVizard.hp = 35;
+      expect(newVizard.hp).toEqual(35);
     });
     it('Health negative test', () => {
       expect(() => {
-        newVizard.health = -1;
+        newVizard.hp = -1;
       }).toThrow(Error('Недопустимый показатель здоровья'));
     });
     it('Strength basic test', () => {
-      newVizard.strength = 86;
-      expect(newVizard.strength).toEqual(86);
+      newVizard.sp = 86;
+      expect(newVizard.sp).toEqual(86);
     });
     it('Strength negative test', () => {
       expect(() => {
-        newVizard.strength = -1;
+        newVizard.sp = -1;
       }).toThrow(Error('Недопустимый показатель силы'));
     });
   });
@@ -49,7 +49,7 @@ describe('Vizard class methods tests', () => {
     });
     it('Should return health after an attack', () => {
       newVizard.attack(opponent);
-      expect(opponent.health).toEqual(86 - newVizard.strength);
+      expect(opponent.hp).toEqual(86 - newVizard.sp);
     });
     it('Should change the propertie "skillUsed" to false', () => {
       newVizard.takeDamage(55);
@@ -60,7 +60,7 @@ describe('Vizard class methods tests', () => {
     let newVizard = new Vizard(75, 25, 'Ibragim');
     it('Health should decrease by the number of damage units', () => {
       newVizard.takeDamage(45);
-      expect(newVizard.health).toEqual(75 - 45);
+      expect(newVizard.hp).toEqual(75 - 45);
     });
     it('Ibragim should DIE.', () => {
       newVizard.takeDamage(45);
