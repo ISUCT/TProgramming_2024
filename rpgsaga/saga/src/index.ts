@@ -1,23 +1,5 @@
-export function solution(a: number, b: number, x: number): number {
-  const result = Math.acos(Math.pow(x, 2) - Math.pow(b, 2)) / Math.asin(Math.pow(x, 2) - Math.pow(a, 2));
-  return result;
-}
-
-export function taskA(a: number, b: number, xStart: number, xEnd: number, xStep: number): Array<number> {
-  const listOfAnswers = [];
-  for (let i = xStart; i < xEnd; i += xStep) {
-    listOfAnswers.push(solution(a, b, i));
-  }
-  return listOfAnswers;
-}
-
-export function taskB(a: number, b: number, listOfX: Array<number>): Array<number> {
-  const listOfAnswers = [];
-  for (const i of listOfX) {
-    listOfAnswers.push(solution(a, b, i));
-  }
-  return listOfAnswers;
-}
+import { taskA, taskB } from "./lab_1";
+import { Table } from "./Table";
 
 const a = 0.05;
 const b = 0.06;
@@ -32,3 +14,13 @@ console.log('task A answers:');
 console.log(taskA(a, b, xStart, xEnd, xStep));
 console.log('task B answers:');
 console.log(taskB(a, b, listOfX));
+
+console.log('Laboratory work №2 (Classes)')
+try {
+    let table = new Table(100, 70, 60)
+    console.log(table.dimensions);
+    console.log(table.height);
+    console.log(`Table category: ${table.tableCategory()}`);
+} catch(ex) {
+    console.log(`Error creating table ${ex.message}`)
+}
