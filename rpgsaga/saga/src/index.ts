@@ -1,5 +1,5 @@
-import { taskA, taskB } from "./lab_1";
-import { Table } from "./Table";
+import { taskA, taskB } from './lab_1';
+import { Table } from './Table';
 
 const a = 0.05;
 const b = 0.06;
@@ -15,12 +15,12 @@ console.log(taskA(a, b, xStart, xEnd, xStep));
 console.log('task B answers:');
 console.log(taskB(a, b, listOfX));
 
-console.log('Laboratory work №2 (Classes)')
+console.log('Laboratory work №2 (Classes)');
 try {
-    let table = new Table(100, 70, 60)
-    console.log(table.dimensions);
-    console.log(table.height);
-    console.log(`Table category: ${table.tableCategory()}`);
-} catch(ex) {
-    console.log(`Error creating table ${ex.message}`)
+  const table = new Table(100, 70, 60);
+  console.log(table.dimensions);
+  console.log(table.height);
+  console.log(`Table category: ${table.tableCategory()}`);
+} catch (ex) {
+  console.log(`Error creating table ${ex.message}`);
 }
