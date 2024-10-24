@@ -1,6 +1,6 @@
-export const x = 1.28;
-export const b = 2.5;
-export const nums = [1.1, 2.4, 3.6, 1.7, 3.9];
+const x = 1.28;
+const b = 2.5;
+const nums = [1.1, 2.4, 3.6, 1.7, 3.9];
 
 export function calculate(x: number, b: number): number {
   const resA = Math.pow(
@@ -11,7 +11,6 @@ export function calculate(x: number, b: number): number {
 }
 
 export function solveTaskA(xN: number, xK: number, xS: number, b: number): number[] {
-  const solutSize = Math.floor((xK - xN) / xS) + 1;
   const arrSlice: number[] = [];
 
   for (let x = xN; x <= xK; x += xS) {
@@ -28,4 +27,4 @@ export function solveTaskB(nums: number[], b: number): number[] {
   return resB;
 }
 
-console.log("Задача Б: " + solveTaskB(nums, b));
+console.log(`Задача Б: ${solveTaskB(nums, b)}`); 
