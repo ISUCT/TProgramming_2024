@@ -1,5 +1,4 @@
 export class Logger {
-  //Возможность создания тектового файла
   private logFile: string;
 
   constructor(logFile: string = 'game_log.txt') {
