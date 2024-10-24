@@ -1,0 +1,11 @@
+function sumPairs(ints, s) {
+  let noticed = {};
+  for (let i = 0; i < ints.length; i++) {
+    let x = s - ints[i];
+    if (x in noticed) {
+      return [x, ints[i]];
+    }
+    noticed[ints[i]] = true;
+  }
+  return undefined;
+} 
