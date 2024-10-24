@@ -31,18 +31,18 @@ export class Game {
       await this.battle();
     }
 
-    Logger.log(`Победитель: ${this.players[0].getName()}`);
+    Logger.log(`Победитель: ${this.players[0].name}`);
   }
 
   private async battle() {
     const fighters: Player[] = this.shuffleArray(this.players).slice(0, 2);
-    Logger.log(`(${fighters[0].getName()}) vs (${fighters[1].getName()})`);
+    Logger.log(`(${fighters[0].name}) vs (${fighters[1].name})`);
 
     let turn = 0;
     const players = [fighters[0], fighters[1]];
     const skillsUsed = [false, false];
 
-    while (fighters[0].getHealth() > 0 && fighters[1].getHealth() > 0) {
+    while (fighters[0].health > 0 && fighters[1].health > 0) {
       const attackerIndex = turn % 2;
       const defenderIndex = (turn + 1) % 2;
       const attacker = players[attackerIndex];

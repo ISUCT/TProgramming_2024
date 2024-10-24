@@ -2,15 +2,13 @@ import { Player } from '../abstract/Player';
 import { Logger } from '../utils/output/Logger';
 
 export class Vizard extends Player {
-  protected className: string = 'Vizard';
+  protected _className: string = 'Vizard';
   skillUsed: boolean = false;
 
   public useSkill(opponent: Player): void {
     if (!this.skillUsed) {
       Logger.log(
-        `(${this.getClassName()}) ${
-          this.name
-        } использует (Заворожение) на (${opponent.getClassName()}) ${opponent.getName()}`,
+        `(${this.className}) ${this._name} использует (Заворожение) на (${opponent.className}) ${opponent.name}`,
       );
       this.skillUsed = true;
     }
@@ -18,11 +16,9 @@ export class Vizard extends Player {
 
   public attack(opponent: Player): void {
     if (this.allowToAttack()) {
-      const damage = this.strength;
+      const damage = this._strength;
       Logger.log(
-        `(${this.getClassName()}) ${
-          this.name
-        } наносит урон ${damage} противнику (${opponent.getClassName()}) ${opponent.getName()}`,
+        `(${this.className}) ${this._name} наносит урон ${damage} противнику (${opponent.className}) ${opponent.name}`,
       );
       opponent.takeDamage(damage);
     }
@@ -30,7 +26,7 @@ export class Vizard extends Player {
 
   public takeDamage(damage: number): void {
     if (this.skillUsed) {
-      Logger.log(`Противник не может атаковать ${this.name} из-за (Заворожения)`);
+      Logger.log(`Противник не может атаковать ${this._name} из-за (Заворожения)`);
       this.skillUsed = false;
     } else {
       super.takeDamage(damage);

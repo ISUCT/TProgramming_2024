@@ -2,15 +2,13 @@ import { Player } from '../abstract/Player';
 import { Logger } from '../utils/output/Logger';
 
 export class Archer extends Player {
-  protected className: string = 'Archer';
+  protected _className: string = 'Archer';
   skillUsed: boolean = false;
 
   public useSkill(opponent: Player): void {
     if (!this.skillUsed) {
       Logger.log(
-        `(${this.getClassName()}) ${
-          this.name
-        } использует (Огненные стрелы) на (${opponent.getClassName()}) ${opponent.getName()}`,
+        `(${this.className}) ${this._name} использует (Огненные стрелы) на (${opponent.className}) ${opponent.name}`,
       );
       this.skillUsed = true;
     }
@@ -18,14 +16,12 @@ export class Archer extends Player {
 
   public attack(opponent: Player): void {
     if (this.allowToAttack()) {
-      let damage = this.strength;
+      let damage = this._strength;
       if (this.skillUsed) {
         damage += 2;
       }
       Logger.log(
-        `(${this.getClassName()}) ${
-          this.name
-        } наносит урон ${damage} противнику (${opponent.getClassName()}) ${opponent.getName()}`,
+        `(${this.className}) ${this._name} наносит урон ${damage} противнику (${opponent.className}) ${opponent.name}`,
       );
       opponent.takeDamage(damage);
     }
