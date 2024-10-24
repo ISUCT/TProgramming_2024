@@ -1,4 +1,5 @@
-import { death, taskA, taskB} from "../src";
+import { death, taskA, taskB} from "../src/laba1";
+import { Piggy } from "../src/Piggy";
 
 describe('Testing functions from laboratory work', () => {
     it('should return -2.3 for death(0.1)', () => {
@@ -99,3 +100,84 @@ describe('Testing functions from laboratory work', () => {
         ]);
     });
 });
+
+
+describe('Piggy Class Tests', () => {
+    let piggy: Piggy = new Piggy('Porky', 5, 'male', 'brown');
+
+    it('should create a Piggy instance with correct properties', () => {
+        expect(piggy.name).toBe('Porky');
+        expect(piggy.age).toBe(5);
+        expect(piggy.sex).toBe('male');
+        expect(piggy.color).toBe('brown');
+    });
+    it('should return the correct name', () => {
+        expect(piggy.name).toBe('Porky');
+    });
+
+    it('should return the correct age', () => {
+        expect(piggy.age).toBe(5);
+    });
+
+    it('should return the correct sex', () => {
+        expect(piggy.sex).toBe('male');
+    });
+
+    it('should return the correct color', () => {
+        expect(piggy.color).toBe('brown');
+    });
+
+    it('should set a valid name', () => {
+        piggy.name = 'Bacon';
+        expect(piggy.name).toBe('Bacon');
+    });
+
+    it('should throw an error when setting an empty name', () => {
+        expect(() => {
+            piggy.name = '';
+        }).toThrowError('This name is not corret');
+    });
+
+    it('should set a valid age', () => {
+        piggy.age = 10;
+        expect(piggy.age).toBe(10);
+    });
+
+    it('should throw an error when setting an invalid age', () => {
+        expect(() => {
+            piggy.age = 25;
+        }).toThrowError('Age is not correct');
+    });
+
+    it('should set a valid sex', () => {
+        piggy.sex = 'female';
+        expect(piggy.sex).toBe('female');
+    });
+
+    it('should throw an error when setting an invalid sex', () => {
+        expect(() => {
+            piggy.sex = 'unknown';
+        }).toThrowError('Sex is not correct');
+    });
+
+    it('should throw an error when setting an invalid color', () => {
+        expect(() => {
+            piggy.color = 'green';
+        }).toThrowError('Color is not correct');
+    });
+
+    it('should return the correct movement string', () => {
+        expect(piggy.piggyMoves()).toBe('Bacon the brown pig runs and grunts across the field');
+    });
+
+    it('should return lucky pig message for Nyusha', () => {
+        const luckyPig = new Piggy('Nyusha', 3, 'female', 'pink');
+        expect(luckyPig.luckyPiggy()).toBe('Nyusha the pink pig is lucky pig');
+    });
+
+    it('should return unlucky pig message for other names', () => {
+        expect(piggy.luckyPiggy()).toBe('Bacon the brown pig is unlucky pig');
+    });
+});
+
+
