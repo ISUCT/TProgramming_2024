@@ -1,4 +1,5 @@
 import { input } from './utils/input/input';
+import { Game } from './gameplay/Game';
 import { taskA, taskB, output } from './funcAndClass/function';
 
 console.log(output('A', taskA(1.6, 1.2, 3.7, 0.5)));

@@ -13,11 +13,11 @@ export abstract class Player {
     this.name = gamerName;
   }
 
-  public get hp(): number {
+  public get healthPoints(): number {
     return this.health;
   }
 
-  public set hp(newHP: number) {
+  public set healthPoints(newHP: number) {
     if (newHP < 0 || newHP > 100) {
       throw new Error('Недопустимый показатель здоровья');
     } else {
@@ -25,11 +25,11 @@ export abstract class Player {
     }
   }
 
-  public get sp(): number {
+  public get strengthPoints(): number {
     return this.strength;
   }
 
-  public set sp(newStrength: number) {
+  public set strengthPoints(newStrength: number) {
     if (newStrength < 0) {
       throw new Error('Недопустимый показатель силы');
     } else {

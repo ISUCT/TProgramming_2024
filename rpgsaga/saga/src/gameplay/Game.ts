@@ -19,6 +19,10 @@ export class Game {
     }
   }
 
+  public get playersCount() {
+    return this.players;
+  }
+
   private createPlayer(name: string, health: number, strength: number): Player {
     const types = [Knight, Archer, Vizard];
     const PlayerClass = types[Math.floor(Math.random() * types.length)];
@@ -42,7 +46,7 @@ export class Game {
     const players = [fighters[0], fighters[1]];
     const skillsUsed = [false, false];
 
-    while (fighters[0].hp > 0 && fighters[1].hp > 0) {
+    while (fighters[0].healthPoints > 0 && fighters[1].healthPoints > 0) {
       const attackerIndex = turn % 2;
       const defenderIndex = (turn + 1) % 2;
       const attacker = players[attackerIndex];
