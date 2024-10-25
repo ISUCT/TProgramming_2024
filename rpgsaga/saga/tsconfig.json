@@ -1,9 +1,14 @@
 {
-    "compilerOptions": {
-    "types": ["jest", "node"],
-    "target": "ES5",
-    "module": "CommonJS",
-    "outDir": "out",
-    "sourceMap": true
-  }
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "types": ["jest", "node"]
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
