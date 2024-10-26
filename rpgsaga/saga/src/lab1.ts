@@ -1,11 +1,9 @@
-const x = 1.28;
-const b = 2.5;
-const nums = [1.1, 2.4, 3.6, 1.7, 3.9];
+import { b as numB, nums as eyNums } from '.';
 
 export function calculate(x: number, b: number): number {
   const resA = Math.pow(
     1 + Math.pow(Math.sin(b), 3) + Math.pow(x, 3),
-    2 / Math.pow(Math.pow(b, 3) + Math.pow(x, 3), 1 / 3)
+    2 / Math.pow(Math.pow(b, 3) + Math.pow(x, 3), 1 / 3),
   );
   return resA;
 }
@@ -27,4 +25,4 @@ export function solveTaskB(nums: number[], b: number): number[] {
   return resB;
 }
 
-console.log(`Задача Б: ${solveTaskB(nums, b)}`); 
+console.log(`Задача Б: ${solveTaskB(eyNums, numB)}`);
