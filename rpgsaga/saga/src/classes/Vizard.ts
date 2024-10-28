@@ -1,33 +1,43 @@
 import { Player } from '../abstract/Player';
+import { ISkills } from '../skills/ISkills';
 import { Logger } from '../utils/output/Logger';
 
 export class Vizard extends Player {
   protected className: string = 'Vizard';
-  skillUsed: boolean = false;
+  protected countOfSkills: number = 0;
+  protected skill: ISkills;
 
-  public useSkill(opponent: Player): void {
-    if (!this.skillUsed) {
-      Logger.log(
-        `(${this.playerClassName}) ${this.playerName} использует (Заворожение) на (${opponent.playerClassName}) ${opponent.playerName}`,
-      );
-      this.skillUsed = true;
+  public get countOfVizardSkills() {
+    return this.countOfSkills;
+  }
+
+  constructor(health: number, strength: number, name: string) {
+    super(health, strength, name);
+    this.addSkill({
+      name: 'Заворожение',
+      isAvailable: true,
+      effect: opponent => {
+        opponent.gettingCharmed(true);
+        return 0;
+      },
+    });
+  }
+
+  public attack(opponent: Player): string {
+    if (this.isAlivePlayer && !this.isCharmed) {
+      opponent.takeDamage(this.strength);
+      return `(${this.playerClassName}) ${this.playerName} наносит урон ${this.strength} противнику (${opponent.playerClassName}) ${opponent.playerName}`;
+    } else if (this.isAlivePlayer && this.isCharmed) {
+      this.gettingCharmed(false);
+      return opponent.takeDamage(this.strength);
     }
   }
 
-  public attack(opponent: Player): void {
-    if (this.allowToAttack()) {
-      const damage = this.strength;
-      Logger.log(
-        `(${this.playerClassName}) ${this.playerName} наносит урон ${damage} противнику (${opponent.playerClassName}) ${opponent.playerName}`,
-      );
-      opponent.takeDamage(damage);
-    }
-  }
-
-  public takeDamage(damage: number): void {
+  public takeDamage(damage: number): string {
     if (this.skillUsed) {
-      Logger.log(`Противник не может атаковать ${this.playerName} из-за (Заворожения)`);
       this.skillUsed = false;
+      this.countOfSkills += 1;
+      return `Противник не может атаковать ${this.playerName} из-за (Заворожения)`;
     } else {
       super.takeDamage(damage);
     }

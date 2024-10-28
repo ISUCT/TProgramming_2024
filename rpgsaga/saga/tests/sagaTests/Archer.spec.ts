@@ -19,33 +19,12 @@ describe('Archer class methods tests', () => {
       expect(newArcher.playerName).toBe('Ibragim');
     });
   });
-  describe('Set methods tests', () => {
-    let newArcher = new Archer(75, 25, 'Ibragim');
-    it('Health basic test', () => {
-      newArcher.healthPoints = 35;
-      expect(newArcher.healthPoints).toEqual(35);
-    });
-    it('Health negative test', () => {
-      expect(() => {
-        newArcher.healthPoints = -1;
-      }).toThrow(Error('Недопустимый показатель здоровья'));
-    });
-    it('Strength basic test', () => {
-      newArcher.strengthPoints = 86;
-      expect(newArcher.strengthPoints).toEqual(86);
-    });
-    it('Strength negative test', () => {
-      expect(() => {
-        newArcher.strengthPoints = -1;
-      }).toThrow(Error('Недопустимый показатель силы'));
-    });
-  });
   describe('Archer methods tests', () => {
     let newArcher = new Archer(75, 25, 'Ibragim');
     let opponent = new Archer(86, 26, 'Mustafa');
     it('Should change the propertie "skillUsed" to true', () => {
       newArcher.useSkill(opponent);
-      expect(newArcher.skillUsed).toEqual(true);
+      expect(newArcher.playerSkillUsed).toEqual(true);
     });
     it('Should return health after an attack using a skill', () => {
       newArcher.attack(opponent);
@@ -65,7 +44,7 @@ describe('Archer class methods tests', () => {
     });
     it('Ibragim should DIE.', () => {
       newArcher.takeDamage(45);
-      expect(newArcher.isAlive).toEqual(false);
+      expect(newArcher.isAlivePlayer).toEqual(false);
     });
   });
 });

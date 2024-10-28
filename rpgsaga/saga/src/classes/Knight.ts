@@ -1,28 +1,30 @@
 import { Player } from '../abstract/Player';
-import { Logger } from '../utils/output/Logger';
+import { ISkills } from '../skills/ISkills';
 
 export class Knight extends Player {
   protected className: string = 'Knight';
-  skillUsed: boolean = false;
+  protected skill: ISkills;
 
-  public useSkill(opponent: Player): void {
-    if (!this.skillUsed) {
-      this.skillUsed = true;
-      const skillDamage = this.strength * 1.3;
-      Logger.log(
-        `(${this.playerClassName}) ${this.playerName} использует (Удар возмездия) и наносит урон ${skillDamage} противнику (${opponent.playerClassName}) ${opponent.playerName}`,
-      );
-      opponent.takeDamage(skillDamage);
-    }
+  constructor(health: number, strength: number, name: string) {
+    super(health, strength, name);
+    this.addSkill({
+      name: 'Удар возмездия',
+      isAvailable: true,
+      effect: opponent => {
+        const skillDamage = this.strength * 1.3;
+        opponent.takeDamage(skillDamage);
+        return skillDamage;
+      },
+    });
   }
 
-  public attack(opponent: Player): void {
-    if (this.allowToAttack()) {
-      const damage = this.strength;
-      Logger.log(
-        `(${this.playerClassName}) ${this.playerName} наносит урон ${damage} противнику (${opponent.playerClassName}) ${opponent.playerName}`,
-      );
-      opponent.takeDamage(damage);
+  public attack(opponent: Player): string {
+    if (this.isAlivePlayer && !this.isCharmed) {
+      opponent.takeDamage(this.strength);
+      return `(${this.playerClassName}) ${this.playerName} наносит урон ${this.strength} противнику (${opponent.playerClassName}) ${opponent.playerName}`;
+    } else if (this.isAlivePlayer && this.isCharmed) {
+      this.gettingCharmed(false);
+      return opponent.takeDamage(this.strength);
     }
   }
 }
