@@ -1,5 +1,7 @@
+import { taskA, taskB } from './labs/formula';
+import { Phone } from './labs/classes';
+
 // ---------------------FORMULA---------------------
-import { mainSolvefunc, taskA, taskB } from "./labs/formula";
 console.log('taskA');
 const xn = 0.2;
 const xk = 2.2;
@@ -17,13 +19,12 @@ for (let i = 0; i < y.length; i++) {
 }
 
 // ---------------------CLASSES---------------------
-import { Phone } from "./labs/classes";
 
-const phone = new Phone (89158121337, "iPhone", "11");
+const phone = new Phone(89158121337, 'iPhone', '11');
 console.log(phone);
-const phone1 = new Phone (88123456789, "Samsung", "s23");
+const phone1 = new Phone(88123456789, 'Samsung', 's23');
 console.log(phone1);
 console.log(phone1.phoneNumber);
 phone1.phoneNumber = 89098765432;
 console.log(phone1.phoneNumber);
-phone1.phoneNumber = 8
+phone1.phoneNumber = 8;
