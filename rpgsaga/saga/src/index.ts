@@ -1,33 +1,5 @@
-export function mainSolvefunc(x: number): number {
-  const ww = Math.round(Math.abs(x) * 100) / 100;
-  if (ww < 1) {
-    return Math.acos(ww);
-  }
-  return Math.pow(1.2, ww) - Math.pow(ww, 1.2);
-}
-
-export function taskA(xn: number, xk: number, dx: number): [number[], number[]] {
-  const listOfx: number[] = [];
-  const listOfy: number[] = [];
-  for (let i = xn; i <= xk; i += dx) {
-    i = Math.round(Math.abs(i) * 100) / 100;
-    const y = mainSolvefunc(i);
-    listOfx.push(i);
-    listOfy.push(y);
-  }
-  return [listOfx, listOfy];
-}
-
-export function taskB(a: number[]): [number[], number[]] {
-  const listOfbx: number[] = [];
-  const listOfby: number[] = [];
-  for (const x of a) {
-    listOfby.push(mainSolvefunc(x));
-    listOfbx.push(x);
-  }
-  return [listOfbx, listOfby];
-}
-
+// ---------------------FORMULA---------------------
+import { mainSolvefunc, taskA, taskB } from "./labs/formula";
 console.log('taskA');
 const xn = 0.2;
 const xk = 2.2;
@@ -43,3 +15,15 @@ const xB = [0.1, 0.9, 1.2, 1.5, 2.3];
 for (let i = 0; i < y.length; i++) {
   console.log(`x= ${x[i]} y= ${y[i]}`);
 }
+
+// ---------------------CLASSES---------------------
+import { Phone } from "./labs/classes";
+
+const phone = new Phone (89158121337, "iPhone", "11");
+console.log(phone);
+const phone1 = new Phone (88123456789, "Samsung", "s23");
+console.log(phone1);
+console.log(phone1.phoneNumber);
+phone1.phoneNumber = 89098765432;
+console.log(phone1.phoneNumber);
+phone1.phoneNumber = 8

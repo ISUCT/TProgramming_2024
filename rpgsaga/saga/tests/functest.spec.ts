@@ -1,4 +1,4 @@
-import { mainSolvefunc,taskA,taskB } from "../src";
+import { mainSolvefunc, taskA, taskB } from "../src/labs/formula";
 
 describe('mainSolvefunc', () => {
   it('should return the correct result for x<1', () => {
