@@ -28,5 +28,15 @@ describe("Phone", () => {
         phone.phoneNumber = 888;
       }).toThrow("the length of the number should be 11");
     });
+
+    test("must return the required phrase", () => {
+      let phrase = phone.makeCall();
+      expect(phrase).toBe("Совершается вызов абонента по номеру 88123456789");
+    });
+
+    test("must return the required phrase", () => {
+      let phrase = phone.getInfo();
+      expect(phrase).toBe("Данный абонент, с номером 88123456789, владеет телефоном  Samsung s23");
+    });
   
 });

@@ -33,4 +33,10 @@ export class Phone {
   public set phoneModel(model: string) {
     this._phoneModel = model;
   }
+  public makeCall(): string {
+    return `Совершается вызов абонента по номеру ${this.phoneNumber}`;
+  }
+  public getInfo(): string {
+    return `Данный абонент, с номером ${this.phoneNumber}, владеет телефоном  ${this.phoneBrand} ${this.phoneModel}`;
+  }
 }

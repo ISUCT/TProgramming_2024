@@ -27,4 +27,6 @@ console.log(phone1);
 console.log(phone1.phoneNumber);
 phone1.phoneNumber = 89098765432;
 console.log(phone1.phoneNumber);
+console.log(phone1.makeCall());
+console.log(phone1.getInfo());
 phone1.phoneNumber = 8;
