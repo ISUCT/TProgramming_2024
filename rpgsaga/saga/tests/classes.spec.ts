@@ -1,4 +1,4 @@
-import { Film } from '../src/labs/classes';
+import { Film } from '../src/labs/film';
 
 describe('Constructor tests', () => {
   let film: Film;

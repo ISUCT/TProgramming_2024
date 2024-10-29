@@ -1,8 +1,6 @@
-export class Film {
-  private _name: string;
-  private _director: string;
-  private _year: number;
-  private _country: string;
+import { workOfArt } from "./superClass";
+
+export class Film extends workOfArt {
   private _genre: string;
   private _ageLimit: number;
   private _filmLengthInMinutes: number;
@@ -15,10 +13,7 @@ export class Film {
     ageLimit: number = 0,
     filmLengthInMinutes: number,
   ) {
-    this._name = name;
-    this._director = director;
-    this.year = year;
-    this._country = country;
+    super(name,year,director, country);
     this._genre = genre;
     this._ageLimit = ageLimit;
     this.filmLengthInMinutes = filmLengthInMinutes;
@@ -32,36 +27,12 @@ export class Film {
     }
   }
 
-  private set year(value: number) {
-    if (value < 1895) {
-      throw new Error('Incorrect year');
-    } else {
-      this._year = value;
-    }
-  }
-
   public set ageLimit(age: number) {
     if ([0, 6, 12, 16, 18].includes(age)) {
       this._ageLimit = age;
     } else {
       throw new Error('Wrong age limit');
     }
-  }
-
-  public get name(): string {
-    return this._name;
-  }
-
-  public get director(): string {
-    return this._director;
-  }
-
-  public get year(): number {
-    return this._year;
-  }
-
-  public get country(): string {
-    return this._country;
   }
 
   public get genre(): string {
@@ -77,23 +48,23 @@ export class Film {
   }
 
   playFilm(): void {
-    console.log(`=================== Film "${this._name}" started. ===================`);
+    console.log(`=================== Film "${this.name}" started. ===================`);
     function delay(ms: number) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
     // delay time less then need (1 minute = 100ms) for easier checking
     delay(Number(this.filmLengthInMinutes) * 100).then(() => {
-      console.log(`=================== Film "${this._name}" ended. ===================`);
+      console.log(`=================== Film "${this.name}" ended. ===================`);
     });
   }
 
   howOldFilmIs(): string {
-    const old: number = new Date().getFullYear() - Number(this._year);
-    return `=================== Film "${this._name}" was released ${old} years ago. ===================`;
+    const old: number = new Date().getFullYear() - Number(this.year);
+    return `=================== Film "${this.name}" was released ${old} years ago. ===================`;
   }
 
-  filmInfo(): string {
-    const strToReturn = `Film "${this._name}" was shot by ${this._director} in ${this._country} in ${this._year}. Genre of this film is ${this._genre}. This film is ${this._ageLimit}+.`;
+    display(): string {
+    const strToReturn = `Film "${this.name}" was shot by ${this.director} in ${this.country} in ${this.year}. Genre of this film is ${this._genre}. This film is ${this._ageLimit}+.`;
     return `┏${'—'.repeat(strToReturn.length)}┓\n|${strToReturn}|\n┗${'—'.repeat(strToReturn.length)}┛`;
   }
 }
