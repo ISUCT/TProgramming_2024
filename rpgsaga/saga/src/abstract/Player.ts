@@ -49,6 +49,10 @@ export abstract class Player {
     return this.skillUsed;
   }
 
+  public set playerSkillUsed(value: boolean) {
+    this.skillUsed = value;
+  }
+
   public addSkill(skill: ISkills): void {
     this.skills.push(skill);
   }
@@ -63,7 +67,7 @@ export abstract class Player {
 
     const skill = getRandomArrayElement(availableSkills);
     this.skillUsed = true;
-    const damageDealt = skill?.effect(opponent);
+    const damageDealt = skill.effect(opponent);
     let message = `(${this.playerClassName}) ${this.playerName} использует (${skill.name}) на (${opponent.playerClassName}) ${opponent.playerName}`;
     if (damageDealt > 0) {
       message += ` и наносит урон ${damageDealt}`;

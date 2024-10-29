@@ -1,6 +1,5 @@
 import { Player } from '../abstract/Player';
 import { ISkills } from '../skills/ISkills';
-import { Logger } from '../utils/output/Logger';
 
 export class Vizard extends Player {
   protected className: string = 'Vizard';
@@ -9,6 +8,10 @@ export class Vizard extends Player {
 
   public get countOfVizardSkills() {
     return this.countOfSkills;
+  }
+
+  public set countOfVizardSkills(value: number) {
+    this.countOfSkills = value;
   }
 
   constructor(health: number, strength: number, name: string) {
@@ -39,7 +42,7 @@ export class Vizard extends Player {
       this.countOfSkills += 1;
       return `Противник не может атаковать ${this.playerName} из-за (Заворожения)`;
     } else {
-      super.takeDamage(damage);
+      return super.takeDamage(damage);
     }
   }
 }

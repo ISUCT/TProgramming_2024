@@ -60,7 +60,6 @@ export class Game {
 
   public async start() {
     Logger.log('Игра началась!');
-    this.players = this.shuffleArray(this.players);
     await this.tournament(this.players);
     Logger.log(`Победитель: ${this.players[0].playerName}`);
   }
@@ -80,6 +79,13 @@ export class Game {
       player2.healthPoints = this.initialHealth[this.players.indexOf(player2)];
       player1.strengthPoints = this.initialStrength[this.players.indexOf(player1)];
       player2.strengthPoints = this.initialStrength[this.players.indexOf(player2)];
+      player1.playerSkillUsed = false;
+      player2.playerSkillUsed = false;
+      if (player1 instanceof Vizard && player1.countOfVizardSkills >= 1) {
+        player1.countOfVizardSkills = 0;
+      } else if (player2 instanceof Vizard && player2.countOfVizardSkills >= 1) {
+        player2.countOfVizardSkills = 0;
+      }
     }
 
     return this.tournament(nextRoundPlayers);
@@ -120,14 +126,6 @@ export class Game {
     }
 
     return fighters.find(player => player.healthPoints > 0)!;
-  }
-
-  private shuffleArray(array: Player[]): Player[] {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
   }
 
   private delay(ms: number): Promise<void> {

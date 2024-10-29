@@ -9,9 +9,9 @@ export function input(): void {
   });
 
   function askForPlayers() {
-    rl.question('Введите число игроков (должно быть чётным): ', inputNumber => {
+    rl.question('Введите число игроков (должно делиться на 4): ', inputNumber => {
       const number = parseInt(inputNumber);
-      if (isNaN(number) || number < 1 || number % 2 !== 0) {
+      if (isNaN(number) || number < 1 || number % 4 !== 0) {
         console.log('Некорректный ввод. Пожалуйста, попробуйте снова.');
         askForPlayers();
       } else {
