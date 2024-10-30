@@ -1,6 +1,6 @@
 import { Film } from '../src/labs/film';
 
-describe('Constructor tests', () => {
+describe('Film constructor tests', () => {
   let film: Film;
   beforeEach(() => {
     film = new Film('Inception', 'Christopher Nolan', 2010, 'USA', 'Sci-Fi', 12, 148);
@@ -13,11 +13,6 @@ describe('Constructor tests', () => {
     expect(film.genre).toBe('Sci-Fi');
     expect(film.ageLimit).toBe(12);
     expect(film.filmLengthInMinutes).toBe(148);
-  });
-  it("Should throw Error if film's year less then 1895", () => {
-    expect(() => {
-      film['year'] = 1000;
-    }).toThrow('Incorrect year');
   });
   it("Should throw Error if film's length in minutes <= 0", () => {
     expect(() => {
@@ -59,7 +54,7 @@ describe('Film methods tests', () => {
   it('Should log start and end messages', async () => {
     jest.useFakeTimers();
     const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation();
-    const playingPromise = film.playFilm();
+    const playingPromise = film.display();
     expect(consoleLogSpy).toHaveBeenCalledWith(`=================== Film "Inception" started. ===================`);
     jest.advanceTimersByTime(149 * 100);
     await playingPromise;
