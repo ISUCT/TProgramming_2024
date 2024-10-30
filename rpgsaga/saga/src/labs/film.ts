@@ -1,6 +1,6 @@
-import { workOfArt } from "./superClass";
+import { WorkOfArt } from './workOfArt';
 
-export class Film extends workOfArt {
+export class Film extends WorkOfArt {
   private _genre: string;
   private _ageLimit: number;
   private _filmLengthInMinutes: number;
@@ -13,7 +13,7 @@ export class Film extends workOfArt {
     ageLimit: number = 0,
     filmLengthInMinutes: number,
   ) {
-    super(name,year,director, country);
+    super(name, year, director, country);
     this._genre = genre;
     this._ageLimit = ageLimit;
     this.filmLengthInMinutes = filmLengthInMinutes;
@@ -47,7 +47,7 @@ export class Film extends workOfArt {
     return this._filmLengthInMinutes;
   }
 
-  playFilm(): void {
+  public display(): void {
     console.log(`=================== Film "${this.name}" started. ===================`);
     function delay(ms: number) {
       return new Promise(resolve => setTimeout(resolve, ms));
@@ -58,12 +58,12 @@ export class Film extends workOfArt {
     });
   }
 
-  howOldFilmIs(): string {
+  public howOldFilmIs(): string {
     const old: number = new Date().getFullYear() - Number(this.year);
     return `=================== Film "${this.name}" was released ${old} years ago. ===================`;
   }
 
-    display(): string {
+  public filmInfo(): string {
     const strToReturn = `Film "${this.name}" was shot by ${this.director} in ${this.country} in ${this.year}. Genre of this film is ${this._genre}. This film is ${this._ageLimit}+.`;
     return `┏${'—'.repeat(strToReturn.length)}┓\n|${strToReturn}|\n┗${'—'.repeat(strToReturn.length)}┛`;
   }
