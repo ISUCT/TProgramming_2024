@@ -1,28 +1,7 @@
-export class Cat {
-  private _age: number | null = null;
-  public get age(): number {
-    if(this._age === null) {
-      return -1;
-    }
+import { Animal } from "./animal";
 
-    return this._age;
-  }
-  private set age(value: number) {
-    if (value >= 0 && value <= 25) {
-      this._age = value;
-      return;
-    }
-
-    throw new Error('Age is invalid');
-  }
-
-  private _name: string = 'No name';
-  get name(): string {
-    return this._name;
-  }
-  set name(value: string) {
-    this._name = value;
-  }
+export class Cat extends Animal {
+  
 
   private _breed: string = 'Unknown';
   get breed(): string {
@@ -30,18 +9,18 @@ export class Cat {
   }
 
   public constructor(age: number, name?: string, breed?: string) {
-    this.age = age;
-
-    if (name) {
-      this._name = name;
-    }
+    super(age, 20, name);
 
     if (breed) {
       this._breed = breed;
     }
   }
 
-  public petTheCat(): string {
+  public override interact(): string {
     return `Cat ${this.name} says meow!`;
+  }
+
+  public override toString() {
+    return `Cat ${this.name} of breed ${this.breed} and age ${this.age}`;
   }
 }
