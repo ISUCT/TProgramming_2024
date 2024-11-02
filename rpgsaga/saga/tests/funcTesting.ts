@@ -1,4 +1,4 @@
-import { calculate, taskone, tasktwo } from '../src'; // Замените 'your-file-name' на имя вашего файла
+import { calculate, taskone, tasktwo } from '../src'; 
 
 describe('calculate', () => {
     it('should return the correct value for a valid input', () => {
