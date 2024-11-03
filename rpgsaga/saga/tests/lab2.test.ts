@@ -1,4 +1,4 @@
-import { calcY, Task1, Task2 } from '../src/lab2';
+import { calcY, task1, task2 } from '../src/lab2';
 
 describe('calcY', () => {
     it('should calculate y correctly for given inputs', () => {
@@ -19,7 +19,7 @@ describe('calcY', () => {
     });
 });
 
-describe('Task1', () => {
+describe('task1', () => {
     it('should generate correct array of y values for given range', () => {
         const a = 4.1;
         const b = 2.7;
@@ -35,7 +35,7 @@ describe('Task1', () => {
             calcY(a, b, 4.7),
             calcY(a, b, 5.2),
         ];
-        const result = Task1(a, b, x1, x2, deltax);
+        const result = task1(a, b, x1, x2, deltax);
 
         result.forEach((value, index) => {
             expect(value).toBeCloseTo(expectedYValues[index], 5);
@@ -49,11 +49,11 @@ describe('Task1', () => {
         const x2 = 1.2;
         const deltax = 0.7;
         const expectedYValues = [calcY(a, b, 1.2)];
-        const result = Task1(a, b, x1, x2, deltax);
+        const result = task1(a, b, x1, x2, deltax);
         expect(result).toEqual(expectedYValues);
     });
 });
-describe('Task2', () => {
+describe('task2', () => {
     it('should generate correct array of y values for given x values', () => {
         const a = 4.1;
         const b = 2.7;
@@ -67,7 +67,7 @@ describe('Task2', () => {
             calcY(a, b, 3.16),
         ];
 
-        const result = Task2(a, b, xValues);
+        const result = task2(a, b, xValues);
 
         expect(result).toEqual(expectedYValues);
     });
@@ -77,7 +77,7 @@ describe('Task2', () => {
         const b = 2.7;
         const xValues = [1.2];
         const expectedYValues = [calcY(a, b, 1.2)];
-        const result = Task2(a, b, xValues);
+        const result = task2(a, b, xValues);
         expect(result).toEqual(expectedYValues);
     });
 });

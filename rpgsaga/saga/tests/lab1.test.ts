@@ -30,7 +30,7 @@ describe('Employee', () => {
 
     test('should print new employee info correctly', () => {
         const consoleSpy = jest.spyOn(console, 'log');
-        emp.NewEmployee("Александра Павлова", 25, "02.08.2024");
+        emp.newEmployee("Александра Павлова", 25, "02.08.2024");
 
         expect(consoleSpy).toHaveBeenCalledWith("Name: Александра Павлова\nAge: 25\nDate: 02.08.2024");
 
