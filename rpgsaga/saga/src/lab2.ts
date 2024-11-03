@@ -41,11 +41,11 @@ export class Cat {
     return `Cat's name: ${this.name}, cat's age: ${this.age}, cat's breed: ${this.breed}`;
   }
 
-  changeCatName(newName: string): void {
+  public changeCatName(newName: string): void {
     this.name = newName;
   }
 
-  whereFrom(): string {
+  public whereFrom(): string {
     if (this.name === 'Marsik') {
       return 'Russia';
     }
