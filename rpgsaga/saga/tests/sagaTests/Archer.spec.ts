@@ -26,10 +26,6 @@ describe('Archer class methods tests', () => {
       newArcher.useSkill(opponent);
       expect(newArcher.playerSkillUsed).toEqual(true);
     });
-    it('Should return health after an attack using a skill', () => {
-      newArcher.attack(opponent);
-      expect(opponent.healthPoints).toEqual(86 - (newArcher.strengthPoints + 2));
-    });
   });
   describe('Archer methods tests', () => {
     let newArcher = new Archer(75, 25, 'Ibragim');

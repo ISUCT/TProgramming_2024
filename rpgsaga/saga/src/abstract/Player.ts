@@ -60,10 +60,14 @@ export abstract class Player {
   public abstract attack(opponent: Player): string;
 
   public useSkill(opponent: Player): string | null {
-    if (this.skills.length === 0) return null;
+    if (this.skills.length === 0) {
+      return null;
+    }
 
     const availableSkills = this.skills.filter(skill => skill.isAvailable);
-    if (availableSkills.length === 0) return null;
+    if (availableSkills.length === 0) {
+      return null;
+    }
 
     const skill = getRandomArrayElement(availableSkills);
     this.skillUsed = true;

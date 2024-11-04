@@ -35,10 +35,14 @@ export class Archer extends Player {
   }
 
   public useSkill(opponent: Player): string | null {
-    if (this.skills.length === 0) return null;
+    if (this.skills.length === 0) {
+      return null;
+    }
 
     const availableSkills = this.skills.filter(skill => skill.isAvailable);
-    if (availableSkills.length === 0) return null;
+    if (availableSkills.length === 0) {
+      return null;
+    }
 
     this.skill = getRandomArrayElement(availableSkills);
     this.skillUsed = true;
@@ -49,6 +53,8 @@ export class Archer extends Player {
     }
     return message;
   }
+
+  //передавать в класс, получаемый урон созданный объект, копирующий параметры скилла и уже его обрабатывать
 
   public attack(opponent: Player): string {
     if (this.isAlivePlayer && !this.isCharmed) {
