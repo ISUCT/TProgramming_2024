@@ -76,23 +76,25 @@ module.exports = {
 
   devServer: {
     allowedHosts: [
-      SERVER_HOST,
       'localhost',
+      SERVER_HOST,
     ],
     historyApiFallback: true,
     open: true,
     hot: true,
     host: SERVER_WEB_HOST,
     port: SERVER_WEB_PORT,
-    proxy: {
-      '/api': proxy,
-      '/acc': proxy,
-      '/auth': proxy,
-      '/socket.io': {
+
+    proxy: [
+      {
+        context: [ '/api', '/acc', '/auth', '/images'],
+        target: proxy
+      },
+      {
+      context: ['/socket.io'], 
         target: proxy,
         ws: true
-      },
-      '/images': proxy
-    }
+      }
+    ]
   }
 };
