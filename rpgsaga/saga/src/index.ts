@@ -1,4 +1,5 @@
 import { taskA, taskB } from './lab1';
+import { Airplane } from './lab2';
 
 function main() {
   // TaskA
@@ -11,5 +12,15 @@ function main() {
   console.log('AnswerOnTaskB:');
   const resultSlice = taskB(mySliceForTaskB, 1.1, 0.09);
   console.log(resultSlice);
+
+  const airplane1 = new Airplane("Boeing 767");
+  airplane1.setSpeed(850);
+  airplane1.setpassengerCapacity(250);
+  airplane1.displayInfo();
+
+  const airplane2 = new Airplane("Boeing 737");
+  airplane2.setSpeed(750);
+  airplane2.setpassengerCapacity(215);
+  airplane2.displayInfo();
 }
 main();
