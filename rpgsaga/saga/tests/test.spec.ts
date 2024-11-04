@@ -1,4 +1,4 @@
-import { calc, TaskA, TaskB } from "../src";
+import { calc, taskA, taskB } from "../src";
 
   describe('calc', () => {
     test('should calculate the correct value for given inputs', () => {
@@ -7,9 +7,9 @@ import { calc, TaskA, TaskB } from "../src";
     });
   });
 
-  describe('TaskA', () => {
+  describe('taskA', () => {
     test('should return the correct array of values for TaskA', () => {
-      const result = TaskA(1.5, 3.5, 4.1, 2.7, 0.4);
+      const result = taskA(1.5, 3.5, 4.1, 2.7, 0.4);
       expect(result).toEqual([
         -147.11354248765136,
         -41765.49494867797,
@@ -22,9 +22,9 @@ import { calc, TaskA, TaskB } from "../src";
   });
 
 
-  describe('TaskB', () => {
+  describe('taskB', () => {
     test('should return the correct array of values for TaskB', () => {
-      const result = TaskB(4.1, 2.7, [1.9, 2.15, 2.34, 2.74, 3.16]);
+      const result = taskB(4.1, 2.7, [1.9, 2.15, 2.34, 2.74, 3.16]);
       expect(result).toEqual([
         -41765.49494867797,
         17920.94588170439,
