@@ -15,4 +15,5 @@ function permutations(string) {
 
     backtrack('', string);
     return Array.from(result);
- }
+ 
+}
