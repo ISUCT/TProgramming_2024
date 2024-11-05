@@ -22,7 +22,7 @@ describe('Picture constructor tests', () => {
   });
 });
 
-describe('Picture constructor tests', () => {
+describe('Picture method tests', () => {
   let picture: Picture;
   beforeEach(() => {
     picture = new Picture(

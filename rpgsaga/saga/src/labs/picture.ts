@@ -21,7 +21,7 @@ export class Picture extends WorkOfArt {
   public get url(): string {
     return this._url;
   }
-  public display() {
+  public display(): void {
     console.log(`URL to "${this.name}" is '${this.url}'`);
   }
 }
