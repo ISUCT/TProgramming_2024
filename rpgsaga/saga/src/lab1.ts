@@ -1,9 +1,5 @@
-declare interface Math {
-    log10(x: number): number;
-}
-
- export function calculate14(a: number, b: number, x: number) {
-    let ans = Math.sqrt(Math.abs(a-b*x)/Math.pow(Math.log10(x), 3));
+export function calculate14(a: number, b: number, x: number) {
+    let ans = Math.sqrt(Math.abs(a - b * x) / Math.pow(Math.log10(x), 3));
     return ans;
 }
 
