@@ -1,6 +1,7 @@
 import { taskA, taskB } from './labs/formula';
 import { Film } from './labs/film';
 import { Picture } from './labs/picture';
+import { WorkOfArt } from './labs/workOfArt';
 
 export function labTests(): void {
   console.log(
@@ -23,11 +24,10 @@ export function labTests(): void {
   const terrifier = new Film('Terrifier', 'Damien Leone', 2016, 'USA', 'horror', 18, 85);
   console.log(godFather.filmInfo());
   console.log(terrifier.filmInfo());
-  terrifier.display();
-  console.log(terrifier.howOldFilmIs());
-  console.log(godFather.howOldFilmIs());
   terrifier.ageLimit = 16;
   console.log(terrifier.filmInfo());
+  console.log(terrifier.howOldFilmIs());
+  console.log(godFather.howOldFilmIs());
   const monaLisa = new Picture(
     'Mona Lisa',
     'Leonardo da Vinci',
@@ -36,8 +36,8 @@ export function labTests(): void {
     'The Renaissance',
     'https://avatars.mds.yandex.net/get-entity_search/2028178/494640495/S600xU_2x',
   );
-  const classes = [godFather, terrifier, monaLisa];
-  for (let i = 0; i < 3; i++) {
-    classes[i].display();
+  const classes: WorkOfArt[] = [godFather, terrifier, monaLisa];
+  for (const item of classes) {
+    item.display();
   }
 }

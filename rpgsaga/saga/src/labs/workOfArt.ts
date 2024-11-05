@@ -34,5 +34,5 @@ export abstract class WorkOfArt {
     return this._country;
   }
 
-  abstract display(): unknown;
+  abstract display(): void;
 }
