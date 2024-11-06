@@ -6,6 +6,9 @@ const func = (x: number, a: number = 4.1, b: number = 2.7): number =>
 const log = (x: number, j: number): number => Math.log(x) / Math.log(j);
 
 const taskA = (xStart: number, xEnd: number, xDelta: number): number[] => {
+  if (xStart > xEnd || xDelta < 0) {
+    throw new Error('Ошибка в функции.');
+  }
   const aResult: number[] = [];
   for (let i: number = xStart; i <= xEnd; i += xDelta) {
     aResult.push(func(i));
@@ -21,7 +24,7 @@ const taskB = (xs: number[]): number[] => {
   return bResult;
 };
 
-export { func, log, taskA as task_a, taskB as task_b };
+export { func, log, taskA, taskB };
 
 const a: Employee = new Employee('Ivan', 17);
 const b: Employee = new Employee('Vlad', 18);
@@ -40,4 +43,5 @@ try {
 }
 
 console.log(taskA(1.2, 5.2, 0.8));
-console.log(taskB([1.9, 2.15, 2.34, 2.73, 3.16]));
+// console.log(taskB([1.9, 2.15, 2.34, 2.73, 3.16]));
+console.log(taskB([3.1, 3.2, 3.3, 3.4, 3.5]));
