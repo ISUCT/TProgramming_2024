@@ -2,8 +2,8 @@ export function calcYA(a: number, b: number, x1: number, x2: number): number[] {
   const result: number[] = [];
   const xStep = 0.2;
   for (let x = x1; x <= x2; x += xStep) {
-    const numerator = Math.log10(x1 * x1 - 1);
-    const denominator = Math.log(a * x1 * x1 - b) / Math.log(5);
+    const numerator = Math.log10(x * x - 1);
+    const denominator = Math.log(a * x * x - b) / Math.log(5);
     result.push(numerator / denominator);
   }
   return result;
