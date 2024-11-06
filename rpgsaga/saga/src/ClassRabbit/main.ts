@@ -1,7 +1,7 @@
-import { Rabbit } from "./Rabbit";
+import { Rabbit } from './Rabbit';
 
-const rabbit1 = new Rabbit(2, "Kyle", "grey");
+const rabbit1 = new Rabbit(2, 'Kyle', 'grey');
 console.log(rabbit1);
-rabbit1.SetColor("black");
+rabbit1.color = 'black';
 console.log(rabbit1);
-console.log(rabbit1.getAge());
+console.log(rabbit1.age);
