@@ -1,48 +1,30 @@
-export class Rabbit {
-  private _age: number;
-  private _name: string;
-  private _color: string;
+import { Animal } from './Animal';
 
-  constructor(age: number, name: string, color: string) {
-    console.log('Constructor for adding new Rabbit:');
-    this._age = age;
-    this._name = name;
-    this._color = color;
+export class Rabbit extends Animal {
+  private _weight: number;
+
+  constructor(age: number, name: string, color: string, weight: number) {
+    super(age, name, color);
+    this._weight = weight;
   }
 
-  set age(newAge: number) {
-    if (newAge >= 0) {
-      this._age = newAge;
+  makeSound() {
+    console.log('GAV GAV!!!');
+  }
+
+  set weight(newWeight: number) {
+    if (newWeight >= 0) {
+      this._weight = newWeight;
       return;
     }
-    throw new Error('age cant be below zero');
+    throw new Error('Weight cant be below zero');
   }
 
-  get age(): number {
-    return this._age;
+  get weight(): number {
+    return this._weight;
   }
 
-  set color(newColor: string) {
-    if (newColor !== '') {
-      this._color = newColor;
-      return;
-    }
-    throw new Error('string "color" cant be empty');
-  }
-
-  get color(): string {
-    return this._color;
-  }
-
-  set name(newName: string) {
-    if (newName !== '') {
-      this._name = newName;
-      return;
-    }
-    throw new Error('string "name" cant be empty');
-  }
-
-  get name(): string {
-    return this._name;
+  toString(): string {
+    return `Rabbit: { age: ${this.age}, name: ${this.name}, color: ${this.color}, weight: ${this._weight} }`;
   }
 }

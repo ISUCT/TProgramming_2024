@@ -1,7 +1,10 @@
+import { Animal } from './Animal';
 import { Rabbit } from './Rabbit';
+import { Cat } from './Cat';
 
-const rabbit1 = new Rabbit(2, 'Kyle', 'grey');
-console.log(rabbit1);
-rabbit1.color = 'black';
-console.log(rabbit1);
-console.log(rabbit1.age);
+const animals: Animal[] = [new Rabbit(2, 'Vitalik', 'grey', 7), new Cat(5, 'Murzik', 'orange', 'munchkin')];
+
+animals.forEach(animal => {
+  console.log(animal.toString());
+  animal.makeSound();
+});
