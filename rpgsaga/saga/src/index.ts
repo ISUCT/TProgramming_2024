@@ -14,18 +14,18 @@ function calcY(a: number, b: number, x: number): number | undefined{
     return Y;
 }
 
-function TaskA(a: number, b: number, x_start: number, x_end: number, x_delta: number): number[] | undefined{
+function taskA(a: number, b: number, xStart: number, xEnd: number, xDelta: number): number[] | undefined{
     let result = [];
-    if (x_delta === 0) {
+    if (xDelta === 0) {
         return [];
     }
-    if (x_delta > 0) {
-        for (let i = x_start; i <= x_end; i+=x_delta) {
+    if (xDelta > 0) {
+        for (let i = xStart; i <= xEnd; i+=xDelta) {
             result.push(calcY(a,b,i))
         }
     }
     else {
-        for (let i = x_start; i >= x_end; i+=x_delta) {
+        for (let i = xStart; i >= xEnd; i+=xDelta) {
             if ((b * i - Math.PI / 2) % Math.PI === 0) {
                 continue;
             }
@@ -38,7 +38,7 @@ function TaskA(a: number, b: number, x_start: number, x_end: number, x_delta: nu
     return result;
 }
 
-function TaskB(a: number, b: number, xValues: number[]): number[] {
+function taskB(a: number, b: number, xValues: number[]): number[] {
     let result = [];
     for (let i = 0; i < xValues.length; i++) {
         const x = xValues[i];
@@ -48,10 +48,10 @@ function TaskB(a: number, b: number, xValues: number[]): number[] {
 }
 
 console.log("Ответы на задание A");
-console.log(TaskA(0.1, 0.5, 0.15, 1.37, 0.25));
-console.log(TaskA(0.1, 0.5, 1.37, 0.15, -0.25));
-console.log(TaskA(0.1, 0.5, 0.15, 0.15, 0.25));
+console.log(taskA(0.1, 0.5, 0.15, 1.37, 0.25));
+console.log(taskA(0.1, 0.5, 1.37, 0.15, -0.25));
+console.log(taskA(0.1, 0.5, 0.15, 0.15, 0.25));
 console.log("Ответы на задание B");
-console.log(TaskB(0.1, 0.5, [0, 0.3, 0.44, 0.6, 0.56])); 
-console.log(TaskB(0.1, 0.5, [0.2, 0.3, 0.44, 0.6, 0.56]));
-export { TaskA, TaskB };
+console.log(taskB(0.1, 0.5, [0, 0.3, 0.44, 0.6, 0.56])); 
+console.log(taskB(0.1, 0.5, [0.2, 0.3, 0.44, 0.6, 0.56]));
+export { taskA, taskB };

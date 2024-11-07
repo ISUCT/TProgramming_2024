@@ -1,4 +1,4 @@
-import { TaskA, TaskB } from '../src';
+import { taskA, taskB } from '../src';
 
 describe('Tests TaskA', () => {
   it('should return 6 values', () => {
@@ -9,24 +9,24 @@ describe('Tests TaskA', () => {
         0.00268923918619863,
         0.006831733643974267
       ];
-    expect(TaskA(0.1, 0.5, 0.15, 1.37, 0.25)).toEqual(result);
+    expect(taskA(0.1, 0.5, 0.15, 1.37, 0.25)).toEqual(result);
   });
 
   it('should return empty array if x_start is greater than x_end', () => {
-    expect(TaskA(0.1, 0.5, 1.37, 0.15, 0.25)).toEqual([]);
+    expect(taskA(0.1, 0.5, 1.37, 0.15, 0.25)).toEqual([]);
   });
 
   it('should return empty array if x_delta is zero', () => {
-    expect(TaskA(0.1, 0.5, 0.15, 1.37, 0)).toEqual([]);
+    expect(taskA(0.1, 0.5, 0.15, 1.37, 0)).toEqual([]);
   });
 
   it('should return empty array if x_delta is negative and x_start is less than x_end', () => {
-    expect(TaskA(0.1, 0.5, 0.15, 1.37, -0.25)).toEqual([]);
+    expect(taskA(0.1, 0.5, 0.15, 1.37, -0.25)).toEqual([]);
   });
 
   it('should return correct values if x_start is equal to x_end', () => {
     const result = [0.000023767712799773597]; 
-    expect(TaskA(0.1, 0.5, 0.15, 0.15, 0.25)).toEqual(result);
+    expect(taskA(0.1, 0.5, 0.15, 0.15, 0.25)).toEqual(result);
   });
 
   it('should return correct values if x_delta is negative and x_start is greater than x_end', () => {
@@ -37,7 +37,7 @@ describe('Tests TaskA', () => {
         0.0007773415055814521,
         0.00018471786315547907
       ];
-    expect(TaskA(0.1, 0.5, 1.37, 0.15, -0.25)).toEqual(result);
+    expect(taskA(0.1, 0.5, 1.37, 0.15, -0.25)).toEqual(result);
   });
 });
 
@@ -50,11 +50,11 @@ describe('Tests TaskB', () => {
         0.000703217341847386,
         0.0005720129283157486
     ];
-    expect(TaskB(0.1, 0.5, [0.2, 0.3, 0.44, 0.6, 0.56])).toEqual(result);
+    expect(taskB(0.1, 0.5, [0.2, 0.3, 0.44, 0.6, 0.56])).toEqual(result);
   });
 
   it('should return empty array if xValues is empty', () => {
-    expect(TaskB(0.1, 0.5, [])).toEqual([]);
+    expect(taskB(0.1, 0.5, [])).toEqual([]);
   });
 
   it('should return undefined values if any xValue causes dTan to be zero', () => {
@@ -65,6 +65,6 @@ describe('Tests TaskB', () => {
         0.000703217341847386,
         0.0005720129283157486
       ];
-    expect(TaskB(0.1, 0.5, [0, 0.3, 0.44, 0.6, 0.56])).toEqual(result);
+    expect(taskB(0.1, 0.5, [0, 0.3, 0.44, 0.6, 0.56])).toEqual(result);
   });
 });
