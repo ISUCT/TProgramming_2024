@@ -54,7 +54,7 @@ export class Archer extends Player {
     return message;
   }
 
-  //передавать в класс, получаемый урон созданный объект, копирующий параметры скилла и уже его обрабатывать
+  // передавать в класс, получаемый урон созданный объект, копирующий параметры скилла и уже его обрабатывать
 
   public attack(opponent: Player): string {
     if (this.isAlivePlayer && !this.isCharmed) {
