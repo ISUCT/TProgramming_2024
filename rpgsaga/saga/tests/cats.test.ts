@@ -1,60 +1,51 @@
-import { Cat } from '../src';
+import { Cat } from './Cat';
 
 describe('Cat', () => {
-  test('Проверяем конструктор, инициализируем его свойства', () => {
-    const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
+  let cat: Cat;
+
+  beforeEach(() => {
+    cat = new Cat('Marsik', 2, 'Siamese', 'Russia');
+  });
+
+  it('should create a new cat instance', () => {
+    expect(cat).toBeDefined();
     expect(cat.getName).toBe('Marsik');
     expect(cat.getAge).toBe(2);
-    expect(cat.getBreed).toBe('The Lop-eared Scotsman');
-  });
-
-  test('Получаем и устанавливаем имя кошки', () => {
-    const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
-    cat.setName = 'Barsik';
-    expect(cat.getName).toBe('Barsik');
-  });
-
-  test('Получаем и устанавливаем возраст кошки', () => {
-    const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
-    cat.setAge = 5;
-    expect(cat.getAge).toBe(5);
-  });
-
-  test('Придумаем недопустимое значение возраста', () => {
-    console.error = jest.fn();
-    const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
-    try {
-      cat.setAge = 250; 
-    } catch (error) {
-      expect(console.error).toHaveBeenCalledWith('The value specified is incorrect for the age!');
-    }
-    expect(cat.getAge).toBe(2);
-  });
-
-  test('Получаем и устанавливаем породу кошки', () => {
-    const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
-    cat.setBreed = 'Siamese';
     expect(cat.getBreed).toBe('Siamese');
+    expect(cat.getMotherland).toBe('Russia');
   });
 
-  test('Получаем полные сведения о кошке', () => {
-    const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
-    expect(cat.getInfo).toBe("Cat's name: Marsik, cat's age: 2, cat's breed: The Lop-eared Scotsman");
+  it('should change the cat name', () => {
+    cat.changeName('Pushok');
+    expect(cat.getName).toBe('Pushok');
   });
 
-  test('Меняем имя у кошки', () => {
-    const cat = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
-    cat.changeName('Barsik');
-    expect(cat.getName).toBe('Barsik');
+  it('should throw an error when setting an invalid age', () => {
+    expect(() => {
+      cat.setAge = -1;
+    }).toThrowError('The value specified is incorrect for the age!');
   });
 
-  test('Узнаем откуда родом кошки', () => {
-    const cat1 = new Cat('Marsik', 2, 'The Lop-eared Scotsman');
-    const cat2 = new Cat('Kompot', 1, 'The mutt');
-    const cat3 = new Cat('Simba', 6, 'Siamese');
+  it('should return the correct eating message', () => {
+    expect(cat.eat()).toBe('Marsik likes to eat fish and mice');
+  });
 
-    expect(cat1.whereFrom()).toBe('Russia');
-    expect(cat2.whereFrom()).toBe('Belarus');
-    expect(cat3.whereFrom()).toBe("Ooops... I don't know(");
+  it('should return the correct full information', () => {
+    expect(cat.getFullInfo()).toBe('Cat name: Marsik, his age is 2 and his breed is Siamese');
+  });
+
+  it('should return the correct cat sound', () => {
+    expect(cat.makeSound()).toBe('Meow, meow');
+  });
+
+  it('should set the motherland correctly', () => {
+    cat.setMotherland = 'Russia';
+    expect(cat.getMotherland).toBe('Russia');
+  });
+
+  it('should throw an error when setting an invalid motherland', () => {
+    expect(() => {
+      cat.setMotherland = '';
+    }).toThrowError('You have not filled in the motherland field!');
   });
 });

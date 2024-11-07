@@ -1,4 +1,5 @@
-export class Cat {
+
+export class Kitten {
   name: string;
   age: number;
   breed: string;
@@ -38,7 +39,7 @@ export class Cat {
   }
 
   get getInfo(): string {
-    return `Cat's name: ${this.name}, cat's age: ${this.age}, cat's breed: ${this.breed}`;
+    return `Kitten's name: ${this.name}, Kitten's age: ${this.age}, Kitten's breed: ${this.breed}`;
   }
 
   public changeCatName(newName: string): void {

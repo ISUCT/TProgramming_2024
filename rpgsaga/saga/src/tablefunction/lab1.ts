@@ -1,4 +1,4 @@
-import { b as numB, nums as eyNums } from '.';
+import { b as numB, nums as eyNums } from '..';
 
 export function calculate(x: number, b: number): number {
   const resA = Math.pow(
