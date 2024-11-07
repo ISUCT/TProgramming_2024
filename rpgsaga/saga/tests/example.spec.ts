@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { TaskA, TaskB } from '../src';
 
 describe('Tests TaskA', () => {
@@ -68,3 +69,12 @@ describe('Tests TaskB', () => {
     expect(TaskB(0.1, 0.5, [0, 0.3, 0.44, 0.6, 0.56])).toEqual(result);
   });
 });
+=======
+describe('Example', () => {
+  it('should return 5 as result of 2 and 3 sum', () => {
+    const a = 3;
+    const b = 2;
+    expect(a + b).toEqual(5);
+  });
+});
+>>>>>>> 7f8d04cfd2d04386cfbf726a22c688d614dba812
