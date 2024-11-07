@@ -1,4 +1,4 @@
-import {task14A, task14B} from './lab1';
+import { task14A, task14B } from './lab1';
 
 const a = 7.2;
 const b = 4.2;
