@@ -1,5 +1,7 @@
+import { Furniture } from './Furniture';
 import { taskA, taskB } from './lab_1';
 import { Table } from './Table';
+import { Wardrobe } from './Wardrobe';
 
 const a = 0.05;
 const b = 0.06;
@@ -17,10 +19,23 @@ console.log(taskB(a, b, listOfX));
 
 console.log('Laboratory work №2 (Classes)');
 try {
-  const table = new Table(100, 70, 60);
-  console.log(table.dimensions);
-  console.log(table.height);
-  console.log(`Table category: ${table.tableCategory()}`);
+  const table = new Table(100, 70, 60, 'wood', 35);
+  console.log(table.length);
+  console.log(table.toString());
 } catch (ex) {
-  console.log(`Error creating table ${ex.message}`);
+  console.log(`Error creating table: ${ex.message}`);
+}
+
+console.log('Laboratory work №3 (Severe polymorphism and inheritance hierarchy)');
+try {
+  const table = new Table(100, 50, 60, 'wood', 67);
+  const wardrobe = new Wardrobe(60, 69, 200, 'metal', 67);
+  const furniture: Furniture[] = [table, wardrobe];
+
+  for (const el of furniture) {
+    console.log(el.purpose());
+    console.log();
+  }
+} catch (ex) {
+  console.log(`Error creating class: ${ex.message}`);
 }

@@ -1,5 +1,7 @@
+import { Furniture } from "../src/Furniture";
 import { solution, taskA, taskB } from "../src/lab_1";
 import { Table } from "../src/Table";
+import { Wardrobe } from "../src/Wardrobe";
 
 
 describe('Testing functions from 1 laboratory work', () => {
@@ -45,66 +47,148 @@ describe('Testing functions from 1 laboratory work', () => {
     });
 })
 
-describe('Table Class', () => {
-    let table: Table = new Table(120, 80, 75); 
-    it('should create a table with correct dimensions', () => {
+
+describe('Table class (2 laboratory work)', () => {
+    let table = new Table(120, 80, 75, 'wood', 50);
+
+      it('should create a table with correct properties', () => {
         expect(table.length).toBe(120);
         expect(table.width).toBe(80);
         expect(table.height).toBe(75);
-        expect(table.dimensions).toBe('Table dimensions: Length - 120 sm, Width - 80 sm, Height - 75 sm');
-    });
-    it('should set valid dimensions', () => {
-        table.length = 150;
-        table.width = 90;
-        table.height = 100;
-        expect(table.length).toBe(150);
-        expect(table.width).toBe(90);
-        expect(table.height).toBe(100);
-    });
-    it('should throw error for invalid length', () => {
+        expect(table.material).toBe('wood');
+        expect(table.weight).toBe(50);
+      });
+      it('should throw error for incorrect length', () => {
         expect(() => {
-            table.length = 50; 
+          table.length = 50;
         }).toThrow('Incorrect length value');
         expect(() => {
-            table.length = 550;
+          table.length = 600; 
         }).toThrow('Incorrect length value');
-    });
-    it('should throw error for invalid width', () => {
+      });
+      it('should throw error for incorrect width', () => {
         expect(() => {
-            table.width = 30; 
+          table.width = 30; 
         }).toThrow('Incorrect width value');
         expect(() => {
-            table.width = 320; 
+          table.width = 400; 
         }).toThrow('Incorrect width value');
-    });
-    it('should throw error for invalid height', () => {
+      });
+      it('should throw error for incorrect height', () => {
         expect(() => {
-            table.height = 20; 
+          table.height = 10; 
         }).toThrow('Incorrect height value');
         expect(() => {
-            table.height = 140; 
+          table.height = 150; 
         }).toThrow('Incorrect height value');
+      });
+      it('should throw error for incorrect material', () => {
+        expect(() => {
+          table.material = 'fabric'; 
+        }).toThrow('Incorrect material');
+      });
+      it('should throw error for incorrect weight', () => {
+        expect(() => {
+          table.weight = 20; 
+        }).toThrow('Incorrect weight value');
+        expect(() => {
+          table.weight = 250;
+        }).toThrow('Incorrect weight value');
+      });
+    it('should return correct purpose', () => {
+        const expectedPurpose = 'A table is a versatile piece of furniture used for various functions, including:\n' +
+          'Activity Surface: Provides a flat area for dining, working, and playing games.\n' +
+          'Social Gathering: Facilitates interactions during meals and discussions.\n' +
+          'Storage: Often includes drawers or shelves for organizing items.\n' +
+          'Display: Showcases decorative items or plants.\n' +
+          'Support: Holds computers and equipment in offices.';
+        expect(table.purpose()).toBe(expectedPurpose);
     });
-    it('should return correct table category', () => {
-        const smallTable = new Table(80, 50, 40);
-        expect(smallTable.tableCategory()).toBe('Small');
-
-        const mediumTable = new Table(150, 70, 75);
-        expect(mediumTable.tableCategory()).toBe('Medium');
-
-        const largeTable = new Table(300, 150, 100);
-        expect(largeTable.tableCategory()).toBe('Large');
-
-        const unknownTable = new Table(110, 50, 90);
-        expect(unknownTable.tableCategory()).toBe('Well, I do not know what kind of table you have there');
+    it('should return correct toString', () => {
+        expect(table.toString()).toBe('Length: 120, Width: 80, Height: 75, Material: wood, Weight: 50');
     });
-    it('should correctly identify standard table', () => {
-        const standartTable = new Table(120, 80, 75);
-        expect(standartTable.isStandard()).toBe(true);
-
-        const nonStandardTable = new Table(100, 70, 80);
-        expect(nonStandardTable.isStandard()).toBe(false);
+    it('should calculate approximate cost correctly', () => {
+        const expectedCost = 'The approximate cost of this table is 2925 rubles'; 
+        expect(table.approximateСost()).toBe(expectedCost);
     });
 });
+    
 
+describe('Wardrobe class (3 laboratory work)', () => {
+    let wardrobe = new Wardrobe(50, 80, 200, 'wood', 70);
+  
+    it('should create a wardrobe with correct properties', () => {
+        expect(wardrobe.length).toBe(50);
+        expect(wardrobe.width).toBe(80);
+        expect(wardrobe.height).toBe(200);
+        expect(wardrobe.material).toBe('wood');
+        expect(wardrobe.weight).toBe(70);
+    });
+  it('should throw error for incorrect length', () => {
+    expect(() => {
+      wardrobe.length = 20; 
+    }).toThrow('Incorrect length value');
+    expect(() => {
+      wardrobe.length = 80; 
+    }).toThrow('Incorrect length value');
+  });
+  it('should throw error for incorrect width', () => {
+    expect(() => {
+      wardrobe.width = 50; 
+    }).toThrow('Incorrect width value');
+    expect(() => {
+      wardrobe.width = 130; 
+    }).toThrow('Incorrect width value');
+  });
+  it('should throw error for incorrect height', () => {
+    expect(() => {
+      wardrobe.height = 170; 
+    }).toThrow('Incorrect height value');
+    expect(() => {
+      wardrobe.height = 310; 
+    }).toThrow('Incorrect height value');
+  });
+  it('should throw error for incorrect material', () => {
+    expect(() => {
+      wardrobe.material = 'glass'; 
+    }).toThrow('Incorrect material');
+  });
+  it('should throw error for incorrect weight', () => {
+    expect(() => {
+      wardrobe.weight = 30; 
+    }).toThrow('Incorrect weight value');
+    expect(() => {
+      wardrobe.weight = 150; 
+    }).toThrow('Incorrect weight value');
+  });
+  it('should return correct purpose', () => {
+    const expectedPurpose = 'A wardrobe is a vital piece of furniture used for:\n' +
+      'Clothing Storage: Provides space to hang and store clothes.\n' +
+      'Organization: Helps keep garments organized and accessible.\n' +
+      'Accessory Display: Often includes shelves for shoes, bags, and other accessories.\n' +
+      'Room Aesthetics: Enhances the decor of a room with its design.';
+    expect(wardrobe.purpose()).toBe(expectedPurpose);
+  });
+  it('should return correct toString', () => {
+        expect(wardrobe.toString()).toBe('Length: 50, Width: 80, Height: 200, Material: wood, Weight: 70');
+    });
+  it('should calculate approximate cost correctly', () => {
+    const expectedCost = 'The approximate cost of this wardrobe is 4725 rubles'; 
+    expect(wardrobe.approximateСost()).toBe(expectedCost);
+  });
+});
+
+describe('list of classes (3 laboratory work)', () => {
+    it('should return the correct methods for each element in list', () => {
+        const table = new Table(100, 50, 60, 'wood', 67);
+        const wardrobe = new Wardrobe(60, 69, 200, 'metal', 67);
+        const furniture: Furniture[] = [table, wardrobe];
+        let answers: String[] = [];
+        for (const el of furniture) {
+            answers.push(el.purpose());
+        }
+        expect(answers[0]).toBe('A table is a versatile piece of furniture used for various functions, including:\nActivity Surface: Provides a flat area for dining, working, and playing games.\nSocial Gathering: Facilitates interactions during meals and discussions.\nStorage: Often includes drawers or shelves for organizing items.\nDisplay: Showcases decorative items or plants.\nSupport: Holds computers and equipment in offices.');
+        expect(answers[1]).toBe('A wardrobe is a vital piece of furniture used for:\nClothing Storage: Provides space to hang and store clothes.\nOrganization: Helps keep garments organized and accessible.\nAccessory Display: Often includes shelves for shoes, bags, and other accessories.\nRoom Aesthetics: Enhances the decor of a room with its design.');
+    });
+});
 

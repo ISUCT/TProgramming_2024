@@ -1,8 +1,6 @@
 import { Furniture } from './Furniture';
 
-// Переделал методы для класса, тк предыдущие мне не понравились (да и эти тоже не нравятся)
-
-export class Table extends Furniture {
+export class Wardrobe extends Furniture {
   constructor(length: number, width: number, height: number, material: string, weight: number) {
     super();
     this.length = length;
@@ -33,7 +31,7 @@ export class Table extends Furniture {
   }
 
   set length(length: number) {
-    if (length >= 60 && length <= 500) {
+    if (length >= 30 && length <= 70) {
       this._length = length;
       return;
     }
@@ -41,7 +39,7 @@ export class Table extends Furniture {
   }
 
   set width(width: number) {
-    if (width >= 40 && width <= 300) {
+    if (width >= 60 && width <= 120) {
       this._width = width;
       return;
     }
@@ -49,7 +47,7 @@ export class Table extends Furniture {
   }
 
   set height(height: number) {
-    if (height >= 15 && height <= 130) {
+    if (height >= 180 && height <= 300) {
       this._height = height;
       return;
     }
@@ -57,7 +55,7 @@ export class Table extends Furniture {
   }
 
   set material(material: string) {
-    const materials: string[] = ['wood', 'metal', 'stone', 'glass', 'plastic'];
+    const materials: string[] = ['wood', 'metal', 'plastic'];
     if (materials.includes(material)) {
       this._material = material;
       return;
@@ -66,7 +64,7 @@ export class Table extends Furniture {
   }
 
   set weight(weight: number) {
-    if (weight >= 30 && weight <= 200) {
+    if (weight >= 40 && weight <= 135) {
       this._weight = weight;
       return;
     }
@@ -74,17 +72,15 @@ export class Table extends Furniture {
   }
 
   purpose(): string {
-    return 'A table is a versatile piece of furniture used for various functions, including:\nActivity Surface: Provides a flat area for dining, working, and playing games.\nSocial Gathering: Facilitates interactions during meals and discussions.\nStorage: Often includes drawers or shelves for organizing items.\nDisplay: Showcases decorative items or plants.\nSupport: Holds computers and equipment in offices.';
+    return 'A wardrobe is a vital piece of furniture used for:\nClothing Storage: Provides space to hang and store clothes.\nOrganization: Helps keep garments organized and accessible.\nAccessory Display: Often includes shelves for shoes, bags, and other accessories.\nRoom Aesthetics: Enhances the decor of a room with its design.';
   }
 
   approximateСost(): string {
     const costOfMaterials = new Map<string, number>(); // Стоимость материалов в рублях за 1 кг
     costOfMaterials.set('wood', 45);
     costOfMaterials.set('metal', 40);
-    costOfMaterials.set('stone', 120);
-    costOfMaterials.set('glass', 30);
     costOfMaterials.set('plastic', 15);
 
-    return `The approximate cost of this table is ${costOfMaterials.get(this.material) * this.weight + costOfMaterials.get(this.material) * this.weight * 0.3} rubles`; // Стоимость считается как стоимость материалов, умноженная на вес изделия + 30% от полученной цены, за то, чтобы создать стол
+    return `The approximate cost of this wardrobe is ${costOfMaterials.get(this.material) * this.weight + costOfMaterials.get(this.material) * this.weight * 0.5} rubles`; // Стоимость считается как стоимость материалов, умноженная на вес изделия + 50% от полученной цены, за то, чтобы создать шкаф
   }
 }
