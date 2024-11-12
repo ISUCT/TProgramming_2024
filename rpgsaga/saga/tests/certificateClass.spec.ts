@@ -40,6 +40,19 @@ describe('Certificate test', () => {
       }).toThrow('Document of type Diplom has invalid size');
     });
 
+    it('should throw an error when setting an invalid year of creation', () => {
+        expect(() => {
+          certificate['yearOfCreation'] = -500; 
+        }).toThrow('Document of type Diplom has invalid year of creation');
+      });
+
+    it('should not throw error when setting a valid year of creation', () => {
+      expect(() => {
+        certificate['yearOfCreation'] = 2021; 
+      }).not.toThrow();
+      expect(certificate.yearOfCreation).toBe(2021);
+    });  
+
     it('should not throw error when setting a valid size', () => {
       expect(() => {
         certificate['size'] = 300; 

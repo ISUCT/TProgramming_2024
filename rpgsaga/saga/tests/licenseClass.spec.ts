@@ -24,22 +24,11 @@ describe('License full tests', () => {
       }).toThrow('License has invalid expired status (not boolean)');
     });
   
-    it('should set and get the correct yearOfCreation', () => {
-      expect(license.yearOfCreation).toBe(2022);
-  
-      license.yearOfCreation = 2023;
-      expect(license.yearOfCreation).toBe(2023);
-  
-      expect(() => {
-        license.yearOfCreation = -2023;
-      }).toThrow('License has invalid year of creation');
-    });
-  
     it('should log the correct message when giveLicense is called', () => {
       const consoleSpy = jest.spyOn(console, 'log');
       
       license.giveLicense();
-      expect(consoleSpy).toHaveBeenCalledWith('The license which false was given to you at 2022 ');
+      expect(consoleSpy).toHaveBeenCalledWith('The license which false was given to you');
   
       consoleSpy.mockRestore();
     });

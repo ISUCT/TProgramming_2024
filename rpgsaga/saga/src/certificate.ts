@@ -1,7 +1,7 @@
 export abstract class Certificate {
-  protected _documentType: string;
-  protected _size: number;
-  protected _yearOfCreation: number;
+  private _documentType: string;
+  private _size: number;
+  private _yearOfCreation: number;
   constructor(documentType: string, size: number, yearOfCreation: number) {
     this._documentType = documentType;
     this._size = size;
@@ -14,6 +14,14 @@ export abstract class Certificate {
       return;
     }
     throw new Error(`Document of type ${this._documentType} has invalid size`);
+  }
+
+  private set yearOfCreation(yearOfCreation: number) {
+    if (yearOfCreation > 0) {
+      this._size = yearOfCreation;
+      return;
+    }
+    throw new Error(`Document of type ${this._documentType} has invalid year of creation`);
   }
 
   public get documentType(): string {
