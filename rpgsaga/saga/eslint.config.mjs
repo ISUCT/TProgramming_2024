@@ -70,7 +70,7 @@ export default [{
         "arrow-body-style": ["error", "as-needed", {
             requireReturnForObjectLiteral: false,
         }],
-
+        "leadingUnderscore": "allow",
         curly: ["error", "all"],
         "no-implicit-coercion": ["error"],
         "spaced-comment": ["error", "always"],
