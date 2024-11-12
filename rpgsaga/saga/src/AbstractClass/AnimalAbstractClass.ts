@@ -1,7 +1,7 @@
 export abstract class Animal {
-  protected _name: string;
-  protected _age: number;
-  protected _gender: string;
+  private _name: string;
+  private _age: number;
+  private _gender: string;
 
   constructor(name: string, age: number, gender: string) {
     this._name = name;
@@ -39,7 +39,7 @@ export abstract class Animal {
   }
 
   toString(): string {
-    return `Animal: ${this._name}, Age: ${this._age}, Gender: ${this._gender}`;
+    return `Animal: ${this.name}, Age: ${this.age}, Gender: ${this.gender}`;
   }
 }
 
@@ -48,18 +48,23 @@ export class Cat extends Animal {
 
   constructor(name: string, age: number, gender: string, male: string) {
     super(name, age, gender);
-    this._male = male;
-  }
 
-  public set male(male: string) {
-    if (male === 'man' || male === 'women') {
+    if (male === 'man' || male === 'woman') {
       this._male = male;
     } else {
-      throw new Error('Invalid male');
+      throw new Error('Invalid male value');
     }
   }
 
-  public get male() {
+  public set male(male: string) {
+    if (male === 'man' || male === 'woman') {
+      this._male = male;
+    } else {
+      throw new Error('Invalid male value');
+    }
+  }
+
+  public get male(): string {
     return this._male;
   }
 
@@ -68,7 +73,7 @@ export class Cat extends Animal {
   }
 
   toString(): string {
-    return `Cat: ${this._name}, Age: ${this._age}, Gender: ${this._gender}, Male: ${this._male}`;
+    return `Cat: ${this.name}, Age: ${this.age}, Gender: ${this.gender}, Male: ${this.male}`;
   }
 }
 
@@ -77,18 +82,23 @@ export class Dog extends Animal {
 
   constructor(name: string, age: number, gender: string, male: string) {
     super(name, age, gender);
-    this._male = male;
-  }
 
-  public set male(male: string) {
-    if (male === 'man' || male === 'women') {
+    if (male === 'man' || male === 'woman') {
       this._male = male;
     } else {
-      throw new Error('Invalid male');
+      throw new Error('Invalid male value');
     }
   }
 
-  public get male() {
+  public set male(male: string) {
+    if (male === 'man' || male === 'woman') {
+      this._male = male;
+    } else {
+      throw new Error('Invalid male value');
+    }
+  }
+
+  public get male(): string {
     return this._male;
   }
 
@@ -97,7 +107,7 @@ export class Dog extends Animal {
   }
 
   toString(): string {
-    return `Dog: ${this._name}, Age: ${this._age}, Gender: ${this._gender}, Male: ${this._male}`;
+    return `Dog: ${this.name}, Age: ${this.age}, Gender: ${this.gender}, Male: ${this.male}`;
   }
 }
 
