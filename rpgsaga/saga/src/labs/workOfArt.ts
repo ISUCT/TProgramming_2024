@@ -5,7 +5,7 @@ export abstract class WorkOfArt {
   private _country: string;
   constructor(name: string, year: number, creator: string, country: string) {
     this._nameOfWork = name;
-    this._yearOfWork = year;
+    this.year = year;
     this._creator = creator;
     this._country = country;
   }
