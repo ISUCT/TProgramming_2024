@@ -1,0 +1,18 @@
+function anagramDifference(w1, w2){
+    let res = 0
+    let dict = {}
+    for (let i = 0; i < w1.length; i++) {
+        dict[w1[i]] = (dict[w1[i]] || 0) + 1
+    }
+    for (let i = 0; i < w2.length; i++) {
+        if ((dict[w2[i]] || 0) <= 0) {
+            res++
+        } else {
+            dict[w2[i]]--
+        }
+    }
+    for (const key in dict) {
+        res += dict[key]
+    }
+    return res
+}

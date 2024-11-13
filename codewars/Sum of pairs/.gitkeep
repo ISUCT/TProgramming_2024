@@ -1,0 +1,11 @@
+var sum_pairs=function(ints, s){
+    let setofints = new Set()
+    setofints.add(ints[0]);
+    for (let i=1; i < ints.length; i++){
+      let n = s-ints[i];
+      if (setofints.has(n)){
+        return [n,ints[i]];
+      }
+      setofints.add(ints[i]);
+    }
+}
