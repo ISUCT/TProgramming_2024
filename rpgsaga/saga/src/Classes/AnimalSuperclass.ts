@@ -1,8 +1,9 @@
-export class Rabbit {
+export abstract class Animal {
   private _name: string;
-  private _age: number;
+  protected _age: number;
   private _color: string;
   private _gender: string;
+
   constructor(name: string, age: number, color: string, gender: string) {
     this._name = name;
     this._age = age;
@@ -10,18 +11,18 @@ export class Rabbit {
     this._gender = gender;
   }
 
+  abstract sound(): string;
+
+  abstract set age(age: number);
+
   public set name(name: string) {
     this._name = name;
   }
-  public set age(age: number) {
-    if (age < 0 || age > 9) {
-      throw new Error('Invalid age');
-    }
-    this._age = age;
-  }
+
   public set color(color: string) {
-    this.color = color;
+    this._color = color;
   }
+
   public set gender(gender: string) {
     if (gender.toLowerCase() === 'male') {
       this._gender = 'Male';
@@ -31,16 +32,18 @@ export class Rabbit {
       throw new Error('Invalid gender');
     }
   }
-  public get age() {
-    return this._age;
-  }
+
+  abstract get age();
+
   public get name() {
     return this._name;
   }
-  public get gender() {
-    return this._gender;
-  }
+
   public get color() {
     return this._color;
+  }
+
+  public get gender() {
+    return this._gender;
   }
 }
