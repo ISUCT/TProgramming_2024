@@ -1,5 +1,5 @@
 import { Player } from "./Player";
-import { Weapon } from "../Weapon";
+import { Weapon } from "../Class_weapon/Weapon";
 
 export class Mage extends Player{
     constructor(
