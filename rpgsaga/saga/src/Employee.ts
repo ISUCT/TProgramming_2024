@@ -1,7 +1,7 @@
 export class Employee {
-  private nameC: string;
-  private ageC: number;
-  private salaryC: number;
+  private _name: string;
+  private _age: number;
+  private _salary: number;
 
   constructor(name: string, age: number, salary: number = 15000) {
     this.name = name;
@@ -10,27 +10,27 @@ export class Employee {
   }
 
   public get name(): string {
-    return this.nameC;
+    return this._name;
   }
   public set name(name: string) {
-    this.nameC = name;
+    this._name = name;
   }
   public get age(): number {
-    return this.ageC;
+    return this._age;
   }
   public set age(age: number) {
     if (age < 0) {
-      throw new Error('Возраст не может быть отрицательным.');
+      throw new Error('Age cannot be negative.');
     }
-    this.ageC = age;
+    this._age = age;
   }
   public get salary(): number {
-    return this.salaryC;
+    return this._salary;
   }
   public set salary(salary: number) {
     if (salary < 0) {
-      throw new Error('Зарплата не может быть отрицательной.');
+      throw new Error('Salary cannot be negative.');
     }
-    this.salaryC = salary;
+    this._salary = salary;
   }
 }

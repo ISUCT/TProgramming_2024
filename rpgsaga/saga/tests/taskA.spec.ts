@@ -1,6 +1,6 @@
 import { taskA } from "../src";
 
-describe('test log', () => {
+describe('test taskA', () => {
     it('should return [-3.5670236341584967, -9.99752404516412, Infinity, 13.362178114876532, 7.423581471946264, 5.451774615260348]', () => {
         const result = [-3.5670236341584967, -9.99752404516412, Infinity, 13.362178114876532, 7.423581471946264, 5.451774615260348];
         expect(taskA(1.2, 3.2, 0.4)).toEqual(result);
@@ -14,11 +14,9 @@ describe('test log', () => {
         expect(taskA(1.2, 2.0, 0.2)).toEqual(result);
     })
     it('should return error', () => {
-        const expectedErrorMessage = 'Ошибка в функции.';
-        try {
+        const expectedErrorMessage = 'You have passed incorrect arguments.';
+        expect(() => {
             taskA(2.0, 1.0, 0.2);
-        } catch (error) {
-            expect(error.message).toEqual(expectedErrorMessage);
-        }
+        }).toThrow(new Error(expectedErrorMessage));
     })
 });

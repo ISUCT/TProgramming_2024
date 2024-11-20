@@ -7,7 +7,7 @@ const log = (x: number, j: number): number => Math.log(x) / Math.log(j);
 
 const taskA = (xStart: number, xEnd: number, xDelta: number): number[] => {
   if (xStart > xEnd || xDelta < 0) {
-    throw new Error('Ошибка в функции.');
+    throw new Error('You have passed incorrect arguments.');
   }
   const aResult: number[] = [];
   for (let i: number = xStart; i <= xEnd; i += xDelta) {
@@ -43,5 +43,4 @@ try {
 }
 
 console.log(taskA(1.2, 5.2, 0.8));
-// console.log(taskB([1.9, 2.15, 2.34, 2.73, 3.16]));
-console.log(taskB([3.1, 3.2, 3.3, 3.4, 3.5]));
+console.log(taskB([1.9, 2.15, 2.34, 2.73, 3.16]));
