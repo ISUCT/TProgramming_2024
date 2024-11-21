@@ -1,44 +1,43 @@
 export class Dish {
-    
-    name: string;
-    price: number;
-    type: string;
+  name: string;
+  price: number;
+  type: string;
 
-    constructor(dishname: string, dishprice: number, dishtype: string) {
-        this.name = dishname;
-        this.price = dishprice;
-        this.type = dishtype;
-    }
-    
-    get getname(): string {
-        return this.name;
-    }
+  constructor(dishname: string, dishprice: number, dishtype: string) {
+    this.name = dishname;
+    this.price = dishprice;
+    this.type = dishtype;
+  }
 
-    set setname(valuename: string) {
-        this.name = valuename;
-    }
+  get getname(): string {
+    return this.name;
+  }
 
-    get getprice(): number {
-        return this.price;
-    }
+  set setname(valuename: string) {
+    this.name = valuename;
+  }
 
-    set setprice(valueprice: number) {
-        if (valueprice < 0) {
-            console.error("The price cannot be less than zero!");
-        } else {
-            this.price = valueprice;
-        }
-    }
+  get getprice(): number {
+    return this.price;
+  }
 
-    get gettype(): string {
-        return this.type;
+  set setprice(valueprice: number) {
+    if (valueprice < 0) {
+      console.error('The price cannot be less than zero!');
+    } else {
+      this.price = valueprice;
     }
+  }
 
-    set settype(valuetype: string) {
-        this.type = valuetype;
-    }
+  get gettype(): string {
+    return this.type;
+  }
 
-    get getinfo(): string {
-        return `Dish's name: ${this.name}, dish's price: ${this.price}, dish's type: ${this.type}`
-    }
+  set settype(valuetype: string) {
+    this.type = valuetype;
+  }
+
+  get getinfo(): string {
+    return `Dish's name: ${this.name}, dish's price: ${this.price}, dish's type: ${this.type}`;
+  }
 }
