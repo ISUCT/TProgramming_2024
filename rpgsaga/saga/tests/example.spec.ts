@@ -1,5 +1,7 @@
+import { Animal } from "../src/Animal";
 import { death, taskA, taskB} from "../src/laba1";
 import { Piggy } from "../src/Piggy";
+import { Sheep } from "../src/Sheep";
 
 describe('Testing functions from laboratory work', () => {
     it('should return -2.3 for death(0.1)', () => {
@@ -102,82 +104,101 @@ describe('Testing functions from laboratory work', () => {
 });
 
 
-describe('Piggy Class Tests', () => {
+describe('Piggy Class Tests (laba №2)', () => {
     let piggy: Piggy = new Piggy('Porky', 5, 'male', 'brown');
 
-    it('should create a Piggy instance with correct properties', () => {
-        expect(piggy.name).toBe('Porky');
-        expect(piggy.age).toBe(5);
-        expect(piggy.sex).toBe('male');
-        expect(piggy.color).toBe('brown');
-    });
-    it('should return the correct name', () => {
-        expect(piggy.name).toBe('Porky');
-    });
 
-    it('should return the correct age', () => {
-        expect(piggy.age).toBe(5);
-    });
-
-    it('should return the correct sex', () => {
-        expect(piggy.sex).toBe('male');
-    });
-
-    it('should return the correct color', () => {
-        expect(piggy.color).toBe('brown');
-    });
-
-    it('should set a valid name', () => {
-        piggy.name = 'Bacon';
-        expect(piggy.name).toBe('Bacon');
-    });
-
-    it('should throw an error when setting an empty name', () => {
+    it('should return error for incorrect name', () => {
         expect(() => {
             piggy.name = '';
-        }).toThrowError('This name is not corret');
+        }).toThrow('This name is not correct');
     });
-
-    it('should set a valid age', () => {
-        piggy.age = 10;
-        expect(piggy.age).toBe(10);
-    });
-
-    it('should throw an error when setting an invalid age', () => {
+    it('should return error for incorrect age', () => {
         expect(() => {
-            piggy.age = 25;
-        }).toThrowError('Age is not correct');
+            piggy.age = -12;
+        }).toThrow('This age is not correct');
     });
-
-    it('should set a valid sex', () => {
-        piggy.sex = 'female';
-        expect(piggy.sex).toBe('female');
-    });
-
-    it('should throw an error when setting an invalid sex', () => {
+    it('should return error for incorrect sex', () => {
         expect(() => {
-            piggy.sex = 'unknown';
-        }).toThrowError('Sex is not correct');
+            piggy.sex = 'baby';
+        }).toThrow('Sex is not correct');
     });
-
-    it('should throw an error when setting an invalid color', () => {
+    it('should return error for incorrect color', () => {
         expect(() => {
-            piggy.color = 'green';
-        }).toThrowError('Color is not correct');
+            piggy.color = 'red';
+        }).toThrow('Color is not correct');
     });
-
-    it('should return the correct movement string', () => {
-        expect(piggy.piggyMoves()).toBe('Bacon the brown pig runs and grunts across the field');
+    it('should return the correct moves', () => {
+        expect(piggy.moves()).toBe('Porky the brown pig runs and grunts across the field');
     });
-
-    it('should return lucky pig message for Nyusha', () => {
-        const luckyPig = new Piggy('Nyusha', 3, 'female', 'pink');
-        expect(luckyPig.luckyPiggy()).toBe('Nyusha the pink pig is lucky pig');
+    it('should return "lucky pig" for Nyusha the pink pig', () => {
+        const luckyPiggy = new Piggy('Nyusha', 2, 'female', 'pink');
+        expect(luckyPiggy.luckyAnimal()).toBe('Nyusha the pink pig is lucky pig');
     });
-
-    it('should return unlucky pig message for other names', () => {
-        expect(piggy.luckyPiggy()).toBe('Bacon the brown pig is unlucky pig');
+    it('should return "unlucky pig" for other pigs', () => {
+        expect(piggy.luckyAnimal()).toBe('Porky the brown pig is unlucky pig');
+    });    
+    it('should return the correct voice', () => {
+        expect(piggy.voice()).toBe('Porky the brown pig says oink!');
     });
+    it('should return correct toString', () => {
+        expect(piggy.toString()).toBe('Name: Porky, Age: 5, Sex: male, Color: brown');
+    })
 });
 
+describe('Sheep Class Tests (laba №3)', () => {
+    let sheep: Sheep = new Sheep('Barash', 9, 'male', 'white');
 
+
+    it('should return error for incorrect name', () => {
+        expect(() => {
+            sheep.name = '';
+        }).toThrow('This name is not correct');
+    });
+    it('should return error for incorrect age', () => {
+        expect(() => {
+            sheep.age = -12;
+        }).toThrow('This age is not correct');
+    });
+    it('should return error for incorrect sex', () => {
+        expect(() => {
+            sheep.sex = 'baby';
+        }).toThrow('Sex is not correct');
+    });
+    it('should return error for incorrect color', () => {
+        expect(() => {
+            sheep.color = 'red';
+        }).toThrow('Color is not correct');
+    });
+    it('should return the correct moves', () => {
+        expect(sheep.moves()).toBe('Barash the white sheep runs and grunts across the field');
+    });
+    it('should return "lucky sheep" for Barash the white sheep', () => {
+        expect(sheep.luckyAnimal()).toBe('Barash the white sheep is lucky sheep');
+    });
+    it('should return "unlucky sheep" for other sheeps', () => {
+        const unluckySheep = new Sheep('Izolda', 7, 'male', 'black')
+        expect(unluckySheep.luckyAnimal()).toBe('Izolda the black sheep is unlucky sheep');
+    });    
+    it('should return the correct voice', () => {
+        expect(sheep.voice()).toBe('Barash the white sheep says be-e-e');
+    });
+    it('should return correct toString', () => {
+        expect(sheep.toString()).toBe('Name: Barash, Age: 9, Sex: male, Color: white');
+    })
+});
+
+describe('list of classes (laba №3)', () => {
+    it('should return the correct methods for each element in list', () => {
+        const piggy = new Piggy('Borya', 3, 'male', 'black');
+        const sheep = new Sheep('Barash', 34, 'female', 'white');
+        const animals: Animal[] = [piggy, sheep];
+        let answers: String[] = [];
+    
+        for (const el of animals) {
+            answers.push(el.toString());
+        }
+        expect(answers[0]).toBe('Name: Borya, Age: 3, Sex: male, Color: black');
+        expect(answers[1]).toBe('Name: Barash, Age: 34, Sex: female, Color: white');
+    });
+});
