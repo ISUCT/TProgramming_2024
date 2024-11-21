@@ -1,4 +1,4 @@
-import { calculate, toRadians } from '../src/mathFunction';
+import { calculate, toRadians } from '../src/mathexpression/src/mathFunction';
 
 describe('calculate', () => {
   it('должна правильно вычислять для x < 5', () => {
