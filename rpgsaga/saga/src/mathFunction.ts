@@ -12,7 +12,7 @@ function calculate(a: number, b: number, x: number): number {
     return exp;
 }
 
-function TaskA(a: number, b: number, begX: number, endX: number, detX: number): [number[], number[]] {
+function taskA(a: number, b: number, begX: number, endX: number, detX: number): [number[], number[]] {
     const predX = Math.ceil((endX - begX) / detX + 1);
     const ylist: number[] = [];
     const xlist: number[] = [];
@@ -23,7 +23,7 @@ function TaskA(a: number, b: number, begX: number, endX: number, detX: number): 
     return [ylist, xlist];
 }
 
-function TaskB(xlist: number[], a: number, b: number): number[] {
+function taskB(xlist: number[], a: number, b: number): number[] {
     const ylist: number[] = [];
     for (const v of xlist) {
         ylist.push(calculate(a, b, v));

@@ -18,7 +18,7 @@ describe('Computer', () => {
 
     test('should turn on the computer', () => {
         computer.turnOn();
-        expect(computer.is_on).toBe(true);
+        expect(computer.isOn).toBe(true);
     });
 
     test('should not turn on the computer if it is already on', () => {
@@ -26,20 +26,20 @@ describe('Computer', () => {
         const consoleSpy = jest.spyOn(console, 'log');
         computer.turnOn();
         expect(consoleSpy).toHaveBeenCalledWith('Dell XPS 13 is already ON.');
-        expect(computer.is_on).toBe(true);
+        expect(computer.isOn).toBe(true);
     });
 
     test('should turn off the computer', () => {
         computer.turnOn();
         computer.turnOff();
-        expect(computer.is_on).toBe(false);
+        expect(computer.isOn).toBe(false);
     });
 
     test('should not turn off the computer if it is already off', () => {
         const consoleSpy = jest.spyOn(console, 'log');
         computer.turnOff();
         expect(consoleSpy).toHaveBeenCalledWith('Dell XPS 13 is already OFF.');
-        expect(computer.is_on).toBe(false);
+        expect(computer.isOn).toBe(false);
     });
 
     test('should set hard disk size', () => {
