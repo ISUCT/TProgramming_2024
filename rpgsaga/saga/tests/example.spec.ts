@@ -1,23 +1,36 @@
-import * as pointer from '../src/index';
+import { City } from '../src/labs/lab3/city';
 
-describe('calc', () => {
-  it('should not be NaN', () => {
-    expect(Number.isNaN(pointer.calc(1.2, 0.48, 0.7))).toStrictEqual(false);
-  });
-  it('should be NaN', () => {
-    expect(pointer.calc(1.2, 0.48, 15)).toStrictEqual(0);
-  });
-});
-
-describe('taskA', () => {
-  it('should be empty if x1 > x2', () => {
-    expect(pointer.taskA(1.2, 0.48, 2, 0.5, 0.3)).toStrictEqual([]);
+describe('Constructor test', () => {
+  it('should create a bunny', () => {
+    const city = new City('Test', 100000, 'Test');
+    expect(city.name).toStrictEqual('Test');
+    expect(city.population).toStrictEqual(100000);
+    expect(city.country).toStrictEqual('Test');
   });
 });
 
-describe('taskB', () => {
-  const expected = 5;
-  it('length of resulting array should equal 6', () => {
-    expect(pointer.taskB(1.2, 0.48, [0.25, 0.36, 0.56, 0.94, 1.28, 1.7]).length).toStrictEqual(expected);
+describe('SetPopulation func test', () => {
+  it('should set 10000', () => {
+    const bunny = new City('Test', 10000, 'Test');
+    expect(bunny.population).toStrictEqual(10000);
+  });
+  it('should throw error', () => {
+    expect(() => {
+      new City('Test', -1, 'Test');
+    }).toThrow('Wrong population');
+  });
+});
+
+describe('SetCountry func test', () => {
+  it('should set Russia', () => {
+    const bunny = new City('Test', 5, 'Russia');
+    expect(bunny.country).toStrictEqual('Russia');
+  });
+});
+
+describe('SetCountry func test', () => {
+  it('should set Moscow', () => {
+    const bunny = new City('Moscow', 5, 'Test');
+    expect(bunny.name).toStrictEqual('Moscow');
   });
 });
