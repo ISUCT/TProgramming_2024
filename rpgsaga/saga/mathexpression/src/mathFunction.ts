@@ -1,8 +1,8 @@
-function toRadians(deg: number): number {
+export function toRadians(deg: number): number {
     return deg * (Math.PI / 180.0);
 }
 
-function calculate(a: number, b: number, x: number): number {
+export function calculate(a: number, b: number, x: number): number {
     let exp: number;
     if (x < 5) {
         exp = Math.pow(Math.log10(Math.pow(a, 2) + x), 2) / Math.pow(a + x, 2);
