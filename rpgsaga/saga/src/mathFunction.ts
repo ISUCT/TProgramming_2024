@@ -13,7 +13,6 @@ function calculate(a: number, b: number, x: number): number {
 }
 
 function taskA(a: number, b: number, begX: number, endX: number, detX: number): [number[], number[]] {
-    const predX = Math.ceil((endX - begX) / detX + 1);
     const ylist: number[] = [];
     const xlist: number[] = [];
     for (let x = begX; x <= endX; x += detX) {
