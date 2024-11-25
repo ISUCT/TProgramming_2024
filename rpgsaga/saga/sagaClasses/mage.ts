@@ -1,40 +1,32 @@
-import { DamageTypes } from "./enums";
-import { Player } from "./player";
-import { Weapon } from "./weapon";
+import { Player } from './player';
+import { Weapon } from './weapon';
 
 export class Mage extends Player {
-    private _maxMana: number;
-    private _currentMana: number;
-    constructor(name:string, health: number, weapon: Weapon, maxMana: number){
-        super(name, health, weapon)
-        this.maxMana = maxMana;
-        this._currentMana = maxMana;
+  private _maxMana: number;
+  private _currentMana: number;
+  constructor(name: string, health: number, weapon: Weapon, maxMana: number) {
+    super(name, health, weapon);
+    this.maxMana = maxMana;
+    this._currentMana = maxMana;
+    this.magResist = 50;
+    this.cuttingResist = -20;
+    this.stabbingResist = -20;
+    this.crushingResist = -20;
+  }
+  public get curMana() {
+    return this._currentMana;
+  }
+  public set curMana(value) {
+    if (value > 0) {
+      this._currentMana = value;
     }
-    public get curMana() {
-        return this.curMana;
+  }
+  private set maxMana(value) {
+    if (value > 0) {
+      this._maxMana = value;
     }
-    private set maxMana(value){
-        if(value > 0){
-            this._maxMana = value;
-        }
-    }
-    public attacked(attackWeapon: Weapon): void {
-        switch (attackWeapon.damageType) {
-            case DamageTypes.crushing:
-                this.health = this.health - (attackWeapon.damage * 1.2)
-                break;
-            case DamageTypes.cutting:
-                this.health = this.health - (attackWeapon.damage * 1.2)
-                break;
-            case DamageTypes.stabbing:
-                this.health = this.health - (attackWeapon.damage * 1.2)
-                break;    
-            case DamageTypes.magic:
-                this.health = this.health - (attackWeapon.damage * 0.5)
-                break;
-        }
-        if (this.health <= 0){
-               this.isAlive = false
-        }
-    }
+  }
+  public displayInfo(): string {
+    return `Маг по имени ${this.name} | ${this.health}/${this.maxHealth} HP | ${this.curMana}/${this.maxMana} SP | Оружие : ${this.weapon.displayInfo()} |`;
+  }
 }
