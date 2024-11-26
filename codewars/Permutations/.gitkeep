@@ -1,0 +1,8 @@
+import itertools
+
+def permutations(string):
+    if len(string)<2: return [string]
+    else: return sorted(list({''.join(x) for x in itertools.permutations(string)}))
+    
+if __name__ == "__main__":
+    print(permutations(input()))

@@ -1,0 +1,14 @@
+function flattenMap(map, path = "", result = {}) {
+  Object.entries(map).forEach(([key, value]) => {
+    const currPath = path ? `${path}/${key}` : key;
+    const isObject = value !== null && typeof value === "object" && !Array.isArray(value);
+    
+    if (isObject) {
+      flattenMap(value, currPath, result);
+    } else {
+      result[currPath] = value;
+    }
+  });
+  
+  return result;
+}

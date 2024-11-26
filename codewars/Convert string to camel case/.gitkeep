@@ -1,0 +1,9 @@
+def to_camel_case(text):
+    stroka = text.replace("_", " ").replace("-", " ")
+    stroka = stroka.split()
+    if len(text) == 0:
+        return text
+    return stroka[0] + ''.join(i.capitalize() for i in stroka[1:])
+
+if __name__ == '__main__':
+    print(to_camel_case(input()))
