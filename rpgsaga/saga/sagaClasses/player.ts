@@ -81,7 +81,7 @@ export abstract class Player {
     }
   }
   public attackedBy(attacker: Mage | Warrior | Ranger): void {
-    if (!this.isAlive) {
+    if (!(this.isAlive && attacker.isAlive)) {
       return;
     }
     this.health = this.health - attacker.weapon.damage * this.damageScales(attacker.weapon);
