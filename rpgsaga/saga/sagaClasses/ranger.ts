@@ -43,21 +43,13 @@ export class Ranger extends Player {
     }
   }
   public attackedBy(attacker: Mage | Warrior | Ranger): void {
-    if (!this.isAlive || !attacker.isAlive) {
+    if (!(this.isAlive && attacker.isAlive)) {
       return;
     }
     if (randomizeInteger(0, 100) > this.missChance) {
-      this.health = this.health - attacker.weapon.damage * this.damageScales(attacker.weapon);
-      console.log(
-        `${attacker.name} атакует ${this.name} нанося ${attacker.weapon.damage * this.damageScales(attacker.weapon)} урона`,
-      );
+      super.attackedBy(attacker);
     } else {
       console.log(`${attacker.name} промахнулся по ${this.name}`);
-    }
-    if (this.health <= 0) {
-      this.isAlive = false;
-      this.health = 0;
-      console.log(`${this.name} умирает`);
     }
   }
   public displayInfo(): string {
