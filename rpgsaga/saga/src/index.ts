@@ -29,7 +29,7 @@
 
 // main();
 
-import { Dog } from "./class_dog";
+import { Dog } from './class_dog';
 
 const Dog1 = new Dog('Tom', 15, 20);
 console.log(Dog1);
