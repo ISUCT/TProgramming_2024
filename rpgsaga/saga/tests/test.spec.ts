@@ -1,4 +1,4 @@
-import { calc, taskA, taskB } from "../src";
+/* import { calc, taskA, taskB } from "../src";
 
   describe('calc', () => {
     test('should calculate the correct value for given inputs', () => {
@@ -32,5 +32,30 @@ import { calc, taskA, taskB } from "../src";
         290.6974571924121,
         109.22572234449581
       ]);
+    });
+  }); */
+
+  import { Dog } from "../src/class_dog";
+
+  describe('Constructor test', () => {
+    it('should create a dog', () => {
+      const dog = new Dog('Test', 10, 20);
+      expect(dog.name).toStrictEqual('Test');
+      expect(dog.age).toStrictEqual(10);
+      expect(dog.weight).toStrictEqual(20);
+    });
+  });
+
+  describe('SetAge func test', () => {
+    it('should set 5', () => {
+      const dog = new Dog('Test', 5, 2);
+      expect(dog.age).toStrictEqual(5);
+    });
+  }); 
+
+  describe('SetWeight func test', () => {
+    it('should set 10', () => {
+      const dog = new Dog('Test', 5, 10);
+      expect(dog.weight).toStrictEqual(10);
     });
   });
