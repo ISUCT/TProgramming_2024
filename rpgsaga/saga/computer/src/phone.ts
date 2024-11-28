@@ -21,7 +21,7 @@ export class Phone extends Gadget {
     }
 
     getStatus(): string {
-        const status = this.is_on ? "ON" : "OFF";
+        const status = this.isOn ? "ON" : "OFF";
         return `${this.brand} ${this.model} is ${status} with ${this.battery_level}% battery.`;
     }
 }

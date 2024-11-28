@@ -18,7 +18,7 @@ export class Computer extends Gadget {
     }
 
     getStatus(): string {
-        const status = this.is_on ? "ON" : "OFF";
+        const status = this.isOn ? "ON" : "OFF";
         return `${this.brand} ${this.model} is ${status} with ${this.hard_disk_size} GB hard disk.`;
     }
 }

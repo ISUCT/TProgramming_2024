@@ -19,7 +19,7 @@ describe('Phone', () => {
 
     test('should turn on the phone', () => {
         phone.turnOn();
-        expect(phone.is_on).toBe(true);
+        expect(phone.isOn).toBe(true);
     });
 
     test('should not turn on the phone if it is already on', () => {
@@ -27,20 +27,20 @@ describe('Phone', () => {
         const consoleSpy = jest.spyOn(console, 'log');
         phone.turnOn();
         expect(consoleSpy).toHaveBeenCalledWith('Apple iPhone 13 is already ON.');
-        expect(phone.is_on).toBe(true);
+        expect(phone.isOn).toBe(true);
     });
 
     test('should turn off the phone', () => {
         phone.turnOn();
         phone.turnOff();
-        expect(phone.is_on).toBe(false);
+        expect(phone.isOn).toBe(false);
     });
 
     test('should not turn off the phone if it is already off', () => {
         const consoleSpy = jest.spyOn(console, 'log');
         phone.turnOff();
         expect(consoleSpy).toHaveBeenCalledWith('Apple iPhone 13 is already OFF.');
-        expect(phone.is_on).toBe(false);
+        expect(phone.isOn).toBe(false);
     });
 
     test('should charge the phone', () => {
