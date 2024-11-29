@@ -1,4 +1,4 @@
-export class Character {
+export abstract class Character {
   private _name: string;
   private _class: string;
   private _level: number = 1;
@@ -39,5 +39,14 @@ export class Character {
       return;
     }
     throw new Error('Level out of range');
+  }
+
+  // Получение всех данных о классе
+  public toString() {
+    console.log(`Name: ${this.name}, class: ${this.class}, level: ${this.level}`);
+  }
+
+  public attac() {
+    console.log('Ваш герой совершил атаку!');
   }
 }

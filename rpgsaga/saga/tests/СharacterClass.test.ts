@@ -1,4 +1,4 @@
-import { Character } from '../src/Сharacter';
+import { Character } from '../src/Character/Сharacter';
 
 describe('Class Character', () => {
   const war = new Character('Name', 'Warrior', 1);
