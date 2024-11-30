@@ -34,7 +34,7 @@ export class Film {
   }
 
   play(): void {
-    console.log(`Играет фильм "${this.title}" режиссера ${this.director}. Длительность: ${this.duration} минут`);
+    console.log(`Играет фильм "${this.title}" режиссера ${this.director}. Длительность: ${this.duration} минут.`);
   }
 
   getInfo(): string {
