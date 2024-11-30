@@ -1,49 +1,48 @@
 export class Film {
+  private title: string;
+  private director: string;
+  private duration: number;
 
-    private _title: string;
-    private _director: string;
-    private _duration: number; 
+  constructor(title: string, director: string, duration: number) {
+    this.title = title;
+    this.director = director;
+    this.duration = duration;
+  }
 
-    constructor(title: string, director: string, duration: number) {
-        this._title = title;
-        this._director = director;
-        this._duration = duration;
-    }
+  get title1(): string {
+    return this.title;
+  }
 
-    get title(): string {
-        return this._title;
-    }
+  set title1(value: string) {
+    this.title = value;
+  }
 
-    set title(value: string) {
-        this._title = value;
-    }
+  get director2(): string {
+    return this.director;
+  }
 
-    get director(): string {
-        return this._director;
-    }
+  set director2(value: string) {
+    this.director = value;
+  }
 
-    set director(value: string) {
-        this._director = value;
-    }
+  get duration3(): number {
+    return this.duration;
+  }
 
-    get duration(): number {
-        return this._duration;
-    }
+  set duration3(value: number) {
+    this.duration = value;
+  }
 
-    set duration(value: number) {
-        this._duration = value;
-    }
+  play(): void {
+    console.log(`Играет фильм "${this.title}" режиссера ${this.director}. Длительность: ${this.duration} минут`);
+  }
 
-    play(): void {
-        console.log(`Играет фильм "${this._title}" режиссера ${this._director}. Длительность: ${this._duration} минут`);
-    }
+  getInfo(): string {
+    return `Фильм: "${this.title}", Режиссер: ${this.director}, Длительность: ${this.duration} минут.`;
+  }
 
-    getInfo(): string {
-        return `Фильм: "${this._title}", Режиссер: ${this._director}, Длительность: ${this._duration} минут.`;
-    }
-
-    updateFilmInfo(director: string, duration: number): void {
-        this._director = director;
-        this._duration = duration;
-    }
+  updateFilmInfo(director: string, duration: number): void {
+    this.director = director;
+    this.duration = duration;
+  }
 }
