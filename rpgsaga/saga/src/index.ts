@@ -1,5 +1,8 @@
-import { Dish } from './DishStruct/DishStruct';
 import { taskA, taskB } from './MathCalc/MathCal';
+import { Dish } from './DishStruct/DishStruct';
+import { Product } from './SuperClass/Product';
+import dishSuperClass from './SuperClass/Dish';
+import drinkSuperClass from './SuperClass/Drink';
 
 console.log('Лабораторная работа по мат.функции:');
 console.log('Номер под А:');
@@ -12,3 +15,9 @@ const dish = new Dish(50, 277.9, 'Картошка с мясом');
 console.log(dish);
 dish.name = 'Борщ';
 console.log(dish.calorie);
+console.log('Лабораторная работа по суперклассу:');
+const products: Product[] = [new dishSuperClass(350, 'Салат Цезарь', 450), new drinkSuperClass(150, 'Кока-Кола', 500)];
+products.forEach(product => {
+  console.log(product.toString());
+  console.log(product.details());
+});
