@@ -1,5 +1,7 @@
 export function mathCalc(x: number, a: number = 7.2, b: number = 4.2): number {
-  if (x <= 0) return NaN;
+  if (x <= 0) {
+    return NaN;
+  }
   return Math.sqrt(Math.abs(a - b * x) / Math.pow(Math.log10(x), 3));
 }
 
