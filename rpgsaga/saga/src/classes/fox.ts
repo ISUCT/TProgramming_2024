@@ -29,7 +29,7 @@ export abstract class Fox {
   }
 
   public get view(): string {
-  return `
+    return `
      /\\   /\\   
     //\\\\_//\\\\  ____
     \\_     _/    /   /
@@ -58,21 +58,24 @@ export abstract class Fox {
     if (nAge >= 0 && nAge < 33) {
       this._age = nAge;
     } else {
-      throw new Error("foxes dont live so long")};
+      throw new Error('foxes dont live so long');
+    }
   }
 
   public set color(nColor: Colors) {
     if (Object.values(Colors).includes(nColor)) {
-      this._color= nColor;
+      this._color = nColor;
     } else {
-      throw new Error("foxes dont have such color")};
+      throw new Error('foxes dont have such color');
+    }
   }
 
   public set name(nName: string) {
-    if (nName === "") {
-      throw new Error("foxes names cannot be empty");
+    if (nName === '') {
+      throw new Error('foxes names cannot be empty');
     } else {
-      this._name = nName};
+      this._name = nName;
+    }
   }
 
   abstract intFact(): string;

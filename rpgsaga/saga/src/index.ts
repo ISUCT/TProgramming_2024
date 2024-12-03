@@ -46,11 +46,11 @@ function taskB(a: number, b: number, xValues: number[]): number[] {
   return result;
 }
 
-//console.log('Ответы на задание A');
-//console.log(taskA(0.1, 0.5, 0.15, 1.37, 0.25));
-//console.log(taskA(0.1, 0.5, 1.37, 0.15, -0.25));
-//console.log(taskA(0.1, 0.5, 0.15, 0.15, 0.25));
-//console.log('Ответы на задание B');
-//console.log(taskB(0.1, 0.5, [0, 0.3, 0.44, 0.6, 0.56]));
-//console.log(taskB(0.1, 0.5, [0.2, 0.3, 0.44, 0.6, 0.56]));
+// console.log('Ответы на задание A');
+// console.log(taskA(0.1, 0.5, 0.15, 1.37, 0.25));
+// console.log(taskA(0.1, 0.5, 1.37, 0.15, -0.25));
+// console.log(taskA(0.1, 0.5, 0.15, 0.15, 0.25));
+// console.log('Ответы на задание B');
+// console.log(taskB(0.1, 0.5, [0, 0.3, 0.44, 0.6, 0.56]));
+// console.log(taskB(0.1, 0.5, [0.2, 0.3, 0.44, 0.6, 0.56]));
 export { taskA, taskB };
