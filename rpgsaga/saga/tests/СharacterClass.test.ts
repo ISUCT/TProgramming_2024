@@ -1,10 +1,11 @@
-import { Character } from '../src/Character/Сharacter';
+import { Mage } from '../src/Character/Mage';
+import { Warrior } from '../src/Character/Warrior';
 
 describe('Class Character', () => {
-  const war = new Character('Name', 'Warrior', 1);
+  const war = new Warrior('Name', 'Warrior', 1);
 
   it('create New Character', () => {
-    const magic = new Character('Magika', 'Mag', 10);
+    const magic = new Mage('Magika', 'Mag', 10);
     expect(magic.name).toEqual('Magika');
     expect(magic.class).toEqual('Mag');
     expect(magic.level).toEqual(10);
