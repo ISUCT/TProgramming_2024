@@ -152,11 +152,6 @@ export default [{
         }, {
             selector: "typeProperty",
             format: ["snake_case", "camelCase"],
-        }, { 
-            selector: ['memberLike'],
-            modifiers: ['protected'],
-            format: ['camelCase'],
-            leadingUnderscore: 'allow',
         }],
     },
 }];
