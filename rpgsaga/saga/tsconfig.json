@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
     "types": ["jest", "node"],
-    "target": "ES5",
+    "lib": ["es2017", "dom"],
+    "target": "es2017",
     "module": "CommonJS",
     "outDir": "out",
     "sourceMap": true
