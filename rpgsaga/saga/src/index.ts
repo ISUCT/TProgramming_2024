@@ -13,7 +13,7 @@ function main() {
   const resultSlice = work2(SliceWork2, 2.0, 0);
   console.log(resultSlice);
 
-  const mouse1 = new Mouse("Бобик", 2, "серый");
+  const mouse1 = new Mouse('Бобик', 2, 'серый');
   mouse1.setAge(3);
   mouse1.displayInfo();
   mouse1.setAge(-1);
