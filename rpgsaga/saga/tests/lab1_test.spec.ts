@@ -1,8 +1,8 @@
-import { Work1, Work2,} from "../src/Lab1";
+import { work1, work2,} from "../src/Lab1";
   
   describe('Work1', () => {
     it('should calculate the correct values for Work1', () => {
-      const test_result_Work1 = Work1(2.0, 0, 1.2, 4.2, 0.6);
+      const test_result_Work1 = work1(2.0, 0, 1.2, 4.2, 0.6);
       const True_result_Work1 = [
         0.024919580136386867,
         0.02327901792977313,
@@ -18,7 +18,7 @@ import { Work1, Work2,} from "../src/Lab1";
   describe('Work2', () => {
     it('should calculate the correct values for Work2', () => {
       const mySliceForWork2 = [1.16, 1.32, 1.47, 1.65, 1.93];
-      const test_result_Work2 = Work2(mySliceForWork2, 2.0, 0);
+      const test_result_Work2 = work2(mySliceForWork2, 2.0, 0);
       const True_result_Work2 = [
         0.025004724857363752,
         0.024639361870982292,
