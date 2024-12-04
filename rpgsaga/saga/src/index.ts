@@ -1,4 +1,5 @@
 import { work1, work2 } from './Lab1';
+import { Mouse } from './Lab2';
 
 function main() {
   // Work1
@@ -11,5 +12,10 @@ function main() {
   console.log('AnswerOnWork2:');
   const resultSlice = work2(SliceWork2, 2.0, 0);
   console.log(resultSlice);
+
+  const mouse1 = new Mouse("Бобик", 2, "серый");
+  mouse1.setAge(3);
+  mouse1.displayInfo();
+  mouse1.setAge(-1);
 }
 main();
