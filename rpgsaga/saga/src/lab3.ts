@@ -1,59 +1,59 @@
 abstract class Device {
-  protected brand: string;
-  protected model: string;
-  protected battery: number;
+  protected pbrand: string;
+  protected pmodel: string;
+  protected pbattery: number;
 
   constructor(brand: string, model: string, battery: number) {
-    this.brand = brand;
-    this.model = model;
-    this.battery = battery;
+    this.pbrand = brand;
+    this.pmodel = model;
+    this.pbattery = battery;
   }
 
-  getBrand(): string {
-    return this.brand;
+  get brand(): string {
+    return this.pbrand;
   }
 
-  getModel(): string {
-    return this.model;
+  get model(): string {
+    return this.pmodel;
   }
 
-  getBattery(): number {
-    return this.battery;
+  get battery(): number {
+    return this.pbattery;
   }
 
-  setBattery(battery: number): void {
+  set battery(battery: number) {
     if (battery < 0 || battery > 100) {
       throw new Error('Battery must be between 0 and 100');
     }
-    this.battery = battery;
+    this.pbattery = battery;
   }
 
   public chargeBattery(amount: number): void {
     if (amount < 0) {
       throw new Error('Charge amount must be positive');
     }
-    this.battery = Math.min(this.battery + amount, 100);
-    console.log(`Battery charged. Current level: ${this.battery}%`);
+    this.pbattery = Math.min(this.battery + amount, 100);
+    console.log(`Battery charged. Current level: ${this.pbattery}%`);
   }
 
   abstract getDeviceInfo(): string;
 }
 
 export class Phones extends Device {
-  private number: string;
+  private _number: string;
 
   constructor(number: string, brand: string, model: string, battery: number) {
     super(brand, model, battery);
-    this.number = number;
+    this._number = number;
   }
 
-  getNumber(): string {
-    return this.number;
+  get number(): string {
+    return this._number;
   }
 
-  setNumber(number: string): void {
+  set number(number: string) {
     this.validateNonEmpty(number);
-    this.number = number;
+    this._number = number;
   }
 
   private validateNonEmpty(value: string): void {
@@ -72,37 +72,37 @@ export class Phones extends Device {
   }
 
   public getDeviceInfo(): string {
-    return `Phone Info:\nBrand: ${this.brand}\nModel: ${this.model}\nBattery Level: ${this.battery}%\nPhone Number: ${this.number}`;
+    return `Phone Info:\nBrand: ${this.pbrand}\nModel: ${this.pmodel}\nBattery Level: ${this.battery}%\nPhone Number: ${this.number}`;
   }
 
   public toString(): string {
-    return `Phone: ${this.brand} ${this.model}, Number: ${this.number}`;
+    return `Phone: ${this.pbrand} ${this.pmodel}, Number: ${this._number}`;
   }
 }
 
 export class SmartPhone extends Device {
-  private apps: string[];
+  private _apps: string[];
 
   constructor(brand: string, model: string, battery: number) {
     super(brand, model, battery);
-    this.apps = [];
+    this._apps = [];
   }
 
   public installApp(appName: string): void {
-    if (this.apps.includes(appName)) {
+    if (this._apps.includes(appName)) {
       console.log(`Application "${appName}" is already installed.`);
       return;
     }
-    this.apps.push(appName);
+    this._apps.push(appName);
     console.log(`Application "${appName}" installed successfully.`);
   }
 
   public getDeviceInfo(): string {
-    const appsList = this.apps.length > 0 ? this.apps.join(', ') : 'No apps installed';
-    return `Smartphone Info:\nBrand: ${this.brand}\nModel: ${this.model}\nBattery Level: ${this.battery}%\nInstalled Apps: ${appsList}`;
+    const appsList = this._apps.length > 0 ? this._apps.join(', ') : 'No apps installed';
+    return `Smartphone Info:\nBrand: ${this.pbrand}\nModel: ${this.pmodel}\nBattery Level: ${this.battery}%\nInstalled Apps: ${appsList}`;
   }
 
   public toString(): string {
-    return `Smartphone: ${this.brand} ${this.model}`;
+    return `Smartphone: ${this.pbrand} ${this.pmodel}`;
   }
 }
