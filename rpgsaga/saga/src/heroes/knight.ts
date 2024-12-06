@@ -2,7 +2,7 @@ import { Hero } from './hero';
 import { RetributionStrike } from '../abilities/retributionStrike';
 
 export class Knight extends Hero {
-    constructor() {
-        super(70, 5, new RetributionStrike());
-    }
+    health = 70;
+    attackPower = 5;
+    ability = new RetributionStrike();
 }

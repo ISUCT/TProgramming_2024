@@ -3,9 +3,8 @@ import { Hero } from '../heroes/hero';
 import { ExecutionEffect } from '../effects/executionEffect';
 
 export class RetributionStrike extends Ability {
-    constructor() {
-        super(0, new ExecutionEffect());
-    }
+    damage = 0;
+    effect = new ExecutionEffect;
 
     use(target: Hero) {
         console.log(`${target.constructor.name} подвергается Удару Возмездия!`);

@@ -1,15 +1,10 @@
-export class Hero {
+import { Ability } from "../abilities/abilities";
+
+export abstract class Hero {
     health: number;
     attackPower: number;
-    ability: any; // Используем any для временного решения
+    ability: Ability;
     nextAbilitySelf: boolean;
-
-    constructor(health: number, attackPower: number, ability: any) {
-        this.health = health;
-        this.attackPower = attackPower;
-        this.ability = ability;
-        this.nextAbilitySelf = false;
-    }
 
     attack(target: Hero) {
         console.log(`${this.constructor.name} атакует ${target.constructor.name}!`);

@@ -3,12 +3,11 @@ import { Hero } from '../heroes/hero';
 import { BurnEffect } from '../effects/burnEffect';
 
 export class FireArrows extends Ability {
-    constructor() {
-        super(5, new BurnEffect());
-    }
+    damage = 5;
+    effect = new BurnEffect;
 
     use(target: Hero) {
-        console.log(`${target.constructor.name} поражен Ледяной Стрелой!`);
+        console.log(`${target.constructor.name} поражен Огненной Стрелой!`);
         target.takeDamage(this.damage);
         this.effect.apply(target);
     }
