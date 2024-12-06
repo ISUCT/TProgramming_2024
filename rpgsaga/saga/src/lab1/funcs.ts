@@ -8,28 +8,18 @@ export function calculateSinglePoint(x: number, a: number, b: number): number {
 }
 
 export function calculateSteps(a: number, b: number, xStart: number, xEnd: number, xDelta: number): number[] {
-  const itemCount: number = Math.floor((xEnd - xStart) / xDelta) + 1;
-
-  if (itemCount <= 0) {
-    return [];
-  }
-
-  const arr = new Array<number>(itemCount);
-  let xCurrent = xStart;
-  let index = 0;
-  while (xCurrent < xEnd) {
-    arr[index] = calculateSinglePoint(xCurrent, a, b);
-    index++;
-    xCurrent += xDelta;
+  const arr = new Array<number>();
+  for (let xCurrent = xStart; xCurrent < xEnd; xCurrent += xDelta) {
+    arr.push(calculateSinglePoint(xCurrent, a, b));
   }
 
   return arr;
 }
 
 export function calculatePoints(a: number, b: number, xes: Array<number>): Array<number> {
-  const results: Array<number> = new Array<number>(xes.length);
-  for (const index in xes) {
-    results[index] = calculateSinglePoint(xes[index], a, b);
+  const results: Array<number> = new Array<number>();
+  for (const x of xes) {
+    results.push(calculateSinglePoint(xes[x], a, b));
   }
   return results;
 }
