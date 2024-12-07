@@ -1,4 +1,4 @@
-import { Person } from "./Person";
+import { Person } from './Person';
 
 export class Employee extends Person {
   private _salary: number;
@@ -8,7 +8,6 @@ export class Employee extends Person {
     super(name, age, isSick);
     this.salary = salary;
   }
-
 
   public get salary(): number {
     return this._salary;
@@ -24,15 +23,14 @@ export class Employee extends Person {
     console.log(`${this.name} пришёл на работу`);
   }
   toString(): void {
-      console.log('У Employee toString() переопределён')
+    console.log('У Employee toString() переопределён');
   }
-
 
   addYearsOfWorkExperience(years: number): void {
     if (years < 0) {
-        throw new Error('You cannot add negative numbers');
+      throw new Error('You cannot add negative numbers');
     }
-    this._yearsOfWorkExperience+=years;
+    this._yearsOfWorkExperience += years;
   }
   getYearsOfWorkExperience(): number {
     return this._yearsOfWorkExperience;

@@ -34,15 +34,14 @@ const employee3: Employee = new Employee('Mikhail', 17, 20000);
 
 const customer1: Customer = new Customer('test', 123);
 
-let array: Person[] = [];
+const array: Person[] = [];
 
 array.push(employee1);
 array.push(employee2);
 array.push(customer1);
 for (const a of array) {
-    a.come();
+  a.come();
 }
-
 
 console.log(employee1);
 console.log(employee2);
