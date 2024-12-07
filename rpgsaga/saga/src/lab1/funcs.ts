@@ -19,7 +19,7 @@ export function calculateSteps(a: number, b: number, xStart: number, xEnd: numbe
 export function calculatePoints(a: number, b: number, xes: Array<number>): Array<number> {
   const results: Array<number> = new Array<number>();
   for (const x of xes) {
-    results.push(calculateSinglePoint(xes[x], a, b));
+    results.push(calculateSinglePoint(x, a, b));
   }
   return results;
 }
