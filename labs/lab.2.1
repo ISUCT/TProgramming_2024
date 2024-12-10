@@ -1,0 +1,56 @@
+    let rabbit = new Rabbit('Bunny', 3, 'white', 150);
+
+
+    it('should create a rabbit with correct properties', () => {
+        expect(rabbit.name).toBe('Bunny');
+        expect(rabbit.age).toBe(3);
+        expect(rabbit.color).toBe('white');
+        expect(rabbit.lengthOfJump).toBe(150);
+    });
+
+    it('should throw error for incorrect name', () => {
+        expect(() => {
+            rabbit.name = ''; 
+        }).toThrow('This name is not corret');
+    });
+
+    it('should throw error for incorrect age', () => {
+        expect(() => {
+            rabbit.age = 0; 
+        }).toThrow('Age is not correct');
+        expect(() => {
+            rabbit.age = 21; 
+        }).toThrow('Age is not correct');
+    });
+
+    it('should throw error for incorrect color', () => {
+        expect(() => {
+            rabbit.color = 'red'; 
+        }).toThrow('Color is not correct');
+    });
+
+    it('should throw error for incorrect length of jump', () => {
+        expect(() => {
+            rabbit.lengthOfJump = 0; 
+        }).toThrow('length of jump is not correct');
+        expect(() => {
+            rabbit.lengthOfJump = 250; 
+        }).toThrow('length of jump is not correct');
+    });
+
+    it('should return correct rabbitLive message', () => {
+        const expectedMessage = 'Bunny the white rabbit jumps and gnaws at the carrot';
+        expect(rabbit.rabbitLive()).toBe(expectedMessage);
+    });
+
+    it('should return correct jumpingTest message for short jump', () => {
+        rabbit.lengthOfJump = 50; 
+        expect(rabbit.jumpingTest()).toBe('Your rabbit needs to practice jumping');
+    });
+
+    it('should return correct jumpingTest message for long jump', () => {
+        rabbit.lengthOfJump = 150; 
+        const expectedMessage = 'Bunny the white rabbit jumps 150 centimeters in length. Good result';
+        expect(rabbit.jumpingTest()).toBe(expectedMessage);
+    });
+});

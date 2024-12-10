@@ -1,0 +1,57 @@
+    it('should return 59,42 for solution(0.03, 0.02, 0.13)', () => {
+        const res = solution(2, 3, 1.5);
+        expect(res).toBeCloseTo(59.42, 2);
+    });
+
+    it('should return -0 for solution(0, 0, 0)', () => {
+        const res = solution(0, 0, 0);
+        expect(res).toBe(-0);
+    });
+
+    it('should return an array of results for valid inputs', () => {
+        const res = taskA(0.03, 0.02, 0, 0.1, 0.01);
+        expect(res).toHaveLength(11);
+        expect(res[0]).toBeCloseTo(solution(0.03, 0.02, 0), 2);
+        expect(res[1]).toBeCloseTo(solution(0.03, 0.02, 0.01), 2);
+    });
+
+    it('should return an empty array when x_start is greater than x_end', () => {
+        const res = taskA(0.03, 0.02, 1, 0, 0.1);
+        expect(res).toEqual([]);
+    });
+
+    it('should return an empty array when x_start equals x_end', () => {
+        const res = taskA(0.03, 0.02, 0.1, 0.1, 0.01);
+        expect(res).toEqual([]);
+    });
+
+    it('should return an empty array when input list is empty', () => {
+        const res = taskB(0.03, 0.02, []);
+        expect(res).toEqual([]);
+    });
+
+    it('should handle negative values in the input list', () => {
+        const input = [-0.01, -0.02, -0.03];
+        const res = taskB(0.03, 0.02, input);
+        expect(res).toHaveLength(input.length);
+        expect(res[0]).toBeCloseTo(solution(0.03, 0.02, -0.01), 2);
+        expect(res[1]).toBeCloseTo(solution(0.03, 0.02, -0.02), 2);
+        expect(res[2]).toBeCloseTo(solution(0.03, 0.02, -0.03), 2);
+    });
+
+    it('should return correct results for a range of inputs in taskA', () => {
+        const res = taskA(1, 1, 1, 2, 0.1);
+        expect(res).toHaveLength(10);
+        expect(res[0]).toBeCloseTo(solution(1, 1, 1), 2);
+        expect(res[1]).toBeCloseTo(solution(1, 1, 1.1), 2);
+    });
+
+    it('should return correct results for taskB with varied inputs', () => {
+        const input = [0, 0.5, 1.5];
+        const res = taskB(0.01, 0.02, input);
+        expect(res).toHaveLength(input.length);
+        expect(res[0]).toBeCloseTo(solution(0.01, 0.02, 0), 2);
+        expect(res[1]).toBeCloseTo(solution(0.01, 0.02, 0.5), 2);
+        expect(res[2]).toBeCloseTo(solution(0.01, 0.02, 1.5), 2);
+    });
+});

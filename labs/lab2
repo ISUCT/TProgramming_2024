@@ -1,0 +1,72 @@
+    private _age: number;                                                                                                                                                                            
+    private _color: string;
+    private _lengthOfJump: number;
+                                                                                                                                                                          
+   
+    constructor(name: string, age: number, color: string, lengthOfJump: number){
+        this.name = name;                                                                                                                                                                       
+        this.age = age;                                                                                                                                                                                                                                                                                                                
+        this.color = color;
+    }
+   
+    get name(): string{
+        return this._name;
+    }
+   
+    get age(): number{
+        return this._age
+    }
+   
+    get color(): string{
+        return this._color 
+    }
+
+    get lengthOfJump(): number{
+        return this._lengthOfJump
+    }
+   
+    set name(name: string){
+        if (name.length !== 0){
+            this._name = name;
+            return;
+        } 
+        throw new Error ('This name is not corret');
+    }
+   
+    set age(age: number){
+        if (age > 0 && age <= 20){
+            this._age = age;
+            return;
+        }
+        throw new Error ('Age is not correct');
+    }
+   
+    set color(color: string){
+        const colors: string[] = ["black", "white", "gray", "brown"];
+        if (color in colors) {
+            this._color = color;
+            return;
+        }
+        throw new Error ('Color is not correct');
+    }
+
+    set lengthOfJump(lengthOfJump: number){
+        if (lengthOfJump > 0 && lengthOfJump <= 200){
+            this._lengthOfJump = lengthOfJump;
+            return;
+        }
+        throw new Error ('length of jump is not correct');
+    }
+   
+    rabbitLive(): string {
+        return(`${this.name} the ${this.color} rabbit jumps and gnaws at the carrot`);
+    }
+   
+    jumpingTest(): string {
+        if (this.lengthOfJump < 100) {
+            return("Your rabbit needs to practice jumping");
+        } else {
+            return(`${this.name} the ${this.color} rabbit jumps ${this.lengthOfJump} centimeters in length. Good result`);
+        }
+    }
+}

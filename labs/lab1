@@ -1,0 +1,18 @@
+return (Math.pow((a + b*x), 2.5)) / (1 + (Math.log10(a + b*x)));
+}
+
+export function taskA(a: number, b: number, xStart: number, xEnd: number, xStep: number): number[] {
+  const listOfAnswers: number[] = [];
+  for (let i = xStart; i < xEnd; i += xStep) {
+    listOfAnswers.push(solution(a, b, i));
+  }
+  return listOfAnswers;
+}
+
+export function taskB(a: number, b: number, listOfX: number[]): number[] {
+  const listOfAnswers: number[] = [];
+  for (const i of listOfX) {
+    listOfAnswers.push(solution(a, b, i));
+  }
+  return listOfAnswers;
+}
