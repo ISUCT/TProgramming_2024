@@ -81,7 +81,9 @@ export abstract class Character {
 
   // Получение всех данных о классе
   public toString() {
-    console.log(`Name: ${this.name}, class: ${this.class}, mana: ${this.mana}, health: ${this.health}, strength: ${this.strength}`);
+    console.log(
+      `Name: ${this.name}, class: ${this.class}, mana: ${this.mana}, health: ${this.health}, strength: ${this.strength}`,
+    );
   }
 
   public attack() {
