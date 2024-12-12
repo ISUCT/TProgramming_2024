@@ -18,32 +18,33 @@ console.log(getTaskB(numbersX));
 
 // Создание класса и вывод его значений
 // Класс Воин
-const warrior = new Warrior('Charly', 'Voin', 1);
-console.log('Класс воин:');
+const warrior = new Warrior('Charly', 'Warrior', 50, 200, 200);
+console.log(`Класс воин: ${warrior.toString()}`);
 warrior.toString();
 
 // Класс Лучник
-const archer = new Archer('Robbin', 'Archer', 2);
-console.log('Класс лучник:');
-archer.toString();
-archer.attac();
+const archer = new Archer('Robinn', 'Archer', 50, 200, 200);
+console.log(`Класс лучник: ${archer.toString()}`);
+// archer.toString();
+archer.attack();
 
 // Класс Маг
-const mag = new Mage('Garry', 'Wizard', 1);
-mag.toString();
-mag.attac();
+const mag = new Mage('Zorian', 'Arhymag', 50, 200, 200);
+console.log(`Класс маг: ${mag.toString()}`);
+// mag.toString();
+mag.attack();
 
 // Получение имени
 console.log(`Name: ${warrior.name}`);
 
 // Изменение уровня (как пример)
-console.log(`level: ${warrior.level}`);
-warrior.level = 5;
-console.log(`level: ${warrior.level}`);
+console.log(`Warrior health not changed: ${warrior.health}`);
+warrior.health = 5;
+console.log(`Warrior health before: ${warrior.health}`);
 
 // Попытка установления неверного заначения уровня
 try {
-  warrior.level = -10;
+  warrior.health = -10;
 } catch (err) {
   console.log(err);
 }

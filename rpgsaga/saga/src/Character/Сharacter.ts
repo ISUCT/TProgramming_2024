@@ -1,12 +1,24 @@
 export abstract class Character {
   private _name: string;
   private _class: string;
-  private _level: number = 1;
+  private _mana: number;
+  private _health: number;
+  private _strength: number;
+  // private _immunity: string[] = [];
 
-  constructor(characterName: string, characterClass: string, characterLevel: number) {
+  constructor(
+    characterName: string,
+    characterClass: string,
+    characterMana: number,
+    characterHealth: number,
+    characterStrength: number /* , characterImmunity: string*/,
+  ) {
     this._name = characterName;
     this._class = characterClass;
-    this.level = characterLevel;
+    this._mana = characterMana;
+    this._health = characterHealth;
+    this._strength = characterStrength;
+    // this._immunity = characterImmunity;
   }
 
   // Получить имя персонажа (акцессор)
@@ -19,10 +31,21 @@ export abstract class Character {
     return `${this._class}`;
   }
 
-  // Получить уровень персонажа
-  public get level(): number {
-    return this._level;
+  // Получить уровень маны персонажа
+  public get mana(): number {
+    return this._mana;
   }
+
+  //  Получить здоровье
+  public get health(): number {
+    return this._health;
+  }
+
+  // Получить силу
+  public get strength(): number {
+    return this._strength;
+  }
+
   // (мутаторы)
   public set name(newName: string) {
     this._name = newName;
@@ -32,10 +55,25 @@ export abstract class Character {
     this._class = newClass;
   }
 
-  // Изменить уровень персонажа
-  public set level(level: number) {
-    if (level > 0) {
-      this._level = level;
+  public set mana(newMana: number) {
+    if (newMana > 0) {
+      this._mana = newMana;
+      return;
+    }
+    throw new Error('Level out of range');
+  }
+
+  public set strength(newStrength: number) {
+    if (newStrength > 0) {
+      this._strength = newStrength;
+      return;
+    }
+    throw new Error('Level out of range');
+  }
+
+  public set health(newMana: number) {
+    if (newMana > 0) {
+      this._mana = newMana;
       return;
     }
     throw new Error('Level out of range');
@@ -43,10 +81,10 @@ export abstract class Character {
 
   // Получение всех данных о классе
   public toString() {
-    console.log(`Name: ${this.name}, class: ${this.class}, level: ${this.level}`);
+    console.log(`Name: ${this.name}, class: ${this.class}, mana: ${this.mana}, health: ${this.health}, strength: ${this.strength}`);
   }
 
-  public attac() {
+  public attack() {
     console.log('Ваш герой совершил атаку!');
   }
 }

@@ -1,7 +1,7 @@
 import { Character } from './Сharacter';
 
 export class Warrior extends Character {
-  public attac() {
+  public attack() {
     console.log('Воин совершил удар!');
   }
 }
