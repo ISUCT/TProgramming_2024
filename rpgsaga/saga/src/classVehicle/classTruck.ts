@@ -32,4 +32,3 @@ export class Truck extends Vehicle {
     return `Truck: {brand: ${this.branD}, speed: ${this.speeD}, color: ${this.coloR}, Wheel Base Length: ${this.wheelBaseLengtH}}`;
   }
 }
-

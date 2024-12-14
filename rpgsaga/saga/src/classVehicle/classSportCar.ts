@@ -32,4 +32,3 @@ export class SportCar extends Vehicle {
     return `SportCar: {brand: ${this.branD}, speed: ${this.speeD}, color: ${this.coloR}, Power: ${this.poweR}}`;
   }
 }
-
