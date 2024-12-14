@@ -1,34 +1,35 @@
-import { Vehicle } from "../classVehicle/classVehicle"
+import { Vehicle } from '../classVehicle/classVehicle';
 
 export class Truck extends Vehicle {
-     _wheelBaseLength: number;
-     
-     constructor(brand: string, speed: number, color: string, wheelBaseLength: number) {
-        super(brand, speed, color);
-        this._wheelBaseLength = wheelBaseLength;
-     }
+  wheelBaseLengtH: number;
 
-     driveForward() {
-        console.log("Your", this._brand, "drive forward.");
-     }
+  constructor(brand: string, speed: number, color: string, wheelBaseLength: number) {
+    super(brand, speed, color);
+    this.wheelBaseLengtH = wheelBaseLength;
+  }
 
-     driveReverse() {
-        console.log("Your", this._brand, "drive reverse.")
-     }
+  driveForward() {
+    console.log('Your', this.branD, 'drive forward.');
+  }
 
-     get wheelBaseLength(): number {
-        return this._wheelBaseLength;
-     }
+  driveReverse() {
+    console.log('Your', this.branD, 'drive reverse.');
+  }
 
-     set wheelBaseLength(newWheelBaseLength: number) {
-        if (newWheelBaseLength > 0 && newWheelBaseLength <= 11) {
-            this._wheelBaseLength = newWheelBaseLength
-        } else {
-            throw new Error("Колесную базу такой длины еще не изобрели.")
-        }
-     }
+  get wheelBaseLength(): number {
+    return this.wheelBaseLengtH;
+  }
 
-     toString(): string {
-        return `Truck: {brand: ${this._brand}, speed: ${this._speed}, color: ${this.color}, Wheel Base Length: ${this._wheelBaseLength}}`;
-     }
+  set wheelBaseLength(newWheelBaseLength: number) {
+    if (newWheelBaseLength > 0 && newWheelBaseLength <= 11) {
+      this.wheelBaseLengtH = newWheelBaseLength;
+    } else {
+      throw new Error('Колесную базу такой длины еще не изобрели.');
+    }
+  }
+
+  toString(): string {
+    return `Truck: {brand: ${this.branD}, speed: ${this.speeD}, color: ${this.coloR}, Wheel Base Length: ${this.wheelBaseLengtH}}`;
+  }
 }
+

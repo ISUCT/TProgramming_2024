@@ -1,34 +1,35 @@
-import { Vehicle } from '../classVehicle/classVehicle'
+import { Vehicle } from '../classVehicle/classVehicle';
 
 export class SportCar extends Vehicle {
-    _power: number;
+  poweR: number;
 
-    constructor(brand: string, speed: number, color: string, power: number) {
-        super(brand, speed, color);
-        this._power = power;
+  constructor(brand: string, speed: number, color: string, power: number) {
+    super(brand, speed, color);
+    this.poweR = power;
+  }
+
+  driveForward() {
+    console.log('Your', this.branD, 'drive forward.');
+  }
+
+  driveReverse() {
+    console.log('Your', this.branD, 'drive reverse.');
+  }
+
+  get power(): number {
+    return this.poweR;
+  }
+
+  set power(newPower: number) {
+    if (newPower <= 2028 && newPower > 0) {
+      this.poweR = newPower;
+    } else {
+      throw new Error('Автомобиля такой мощности еще не изобрели.');
     }
+  }
 
-    driveForward() {
-        console.log("Your", this._brand, "drive forward.");
-    }
-
-    driveReverse() {
-        console.log("Your", this._brand, "drive reverse.");
-    }
-
-    get power(): number {
-        return this._power;
-    }
-
-    set power(newPower: number) {
-        if (newPower <= 2028 && newPower > 0) {
-            this._power = newPower;
-        } else {
-            throw new Error("Автомобиля такой мощности еще не изобрели.");
-        }
-    }
-
-    toString(): string {
-        return `SportCar: {brand: ${this._brand}, speed: ${this._speed}, color: ${this.color}, Power: ${this._power}}`;
-     }
+  toString(): string {
+    return `SportCar: {brand: ${this.branD}, speed: ${this.speeD}, color: ${this.coloR}, Power: ${this.poweR}}`;
+  }
 }
+
