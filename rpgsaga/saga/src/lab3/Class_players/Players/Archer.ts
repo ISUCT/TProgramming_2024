@@ -1,7 +1,7 @@
-import { Player } from "./Player";
-import { Weapon } from "../Class_weapon/Weapon";
-import { ability_activation } from "../Utils/ability_activation";
-import { Hit } from "../Class_hit";
+import { Player } from "../Player";
+import { Weapon } from "../../Class_weapons/Weapon";
+import { ability_activation } from "../../Utils/check_operation";
+import { Hit } from "../../Class_hit";
 
 export class Archer extends Player{
 

@@ -1,10 +1,11 @@
 export class Hit{
     private _damage: number;
-    private _type_damage: string;
+    private _type_damage: String;
     private _control: boolean;
+    // debuff
     constructor (
         damage: number,
-        type_damage: string,
+        type_damage: String,
         control: boolean,
     ) {
         this._damage = damage;
@@ -20,7 +21,7 @@ export class Hit{
         return this._damage;
     }
 
-    public get type_damage(): string {
+    public get type_damage(): String {
         return this._type_damage;
     }
 

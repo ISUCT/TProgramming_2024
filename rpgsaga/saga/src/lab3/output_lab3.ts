@@ -1,11 +1,9 @@
-import { Warrior } from "./Class_players/Warrior";
-import { Archer } from "./Class_players/Archer";
-import { Mage } from "./Class_players/Mage";
-import { Weapon } from "./Class_weapon/Weapon";
+import { Warrior } from "./Class_players/Players/Warrior";
+import { Archer } from "./Class_players/Players/Archer";
+import { Weapon } from "./Class_weapons/Weapon";
 import { random_value_array } from "./Utils/random_v_arr";
 import { random_weapon } from "./Utils/random_weapon";
-import { fight } from "./fight";
-import { Paladin_Shield } from "./Class_weapon/Classes/Paladin_Shield";
+import { Paladin_Shield } from "./Class_weapons/Weapons/Paladin_Shield";
 const arr_name: String[] = ["Ivan", "Dima", "Alex", "Jhon", "Sergey"];
 export enum Wepon_damage {
     "Sword" = 10,
