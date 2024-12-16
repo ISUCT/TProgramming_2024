@@ -1,0 +1,14 @@
+function flattenMap(map, path = "", result = {}) {
+  Object.entries(map).forEach(([key, value]) => {
+    const route = path ? `${path}/${key}` : key;
+    const object = value !== null && typeof value === "object" && !Array.isArray(value);
+    
+    if (object) {
+      flattenMap(value, route, result);
+    } else {
+      result[route] = value;
+    }
+  });
+  
+  return result;
+}

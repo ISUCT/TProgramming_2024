@@ -1,0 +1,11 @@
+def deepСount(a):
+    summ = 0
+    for elements in a:
+        summ += 1
+        if isinstance(elements, list) == True:
+            summ += deepСount(elements)
+
+    return summ
+
+if __name__ == "__main__":
+    print(deepСount(list(input())))

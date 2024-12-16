@@ -1,0 +1,8 @@
+def digitalRoot(number):
+    while number > 9:
+        number = sum([int(x) for x in str(number)])
+        
+    return number
+
+if __name__ == "__main__":
+    print(digitalRoot(int(input())))

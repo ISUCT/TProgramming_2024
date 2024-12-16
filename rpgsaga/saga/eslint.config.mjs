@@ -130,6 +130,11 @@ export default [{
             format: ["camelCase"],
             leadingUnderscore: "allow",
         }, {
+            selector: ["memberLike"],
+            modifiers: ["protected"],
+            format: ["camelCase"],
+            leadingUnderscore: "allow",
+        }, {
             selector: ["enumMember", "variable"],
             format: ["camelCase", "PascalCase", "UPPER_CASE"],
         }, {

@@ -1,0 +1,10 @@
+def camelCase(text):
+    line = text.replace("_", " ").replace("-", " ")
+    line = line.split()
+    if len(text) == 0:
+        return text
+    
+    return line[0] + ''.join(i.capitalize() for i in line[1:])
+
+if __name__ == '__main__':
+    print(camelCase(input()))

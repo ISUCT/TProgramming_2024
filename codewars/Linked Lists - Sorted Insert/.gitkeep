@@ -1,0 +1,19 @@
+class Node:
+    def init(self, data):
+        self.data = data
+        self.next = None
+
+def sorted(death, data):
+    death = Node(data)
+
+    if death is None or death.data >= death.data:
+        death.next = death
+        return death
+    actual = death
+    
+    while actual.next is not None and actual.next.data < death.data:
+        actual = actual.next
+    death.next = actual.next
+    actual.next = death
+
+    return death

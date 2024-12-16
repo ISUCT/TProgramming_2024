@@ -1,0 +1,11 @@
+def piggy(piggyLatin):
+    piggyLatin = list(piggyLatin.split())
+    
+    for i in range(len(piggyLatin)):
+        if piggyLatin[i].isalpha(): 
+            piggyLatin[i] = piggyLatin[i][1:] + piggyLatin[i][0] + 'ay'
+
+    return ' '.join(piggyLatin)
+
+if __name__ == "__main__":
+    print(piggy(input()))
