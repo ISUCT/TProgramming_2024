@@ -1,4 +1,4 @@
-import { Cat } from '../src/cat';
+import { Cat } from '../src/lab2';
 
 describe('Cat Class - Lab 2', () => {
     let cat: Cat;
