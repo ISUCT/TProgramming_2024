@@ -2,7 +2,6 @@ export class Hit{
     private _damage: number;
     private _type_damage: String;
     private _control: boolean;
-    // debuff
     constructor (
         damage: number,
         type_damage: String,
@@ -14,7 +13,11 @@ export class Hit{
     };
 
     public set damage(value: number) {
-        this._damage = value
+        this._damage = value;
+    }
+
+    public set control(value: boolean) {
+        this._control = value;
     }
 
     public get damage(): number {

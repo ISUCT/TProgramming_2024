@@ -1,5 +1,5 @@
-import { Wepon_damage } from "../output_lab3";
-import { Player } from "../Class_players/Player";
+import { Player } from "../Classes_players/Player";
+import { Ability } from "../Classes_abilities/Ability";
 
 export class Weapon{
     private _name: string;
@@ -9,6 +9,7 @@ export class Weapon{
     private _multiplier_phys_resist: number;
     private _increase_magic_resist: number;
     private _multiplier_magic_resist: number;
+    private  _ability: Ability;
     constructor(
         name: string,
         damage: number,
@@ -16,7 +17,8 @@ export class Weapon{
         increase_phys_resist: number,
         multiplier_phys_resist: number,
         increase_magic_resist: number,
-        multiplier_magic_resist: number
+        multiplier_magic_resist: number,
+        ability: Ability
     ) {
         this._name = name;
         this._damage = damage;
@@ -25,6 +27,7 @@ export class Weapon{
         this._multiplier_phys_resist = multiplier_phys_resist;
         this._increase_magic_resist = increase_magic_resist;
         this._multiplier_magic_resist = multiplier_magic_resist;
+        this._ability = ability;
     }
     
     public get name(): String {
@@ -53,5 +56,9 @@ export class Weapon{
 
     public get multiplier_magic_resist(): number {
         return this._multiplier_magic_resist;
+    }
+
+    public get ability(): Ability {
+        return this._ability;
     }
 }

@@ -1,20 +1,21 @@
-import { Weapon } from "../Class_weapons/Weapon";
+import { Weapon } from "../Classes_weapons/Weapon";
 import { Hit } from "../Class_hit";
-import { Ability } from "../Class_abilities/Ability";
-import { activation_ability } from "../Class_abilities/activatio_ability";
+import { Ability } from "../Classes_abilities/Ability";
+import { activation_ability } from "../Classes_abilities/using_abilities";
+import { Debuff } from "../Classes_debuff/Debuff";
+import { damage_types } from "../Utils/list_damage_types";
 
 export abstract class Player{
     private _name: String;
     private _role: String;
+    private _weapon: Weapon; 
     private _health: number;
-    private _damage: number;
-    private _type_damage: String;
     private _physical_resistance: number;
     private _magic_resistance: number;
     private _crit_damage: number;
     private _stuuned_states: boolean = false;
     private _ability: Ability;
-    // status_debuff: new class
+    private _debuffs: (Debuff)[] = [];
     constructor(
         name: String,
         role: String,
@@ -27,13 +28,12 @@ export abstract class Player{
     ) {
         this._name = name;
         this._role = role;
-        this._damage = weapon.damage;
-        this._type_damage = weapon.type_damage
+        this._weapon = weapon;
         this._health = health;
         this._physical_resistance = (physical_resistance + weapon.increase_phys_resist) * weapon.multiplier_phys_resist;
         this._magic_resistance = (magic_resistance + weapon.increase_magic_resist) * weapon.multiplier_magic_resist;
         this._crit_damage = crit_damage;
-        this._ability = ability
+        this._ability = ability;
     }
 
     public set health(hp: number) {
@@ -52,6 +52,14 @@ export abstract class Player{
         this._magic_resistance = value;
     }
 
+    public add_debuff(debuff: Debuff){
+        this._debuffs.push(debuff);
+    }
+
+    public clear_debaffs() {
+        this._debuffs.length = 0;
+    }
+
     public get name(): String {
         return this._name;
     }
@@ -65,11 +73,11 @@ export abstract class Player{
     }
 
     public get damage(): number {
-        return this._damage
+        return this._weapon.damage
     }
 
     public get type_damage(): String {
-        return this._type_damage
+        return this._weapon.type_damage
     }
 
     public get stuuned_states(): boolean {
@@ -88,13 +96,9 @@ export abstract class Player{
         return this._crit_damage;
     }
 
-    public get ability(): Ability {
-        return this._ability;
-    }
-
     public attack(): Hit {
-        let hit = new Hit(this._damage, this._type_damage, false)
-        hit = activation_ability(this._ability, this, hit)
+        let hit = new Hit(this._weapon.damage, this._weapon.type_damage, false)
+        hit = activation_ability([this._ability, this._weapon.ability], this, hit)
         return hit
     }
 
@@ -102,12 +106,21 @@ export abstract class Player{
         if (hit.control) {
             this._stuuned_states = true;
         }
-        if (hit.type_damage == 'pure') {
+        if (hit.type_damage == damage_types.pure) {
             this._health -= hit.damage
-        } else if (hit.type_damage == "phys") {
+        } else if (hit.type_damage == damage_types.phys) {
             this.health = this.health - (Math.floor(hit.damage * ((100 - this.physical_resistance) / 100))) ; 
-        } else if (hit.type_damage == "magic"){
+        } else if (hit.type_damage == damage_types.mag){
             this.health = this.health - (Math.floor(hit.damage * ((100 - this.magic_resistance) / 100)));  
+        }
+    }
+
+    public activate_debaffs() {
+        for (let debuff of this._debuffs) {
+            if (debuff.duration > 0) {
+                this.taking_damage(debuff.activate_debuff());
+                debuff.duration = debuff.duration - 1;
+            }
         }
     }
 }

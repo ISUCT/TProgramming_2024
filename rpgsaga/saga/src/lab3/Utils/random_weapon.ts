@@ -1,4 +1,4 @@
-import { Wepon_damage } from "../output_lab3";
+import {} from "../output_lab3";
 
 export function random_weapon(): string {
     const weapons = Object.keys(Wepon_damage).filter(key => isNaN(Number(key)));
