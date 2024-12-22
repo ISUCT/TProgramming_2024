@@ -10,6 +10,6 @@ export class Archer extends Player{
         weapon: Weapon,
         health: number,
     ) {
-        super(name, role_names.archer, weapon, health, 5, 5, 50, new Ability(17, ability_names.archer_ability));
+        super(name, role_names.archer, weapon, health, 5, 5, new Ability(17, ability_names.archer_ability));
     }
 }

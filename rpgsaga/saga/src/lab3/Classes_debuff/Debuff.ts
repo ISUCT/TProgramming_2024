@@ -1,18 +1,21 @@
 import { Hit } from "../Class_hit";
 
 export abstract class Debuff{
+    private _name_debuff: String;
     private _total_duration: number;
     private _duration: number;
     private _damage: number;
     private _type_damage: String;
     private _stunning: boolean;
     constructor(
+        name_debuff: String,
         total_duration: number,
         duration: number,
         damage: number,
         type_damage: String,
         stunning: boolean
     ) {
+        this._name_debuff = name_debuff;
         this._total_duration = total_duration;
         this._duration = duration;
         this._damage = damage;
@@ -22,6 +25,10 @@ export abstract class Debuff{
 
     public set duration(value: number) {
         this._duration = value;
+    }
+
+    public get name_debuff(): String {
+        return this._name_debuff;
     }
 
     public get total_duration(): number {

@@ -1,7 +1,10 @@
+import { Debuff } from "./Classes_debuff/Debuff";
+
 export class Hit{
     private _damage: number;
     private _type_damage: String;
     private _control: boolean;
+    private _debuff: Debuff 
     constructor (
         damage: number,
         type_damage: String,
@@ -20,6 +23,10 @@ export class Hit{
         this._control = value;
     }
 
+    public set debuff(value: Debuff) {
+        this._debuff = value;
+    }
+
     public get damage(): number {
         return this._damage;
     }
@@ -30,5 +37,9 @@ export class Hit{
 
     public get control(): boolean {
         return this._control;
+    }
+
+    public get debuff(): Debuff {
+        return this._debuff
     }
 }

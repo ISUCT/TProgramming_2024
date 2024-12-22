@@ -12,7 +12,6 @@ export abstract class Player{
     private _health: number;
     private _physical_resistance: number;
     private _magic_resistance: number;
-    private _crit_damage: number;
     private _stuuned_states: boolean = false;
     private _ability: Ability;
     private _debuffs: (Debuff)[] = [];
@@ -23,7 +22,6 @@ export abstract class Player{
         health: number,
         physical_resistance: number,
         magic_resistance: number,
-        crit_damage: number,
         ability: Ability
     ) {
         this._name = name;
@@ -32,7 +30,6 @@ export abstract class Player{
         this._health = health;
         this._physical_resistance = (physical_resistance + weapon.increase_phys_resist) * weapon.multiplier_phys_resist;
         this._magic_resistance = (magic_resistance + weapon.increase_magic_resist) * weapon.multiplier_magic_resist;
-        this._crit_damage = crit_damage;
         this._ability = ability;
     }
 
@@ -92,34 +89,55 @@ export abstract class Player{
         return this._magic_resistance;
     }
 
-    public get crit_damage(): number {
-        return this._crit_damage;
+    public get debuffs(): (Debuff)[] {
+        return this._debuffs
     }
 
     public attack(): Hit {
-        let hit = new Hit(this._weapon.damage, this._weapon.type_damage, false)
-        hit = activation_ability([this._ability, this._weapon.ability], this, hit)
-        return hit
+        let hit = new Hit(this._weapon.damage, this._weapon.type_damage, false);
+        hit = activation_ability([this._ability, this._weapon.ability], this, hit);
+        return hit;
     }
 
     public taking_damage(hit: Hit) {
+        if (typeof hit.debuff !== 'undefined') {
+            this.add_debuff(hit.debuff);
+        }
+        this.activate_debaffs();
         if (hit.control) {
             this._stuuned_states = true;
         }
         if (hit.type_damage == damage_types.pure) {
-            this._health -= hit.damage
+            hit.damage = hit.damage;
         } else if (hit.type_damage == damage_types.phys) {
-            this.health = this.health - (Math.floor(hit.damage * ((100 - this.physical_resistance) / 100))) ; 
+            hit.damage =  Math.floor(hit.damage * ((100 - this.physical_resistance) / 100));
         } else if (hit.type_damage == damage_types.mag){
-            this.health = this.health - (Math.floor(hit.damage * ((100 - this.magic_resistance) / 100)));  
+            hit.damage = Math.floor(hit.damage * ((100 - this.magic_resistance) / 100));
         }
+        this._health -= hit.damage;
+        console.log(`${this.role} (${this._health} HP) получил ${hit.damage} урона`);
+    }
+
+    public taking_damage_from_debuff(debuff: Debuff, hit: Hit) {
+        if (hit.control) {
+            this._stuuned_states = true;
+        }
+        if (hit.type_damage == damage_types.pure) {
+            hit.damage = hit.damage;
+        } else if (hit.type_damage == damage_types.phys) {
+            hit.damage =  Math.floor(hit.damage * ((100 - this.physical_resistance) / 100));
+        } else if (hit.type_damage == damage_types.mag){
+            hit.damage = Math.floor(hit.damage * ((100 - this.magic_resistance) / 100));
+        }
+        this._health -= hit.damage;
+        console.log(`${this.role} (${this._health} HP) получил ${hit.damage} урона от ${debuff.name_debuff} (до окончания ${debuff.duration} ход(a)))`);
     }
 
     public activate_debaffs() {
         for (let debuff of this._debuffs) {
             if (debuff.duration > 0) {
-                this.taking_damage(debuff.activate_debuff());
                 debuff.duration = debuff.duration - 1;
+                this.taking_damage_from_debuff(debuff, debuff.activate_debuff());
             }
         }
     }

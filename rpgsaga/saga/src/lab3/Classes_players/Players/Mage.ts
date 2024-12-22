@@ -10,6 +10,6 @@ export class Mage extends Player{
         weapon: Weapon,
         health: number,
     ) {
-        super(name, role_names.mage, weapon, health, 10, 10, 1, new Ability(17, ability_names.mage_ability));
+        super(name, role_names.mage, weapon, health, 10, 10, new Ability(30, ability_names.mage_ability));
     }
 }

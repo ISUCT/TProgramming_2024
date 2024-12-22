@@ -1,7 +1,7 @@
 export enum ability_names{
     empty = "empty",
-    archer_ability = "archer_ability",
-    warrior_ability = "warrior_ability",
-    mage_ability = "mage_ability",
-    staff_santa = "staff_santa_ability"
+    archer_ability = "Уселенная стрела",
+    warrior_ability = "Разящий удар",
+    mage_ability = "Поджигание",
+    staff_santa = "Замораживание"
 }
