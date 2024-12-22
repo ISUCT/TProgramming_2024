@@ -1,6 +1,7 @@
 import { Player } from "./Classes_players/Player";
 import { Hit } from "./Class_hit";
 export function fight(pers_1: Player, pers_2: Player) {
+    console.log(`${pers_1.role} '${pers_1.name}' VS ${pers_2.role} '${pers_2.name}'`);
     let count: number = 1
     while (true) {
         if (count % 2 != 0) {
@@ -28,7 +29,7 @@ export function one_hit(count: number, attacker: Player, defending: Player): num
     }
     if (attacker.stuuned_states == false) {
         let attack: Hit = attacker.attack();
-        console.log(`${attacker.role} '${attacker.name}' наносит ${attack.damage}`)
+        console.log(`${attacker.role} '${attacker.name}' наносит ${attack.damage} оружием '${attacker.name_weapon}'`)
         console.log();
         defending.taking_damage(attack); 
         if (defending.health <= 0) {

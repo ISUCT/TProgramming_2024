@@ -77,6 +77,10 @@ export abstract class Player{
         return this._weapon.type_damage
     }
 
+    public get name_weapon(): String {
+        return this._weapon.name;
+    }
+
     public get stuuned_states(): boolean {
         return this._stuuned_states;
     }
