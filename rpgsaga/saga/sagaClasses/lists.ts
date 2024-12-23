@@ -1,20 +1,39 @@
 import { Weapon } from './weapon';
 
-export enum DamageTypes {
-  cutting = 'Режущий',
-  crushing = 'Дробящий',
-  stabbing = 'Колющий',
-  magic = 'Магический',
+export enum DamageType {
+  Physical = 'Physical',
+  Magic = 'Magic',
 }
 
-// export const Spells: any {};
-
-// export const Skills: any {};
-
 export const Weapons = {
-  rapier: new Weapon('Рапира', DamageTypes.stabbing, 15),
-  magicStuff: new Weapon('Посох', DamageTypes.magic, 20),
-  axe: new Weapon('Боевой топор', DamageTypes.cutting, 20),
-  dryn: new Weapon('Дрын', DamageTypes.crushing, 30),
-  bow: new Weapon('Лук', DamageTypes.stabbing, 30),
+  sword: new Weapon('Sword', 25, DamageType.Physical),
+  magicStaff: new Weapon('Magic Staff', 15, DamageType.Magic),
+  axe: new Weapon('Axe', 30, DamageType.Physical),
+  bow: new Weapon('Bow', 20, DamageType.Physical),
 };
+
+export const maleNames = [
+  'Aragorn',
+  'Thorin',
+  'Gimli',
+  'Legolas',
+  'Boromir',
+  'Gandalf',
+  'Faramir',
+  'Elrond',
+  'Eomer',
+  'Galandriel',
+];
+
+export const femaleNames = [
+  'Arwen',
+  'Galadriel',
+  'Eowyn',
+  'Luthien',
+  'Celebrian',
+  'Nimrodel',
+  'Melian',
+  'Varda',
+  'Yavanna',
+  'Elbereth',
+];

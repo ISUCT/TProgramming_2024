@@ -1,4 +1,4 @@
-import { Picture } from '../src/labs/picture';
+import { Picture } from '../labs/picture';
 
 describe('Picture constructor tests', () => {
   let picture: Picture;
