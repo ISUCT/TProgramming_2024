@@ -1,4 +1,4 @@
-import { taskA, taskB } from '../src/labs/formula';
+import { taskA, taskB } from '../labs/formula';
 
 describe('Test of taskA and taskB', () => {
   it('Function "taskA" should return answer with correct length', () => {

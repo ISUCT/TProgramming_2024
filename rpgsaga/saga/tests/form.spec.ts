@@ -1,4 +1,4 @@
-import { form } from '../src/labs/formula';
+import { form } from '../labs/formula';
 
 describe('Test of function "form', () => {
   it('Function form should return 3.01 with input 1.2', () => {

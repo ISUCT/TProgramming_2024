@@ -1,7 +1,7 @@
-import { taskA, taskB } from './labs/formula';
-import { Film } from './labs/film';
-import { Picture } from './labs/picture';
-import { WorkOfArt } from './labs/workOfArt';
+import { taskA, taskB } from '../labs/formula';
+import { Film } from '../labs/film';
+import { Picture } from '../labs/picture';
+import { WorkOfArt } from '../labs/workOfArt';
 
 export function labTests(): void {
   console.log(
