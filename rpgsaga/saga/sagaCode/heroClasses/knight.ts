@@ -1,20 +1,41 @@
 import { Player } from "../playerClass/player";
 import { Weapon } from "../weapon";
+import { Effect } from "../effectOfDamage/effect";
+import { randomNumber } from "../randomizer";
 
 export class knight extends Player {
-    private _healFlaska: number;
-    constructor(name:string,health:number,mana:number,weapon:Weapon) {
-        super(name, health, mana, weapon);
-        this._healFlaska = 30; 
+    constructor(name:string,health:number,weapon:Weapon,statusEffect: boolean) {
+        super(name, health, weapon, statusEffect);
     }
-    public get healFlaska() {
-        return this._healFlaska;
+
+    public attack(opponent: Player): string {
+        let damage = this.weapon.damageAmount;
+        const isCritical = this.criticalHit();
+        if (this.isAlive) {
+            if (isCritical) {
+                damage = Math.ceil(damage * 1.3); 
+                console.log(`${this.name} наносит критический удар!`);
+            }
+            opponent.damaged(damage);
+          return `(${this.name}) наносит урон ${damage} противнику (${opponent.name}) ${opponent.name}`;
+        } 
       }
 
-    public attack(enemy: Player): string {
-        if (this.isAlive) {
-            enemy.damaged(this.weapon.damageAmount);
-            return `${enemy.name} получил ${this.weapon.damageAmount} урона от ${this.name}`;
+        private criticalHit(): boolean {
+        const chance = 5; 
+        return randomNumber(1, 10) <= chance;
+    }
+
+      public useHealEffect() {
+        if (this.statusEffect) {
+            console.log(`${this.name} уже использовал способность лечения раннее!`);
+            return;
+        } else {
+            const healAmount = 15;
+            this.health += healAmount;
+            console.log(`${this.name} использует способность лечения и восстанавливает ${healAmount} здоровья. Текущее здоровье: ${this.health}`);
+            this.statusOfEffect = true;
         }
+
     }
-    }
+}

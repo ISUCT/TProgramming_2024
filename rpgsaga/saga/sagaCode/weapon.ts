@@ -1,9 +1,13 @@
+import { Effect } from "./effectOfDamage/effect";
+
+
 export class Weapon {
     private _type: string;
     private _damageAmount: number;
+    private _effect: Effect;
 
 
-    constructor(type:string, damageAmount:number, damageType:string) {
+    constructor(type:string, damageAmount:number) {
         this._type = type;
         this._damageAmount = damageAmount;
     }
