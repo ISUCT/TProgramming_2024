@@ -1,14 +1,17 @@
-export class Phone {
+import { IDrawable } from './IDrawable';
+
+export abstract class Phone implements IDrawable {
   private _modelName: string;
-  private _phoneNumber: string;
+  protected phoneNumber: string;
   private _weight: number;
 
   constructor(modelName: string, phoneNumber: string, weight: number) {
     console.log('Constructor for Phone called');
     this._modelName = modelName;
-    this._phoneNumber = phoneNumber;
+    this.phoneNumber = phoneNumber;
     this.weight = weight;
   }
+  abstract display();
 
   get weight(): number {
     return this._weight;
@@ -22,11 +25,9 @@ export class Phone {
     throw new Error('weight out of range');
   }
 
-  dial(number: string) {
-    console.log(`Dialing ${number}`);
-  }
+  abstract dial(number: string);
 
   acceptCall() {
-    console.log(`Accepting incomming Call to ${this._phoneNumber}`);
+    console.log(`Accepting incomming Call to ${this.phoneNumber}`);
   }
 }
