@@ -1,4 +1,4 @@
-import { Dog } from '../src/dog';
+import { Dog } from '../src/Classes/Animals/Dog';
 
 describe('Dog class methods tests', () => {
   it('Constuctor test', () => {
