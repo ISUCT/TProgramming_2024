@@ -11,27 +11,24 @@ export abstract class Animal {
   }
 
   set setAge(newAge: number) {
-    if (newAge >= 0) {
-      this.age = newAge;
-      return;
+    if (newAge < 0) {
+      throw new Error('age cant be below zero');
     }
-    throw new Error('age cant be below zero');
+    this.age = newAge;
   }
 
   set setColor(newColor: string) {
-    if (newColor !== '') {
-      this.color = newColor;
-      return;
+    if (newColor === '') {
+      throw new Error('string "color" cant be empty');
     }
-    throw new Error('string "color" cant be empty');
+    this.color = newColor;
   }
 
   set setName(newName: string) {
-    if (newName !== '') {
-      this.name = newName;
-      return;
+    if (newName === '') {
+      throw new Error('string "name" cant be empty');
     }
-    throw new Error('string "name" cant be empty');
+    this.name = newName;
   }
 
   get getAge(): number {
