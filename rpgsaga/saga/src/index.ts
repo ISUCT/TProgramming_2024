@@ -13,6 +13,6 @@ const giraffe: Animal = new Giraffe('Ashley', 5, 'Plants');
 const lion: Animal = new Lion('Pookie', 7, 'Meat');
 
 const arrayOfAnimals: Animal[] = [giraffe, lion];
-for(const animal of arrayOfAnimals) {
-    console.log(animal.printFoodPreference());
+for (const animal of arrayOfAnimals) {
+  console.log(animal.printFoodPreference());
 }
