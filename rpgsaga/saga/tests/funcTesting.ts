@@ -1,4 +1,4 @@
-import { calculate, taskone, tasktwo } from '../src'; 
+import { calculate, taskone, tasktwo } from '../src/tasks'; 
 
 describe('calculate', () => {
     it('should return the correct value for a valid input', () => {
