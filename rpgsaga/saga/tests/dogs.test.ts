@@ -1,4 +1,5 @@
-import { Dog } from './Dog';
+import { Dog } from "../src/polymorphism/Dog";
+
 
 describe('Dog', () => {
   let dog: Dog;

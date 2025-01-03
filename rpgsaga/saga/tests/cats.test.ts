@@ -1,4 +1,5 @@
-import { Cat } from './Cat';
+import { Cat } from "../src/polymorphism/Cat";
+
 
 describe('Cat', () => {
   let cat: Cat;

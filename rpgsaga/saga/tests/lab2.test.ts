@@ -1,51 +1,51 @@
-import { Kitten } from '../src';
+import { Kitten } from "../src/lab1and2/catclass/lab2";
 
 describe('Kitten', () => {
   test('Проверяем конструктор, инициализируем его свойства', () => {
-    const Kitten = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
-    expect(Kitten.getName).toBe('Marsik');
-    expect(Kitten.getAge).toBe(2);
-    expect(Kitten.getBreed).toBe('The Lop-eared Scotsman');
+    const kittenInstance = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
+    expect(kittenInstance.getName).toBe('Marsik');
+    expect(kittenInstance.getAge).toBe(2);
+    expect(kittenInstance.getBreed).toBe('The Lop-eared Scotsman');
   });
 
   test('Получаем и устанавливаем имя кошки', () => {
-    const Kitten = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
-    Kitten.setName = 'Barsik';
-    expect(Kitten.getName).toBe('Barsik');
+    const kittenInstance = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
+    kittenInstance.setName = 'Barsik';
+    expect(kittenInstance.getName).toBe('Barsik');
   });
 
   test('Получаем и устанавливаем возраст кошки', () => {
-    const Kitten = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
-    Kitten.setAge = 5;
-    expect(Kitten.getAge).toBe(5);
+    const kittenInstance = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
+    kittenInstance.setAge = 5;
+    expect(kittenInstance.getAge).toBe(5);
   });
 
   test('Придумаем недопустимое значение возраста', () => {
     console.error = jest.fn();
-    const Kitten = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
+    const kittenInstance = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
     try {
-      Kitten.setAge = 250; 
+      kittenInstance.setAge = 250; 
     } catch (error) {
-      expect(console.error).toHaveBeenCalledWith('The value specified is incorrect for the age!');
+      expect(console.error).toHaveBeenCalledWith("Cats don't live that long!");
     }
-    expect(Kitten.getAge).toBe(2);
+    expect(kittenInstance.getAge).toBe(2);
   });
 
   test('Получаем и устанавливаем породу кошки', () => {
-    const Kitten = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
-    Kitten.setBreed = 'Siamese';
-    expect(Kitten.getBreed).toBe('Siamese');
+    const kittenInstance = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
+    kittenInstance.setBreed = 'Siamese';
+    expect(kittenInstance.getBreed).toBe('Siamese');
   });
 
   test('Получаем полные сведения о кошке', () => {
-    const Kitten = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
-    expect(Kitten.getInfo).toBe("Kitten's name: Marsik, Kitten's age: 2, Kitten's breed: The Lop-eared Scotsman");
+    const kittenInstance = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
+    expect(kittenInstance.getInfo).toBe("Kitten's name: Marsik, Kitten's age: 2, Kitten's breed: The Lop-eared Scotsman");
   });
 
   test('Меняем имя у кошки', () => {
-    const Kitten = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
-    Kitten.changeName('Barsik');
-    expect(Kitten.getName).toBe('Barsik');
+    const kittenInstance = new Kitten('Marsik', 2, 'The Lop-eared Scotsman');
+    kittenInstance.changeCatName('Barsik');
+    expect(kittenInstance.getName).toBe('Barsik');
   });
 
   test('Узнаем откуда родом кошки', () => {
