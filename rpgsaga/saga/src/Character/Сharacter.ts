@@ -1,7 +1,6 @@
 export abstract class Character {
   private _name: string;
   private _class: string;
-  private _mana: number;
   private _health: number;
   private _strength: number;
   // private _immunity: string[] = [];
@@ -9,13 +8,11 @@ export abstract class Character {
   constructor(
     characterName: string,
     characterClass: string,
-    characterMana: number,
     characterHealth: number,
     characterStrength: number /* , characterImmunity: string*/,
   ) {
     this._name = characterName;
     this._class = characterClass;
-    this._mana = characterMana;
     this._health = characterHealth;
     this._strength = characterStrength;
     // this._immunity = characterImmunity;
@@ -29,11 +26,6 @@ export abstract class Character {
   // Получить класс персонажа
   public get class(): string {
     return `${this._class}`;
-  }
-
-  // Получить уровень маны персонажа
-  public get mana(): number {
-    return this._mana;
   }
 
   //  Получить здоровье
@@ -55,9 +47,9 @@ export abstract class Character {
     this._class = newClass;
   }
 
-  public set mana(newMana: number) {
-    if (newMana > 0) {
-      this._mana = newMana;
+  public set health(newHealth: number) {
+    if (newHealth > 0) {
+      this._health = newHealth;
       return;
     }
     throw new Error('Level out of range');
@@ -71,19 +63,9 @@ export abstract class Character {
     throw new Error('Level out of range');
   }
 
-  public set health(newMana: number) {
-    if (newMana > 0) {
-      this._mana = newMana;
-      return;
-    }
-    throw new Error('Level out of range');
-  }
-
   // Получение всех данных о классе
   public toString() {
-    console.log(
-      `Name: ${this.name}, class: ${this.class}, mana: ${this.mana}, health: ${this.health}, strength: ${this.strength}`,
-    );
+    console.log(`Name: ${this.name}, \nClass: ${this.class}, \nHealth: ${this.health}, \nStrength: ${this.strength}.\n`);
   }
 
   public attack() {

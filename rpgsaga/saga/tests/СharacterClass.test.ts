@@ -1,28 +1,30 @@
+import { Archer } from '../src/Character/Archer';
 import { Mage } from '../src/Character/Mage';
-import { Warrior } from '../src/Character/Warrior';
 
 describe('Class Character', () => {
-  const war = new Warrior('Name', 'Warrior', 1);
+  const arch = new Archer('Name', 'Archer', 0, 1);
 
   it('create New Character', () => {
-    const magic = new Mage('Magika', 'Mag', 10);
-    expect(magic.name).toEqual('Magika');
+    const magic = new Mage('Zorian', 'Mag', 100, 50);
+    expect(magic.name).toEqual('Zorian');
     expect(magic.class).toEqual('Mag');
-    expect(magic.health).toEqual(10);
+    expect(magic.health).toEqual(100);
+    expect(magic.strength).toEqual(50);
   });
 
   it('Gets class', () => {
-    expect(war.name).toEqual('Name');
-    expect(war.class).toEqual('Warrior');
-    expect(war.health).toEqual(1);
+    expect(arch.name).toEqual('Name');
+    expect(arch.class).toEqual('Archer');
+    expect(arch.health).toEqual(0);
+    expect(arch.strength).toEqual(1);
   });
 
   it('Sets class', () => {
-    war.name = 'Robbin';
-    war.class = 'Lychnik';
-    war.health = 1;
-    expect(war.name).toEqual('Robbin');
-    expect(war.class).toEqual('Lychnik');
-    expect(war.health).toEqual(1);
+    arch.name = 'Robbin';
+    arch.class = 'Lychnik';
+    arch.health = 1;
+    expect(arch.name).toEqual('Robbin');
+    expect(arch.class).toEqual('Lychnik');
+    expect(arch.health).toEqual(1);
   });
 });
