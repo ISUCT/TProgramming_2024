@@ -64,7 +64,7 @@ describe('Game tests', () => {
   it('Should handle a battle where one player is already dead', async () => {
     const player1 = playerFabric.createRandomPlayer();
     const player2 = playerFabric.createRandomPlayer();
-    player2.takeDamage(player2.health, player1);
+    player2.takeDamage(player2.health);
     const winner = await game.battle([player1, player2]);
     expect(winner).toBe(player1);
   });

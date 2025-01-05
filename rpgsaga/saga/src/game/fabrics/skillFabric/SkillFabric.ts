@@ -8,9 +8,6 @@ export class SkillFabric {
       isUsed: false,
       usageCount: 1,
       initialSkillUsage: 1,
-      effect: (caster: Player) => {
-        caster.damageUp(2);
-      },
       buff: {
         strength: 2,
       },
@@ -22,9 +19,6 @@ export class SkillFabric {
       initialSkillUsage: 1,
       turns: 3,
       initialTurns: 3,
-      effect: (caster: Player) => {
-        caster.damageUp(3);
-      },
       buff: {
         strength: 3,
       },
@@ -37,7 +31,7 @@ export class SkillFabric {
       damage: (caster: Player) => caster.strength * 1.3 + caster.weapon.damage,
       effect: (caster: Player, opponent: Player) => {
         const weaponDamage = caster.weapon ? caster.weapon.damage : 0;
-        opponent.takeDamage(caster.strength * 1.3 + weaponDamage, caster);
+        opponent.takeDamage(caster.strength * 1.3 + weaponDamage);
       },
     },
     {

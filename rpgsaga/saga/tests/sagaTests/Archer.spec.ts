@@ -84,13 +84,8 @@ describe('Archer class methods tests', () => {
     });
 
     it('Health should decrease by the number of damage units', () => {
-      newArcher.takeDamage(45, opponent, opponent.currentSkill);
+      newArcher.takeDamage(45, opponent.currentSkill);
       expect(newArcher.health).toBe(75 - 45);
-    });
-
-    it('Strength should icnrease', () => {
-      newArcher.damageUp(2);
-      expect(newArcher.strength).toBe(27);
     });
 
     it('Should change the propertie "skillUsed" to true', () => {
@@ -110,13 +105,13 @@ describe('Archer class methods tests', () => {
     });
 
     it('Ibragim should DIE.', () => {
-      newArcher.takeDamage(newArcher.initialHealth, opponent, opponent.currentSkill);
+      newArcher.takeDamage(newArcher.initialHealth, opponent.currentSkill);
       expect(newArcher.isAlive).toBe(false);
       expect(newArcher.health).toBe(0);
     });
 
     it('Ibragim health should be equal 0.', () => {
-      newArcher.takeDamage(1000, opponent, opponent.currentSkill);
+      newArcher.takeDamage(1000, opponent.currentSkill);
       expect(newArcher.health).toBe(0);
     });
 
@@ -138,7 +133,7 @@ describe('Archer class methods tests', () => {
       newArcher.useSkill(opponent, 'огненные стрелы');
       newArcher.attack(opponent);
       newArcher.attack(opponent);
-      expect(newArcher.strength).toBe(27);
+      expect(newArcher.strength).toBe(25);
     });
   });
 });

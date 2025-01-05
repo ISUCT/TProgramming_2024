@@ -100,7 +100,9 @@ export abstract class Player {
     }
 
     if (this._currentSkill !== undefined && this._currentSkill.usageCount > 0) {
-      this._currentSkill.effect!(this, opponent);
+      if (this._currentSkill.effect) {
+        this._currentSkill.effect(this, opponent);
+      }
       this._currentSkill.usageCount--;
       this.skills.forEach(skill => {
         if (skill.name === this._currentSkill!.name) {
@@ -125,9 +127,9 @@ export abstract class Player {
         this._updateSkills();
       }
 
-      opponent.takeDamage(this._strength + this._weapon.damage, this, this._currentSkill);
+      opponent.takeDamage(this._strength + this._weapon.damage, this._currentSkill);
     } else {
-      opponent.takeDamage(this._strength + this._weapon.damage, this);
+      opponent.takeDamage(this._strength + this._weapon.damage);
     }
   }
 
@@ -146,16 +148,12 @@ export abstract class Player {
     }
   }
 
-  public damageUp(buff: number) {
-    this._strength += buff;
-  }
-
-  public takeDamage(damage: number, attacker: Player, skill: ISkill | undefined = undefined): void {
-    let opponentSkill: ISkill;
-    if (skill !== undefined) {
-      opponentSkill = skill;
+  public takeDamage(damage: number, skill: ISkill | undefined = undefined): void {
+    let currentDamage: number = damage;
+    if (skill !== undefined && skill.buff) {
+      currentDamage += skill.buff.strength;
     }
-    this._health -= damage;
+    this._health -= currentDamage;
     if (this._health <= 0) {
       this._health = 0;
       this._isAlive = false;

@@ -80,7 +80,7 @@ export class Game {
         }
       }
 
-      await this.delay(200);
+      await this.delay(2);
       turn++;
     }
 

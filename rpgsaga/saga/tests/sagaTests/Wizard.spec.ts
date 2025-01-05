@@ -83,13 +83,8 @@ describe('Wizard class methods tests', () => {
     });
 
     it('Health should decrease by the number of damage units', () => {
-      newWizard.takeDamage(45, opponent, opponent.currentSkill);
+      newWizard.takeDamage(45, opponent.currentSkill);
       expect(newWizard.health).toBe(75 - 45);
-    });
-
-    it('Strength should icnrease', () => {
-      newWizard.damageUp(2);
-      expect(newWizard.strength).toBe(27);
     });
 
     it('Should change the propertie "skillUsed" to true', () => {
@@ -109,13 +104,13 @@ describe('Wizard class methods tests', () => {
     });
 
     it('Ibragim should DIE.', () => {
-      newWizard.takeDamage(newWizard.initialHealth, opponent, opponent.currentSkill);
+      newWizard.takeDamage(newWizard.initialHealth, opponent.currentSkill);
       expect(newWizard.isAlive).toBe(false);
       expect(newWizard.health).toBe(0);
     });
 
     it('Ibragim health should be equal 0.', () => {
-      newWizard.takeDamage(1000, opponent, opponent.currentSkill);
+      newWizard.takeDamage(1000, opponent.currentSkill);
       expect(newWizard.health).toBe(0);
     });
 

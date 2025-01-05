@@ -12,15 +12,18 @@ describe('SkillFabric tests', () => {
     expect(skill?.name).toBe('огненные стрелы');
     expect(skill?.usageCount).toBe(1);
     expect(skill?.initialSkillUsage).toBe(1);
-    expect(skill?.effect).toBeDefined();
+    expect(skill?.effect).toBeUndefined();
   });
 
   it('Should create a skill from template with turns', () => {
     const skill = skillFabric.createSkillFromTemplate('ледяные стрелы');
     expect(skill).toBeDefined();
     expect(skill?.name).toBe('ледяные стрелы');
+    expect(skill?.usageCount).toBe(1);
+    expect(skill?.initialSkillUsage).toBe(1);
     expect(skill?.turns).toBe(3);
     expect(skill?.initialTurns).toBe(3);
+    expect(skill?.effect).toBeUndefined();
   });
 
   it('Should create a skill from template with damage calculation', () => {
@@ -58,12 +61,10 @@ describe('SkillFabric tests', () => {
     const opponent = new Archer(100, 10, '', weaponFabric.createRandomWeapon('bow'), []);
 
     const fireArrows = skillFabric.createSkillFromTemplate('огненные стрелы')!;
-    fireArrows.effect!(player, opponent);
-    expect(player.strength).toBe(22);
+    expect(player.strength + fireArrows.buff.strength).toBe(22);
 
     const iceArrows = skillFabric.createSkillFromTemplate('ледяные стрелы')!;
-    iceArrows.effect!(player, opponent);
-    expect(player.strength).toBe(25);
+    expect(player.strength + iceArrows.buff.strength).toBe(23);
 
     const vengeanceStrike = skillFabric.createSkillFromTemplate('удар возмездия')!;
     vengeanceStrike.effect!(player, opponent);
@@ -71,6 +72,6 @@ describe('SkillFabric tests', () => {
 
     const enchantment = skillFabric.createSkillFromTemplate('заворожение')!;
     enchantment.effect!(player, opponent);
-    expect(opponent.health).toBeLessThan(100);
+    expect(opponent.countOfSkipingTurns).toBe(1);
   });
 });

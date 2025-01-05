@@ -84,7 +84,7 @@ describe('Knight class methods tests', () => {
     });
 
     it('Health should decrease by the number of damage units', () => {
-      newKnight.takeDamage(45, opponent, opponent.currentSkill);
+      newKnight.takeDamage(45, opponent.currentSkill);
       expect(newKnight.health).toBe(75 - 45);
     });
 
@@ -95,11 +95,6 @@ describe('Knight class methods tests', () => {
       expect(newKnight.health).toBe(
         75 - (opponent.strength - opponent.currentSkill!.buff!.strength + opponent.weapon.damage),
       );
-    });
-
-    it('Strength should icnrease', () => {
-      newKnight.damageUp(2);
-      expect(newKnight.strength).toBe(27);
     });
 
     it('Should change the propertie "skillUsed" to true', () => {
@@ -121,13 +116,13 @@ describe('Knight class methods tests', () => {
     });
 
     it('Ibragim should DIE.', () => {
-      newKnight.takeDamage(newKnight.initialHealth, opponent);
+      newKnight.takeDamage(newKnight.initialHealth);
       expect(newKnight.isAlive).toBe(false);
       expect(newKnight.health).toBe(0);
     });
 
     it('Ibragim health should be equal 0.', () => {
-      newKnight.takeDamage(1000, opponent, opponent.currentSkill);
+      newKnight.takeDamage(1000, opponent.currentSkill);
       expect(newKnight.health).toBe(0);
     });
 
