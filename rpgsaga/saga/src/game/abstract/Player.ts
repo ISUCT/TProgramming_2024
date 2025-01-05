@@ -150,15 +150,17 @@ export abstract class Player {
     this._strength += buff;
   }
 
-  /* eslint-disable no-unused-vars */
   public takeDamage(damage: number, attacker: Player, skill: ISkill | undefined = undefined): void {
+    let opponentSkill: ISkill;
+    if (skill !== undefined) {
+      opponentSkill = skill;
+    }
     this._health -= damage;
     if (this._health <= 0) {
       this._health = 0;
       this._isAlive = false;
     }
   }
-  /* eslint-enable no-unused-vars */
 
   public heal(amount: number) {
     if (this._health + amount > this.initialHealth) {
