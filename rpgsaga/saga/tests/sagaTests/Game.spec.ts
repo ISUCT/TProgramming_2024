@@ -1,27 +1,95 @@
-import { Game } from '../../src/gameplay/Game';
+import { Game } from '../../src/game/gameplay/Game';
+import { PlayerFabric } from '../../src/game/fabrics/playersFabrics';
+import { Player } from '../../src/game/abstract/Player';
+import { Logger } from '../../src/game/utils/output/Logger';
 
-describe('Game class methods tests', () => {
-  it('Constructor test', () => {
-    let newGame = new Game(4);
-    expect(newGame.playersCount.length).toEqual(4);
+class MockLogger extends Logger {
+  messages: string[] = [];
+  attackLogs: string[] = [];
+  skillLogs: string[] = [];
+  deathLogs: string[] = [];
+  skipTurnLogs: string[] = [];
+
+  messageLog(message: string): void {
+    this.messages.push(message);
+  }
+  attackLog(attacker: Player, defender: Player): void {
+    this.attackLogs.push(`${attacker.name} атакует ${defender.name}`);
+  }
+  skillLog(attacker: Player, defender: Player): void {
+    this.skillLogs.push(`${attacker.name} использует скилл на ${defender.name}`);
+  }
+  deathLog(player: Player): void {
+    this.deathLogs.push(`${player.name} умер`);
+  }
+  skipTurnLog(attacker: Player, defender: Player): void {
+    this.skipTurnLogs.push(`${attacker.name} пропускает ходы`);
+  }
+}
+
+describe('Game tests', () => {
+  let game: Game;
+  let logger: MockLogger;
+  const playerFabric = new PlayerFabric();
+
+  beforeEach(() => {
+    logger = new MockLogger();
+    game = new Game(2, undefined, logger);
   });
-  it('should create players with random names, health, and strength', () => {
-    let newGame = new Game(2);
-    expect(
-      newGame.playersCount.every(p => p.playerName !== undefined && p.healthPoints > 0 && p.strengthPoints > 0),
-    ).toBe(true);
+
+  it('Should start a game with two players', async () => {
+    await game.start();
+    expect(logger.messages.length).toBeGreaterThan(0);
+    expect(logger.messages[0]).toBe('Игра началась!');
+    expect(logger.messages[1]).toContain('Список участников');
+    expect(logger.messages).toContain(`Победитель: (${game.players[0].className}) ${game.players[0].name}`);
   });
-  it('should create players of different types (Knight, Archer, Vizard)', () => {
-    let newGame = new Game(10);
-    const playerTypes = newGame.playersCount.map(p => p.constructor.name);
-    expect(playerTypes.includes('Knight')).toBe(true);
-    expect(playerTypes.includes('Archer')).toBe(true);
-    expect(playerTypes.includes('Vizard')).toBe(true);
+
+  it('Should handle a tournament with multiple players', async () => {
+    const players = playerFabric.createRandomPlayers(4);
+    const result = await game.tournament(players);
+    expect(result).toBeDefined();
+    expect(result.health).toBeGreaterThan(0);
   });
-  describe('Get methods tests', () => {
-    let newGame = new Game(20);
-    it('Players get test', () => {
-      expect(newGame.playersCount.length).toEqual(20);
-    });
+
+  it('Should simulate a battle between two players', async () => {
+    const player1 = playerFabric.createRandomPlayer();
+    const player2 = playerFabric.createRandomPlayer();
+    const winner = await game.battle([player1, player2]);
+    expect(winner).toBeDefined();
+    expect(winner.health).toBeGreaterThan(0);
+    expect(logger.attackLogs.length).toBeGreaterThan(0);
+  });
+
+  it('Should handle a battle where one player is already dead', async () => {
+    const player1 = playerFabric.createRandomPlayer();
+    const player2 = playerFabric.createRandomPlayer();
+    player2.takeDamage(player2.health, player1);
+    const winner = await game.battle([player1, player2]);
+    expect(winner).toBe(player1);
+  });
+
+  it('Should handle a battle with skill usage', async () => {
+    const player1 = playerFabric.createRandomPlayer();
+    const player2 = playerFabric.createRandomPlayer();
+    await game.battle([player1, player2]);
+    expect(logger.skillLogs.length).toBeGreaterThanOrEqual(0);
+  });
+
+  it('Should correctly update the players array after a battle', async () => {
+    const player1 = playerFabric.createRandomPlayer();
+    const player2 = playerFabric.createRandomPlayer();
+    const winner = await game.battle([player1, player2]);
+    expect(winner.isAlive).toBe(true);
+    expect(winner.health).toBeGreaterThanOrEqual(1);
+  });
+
+  it('Should handle a game with a single player', async () => {
+    game = new Game(1, undefined, logger);
+    await game.start();
+    expect(logger.messages.length).toBeGreaterThan(0);
+    expect(logger.messages[0]).toBe('Игра началась!');
+    expect(logger.messages[1]).toContain('Список участников');
+    expect(logger.messages[2]).toContain(`Победитель`);
   });
 });

@@ -1,4 +1,4 @@
-import { input } from './utils/input/input';
+import { createGame } from './game/utils/input/createGame';
 import { taskA, taskB, output } from './funcAndClasses/function/function';
 import { Person } from './funcAndClasses/classes/abstract/Person';
 import { Accountant } from './funcAndClasses/classes/workers/Accountant';
@@ -16,4 +16,4 @@ for (const pers of arrOfPersons) {
   console.log(pers.workRespons());
 }
 
-input();
+createGame();
