@@ -3,7 +3,7 @@ import { ISkill } from '../skills/ISkill';
 import { IWeapon } from '../weapon/IWeapon';
 
 export class Archer extends Player {
-  public _className: string = 'Archer';
+  protected _className: string = 'Archer';
 
   constructor(
     playerHealth: number,

@@ -21,12 +21,12 @@ export function createGame(): void {
 
   async function askForCreating() {
     const inputString: string = await readAnswer('Хотите ли вы создать своего персонажа? (да/нет) ');
+    const game = new Game(number, undefined, logger);
     switch (inputString.toLowerCase()) {
       case 'да':
         createCharacter(number);
         break;
       case 'нет':
-        const game = new Game(number, undefined, logger);
         await game.start();
         break;
       default:

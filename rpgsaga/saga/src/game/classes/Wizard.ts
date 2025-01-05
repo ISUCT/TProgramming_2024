@@ -3,7 +3,7 @@ import { ISkill } from '../skills/ISkill';
 import { IWeapon } from '../weapon/IWeapon';
 
 export class Wizard extends Player {
-  public _className: string = 'Wizard';
+  protected _className: string = 'Wizard';
 
   constructor(
     playerHealth: number,

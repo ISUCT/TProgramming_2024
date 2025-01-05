@@ -150,6 +150,7 @@ export abstract class Player {
     this._strength += buff;
   }
 
+  /* eslint-disable no-unused-vars */
   public takeDamage(damage: number, attacker: Player, skill: ISkill | undefined = undefined): void {
     this._health -= damage;
     if (this._health <= 0) {
@@ -157,6 +158,7 @@ export abstract class Player {
       this._isAlive = false;
     }
   }
+  /* eslint-enable no-unused-vars */
 
   public heal(amount: number) {
     if (this._health + amount > this.initialHealth) {
