@@ -59,8 +59,7 @@ export class Game {
 
       if (defender.isAlive) {
         if (attacker.countOfSkipingTurns === 0) {
-          attacker.attack(defender);
-          this.logger.attackLog(attacker, defender);
+          this.logger.attackLog(attacker, defender, attacker.attack(defender));
         } else {
           attacker.attack(defender);
           this.logger.skipTurnLog(attacker, defender);

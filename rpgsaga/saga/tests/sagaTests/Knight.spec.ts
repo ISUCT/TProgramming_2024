@@ -92,9 +92,7 @@ describe('Knight class methods tests', () => {
       newKnight.heal(100);
       opponent.useSkill(newKnight, 'ледяные стрелы');
       opponent.attack(newKnight);
-      expect(newKnight.health).toBe(
-        75 - (opponent.strength - opponent.currentSkill!.buff!.strength + opponent.weapon.damage),
-      );
+      expect(newKnight.health).toBe(75 - (opponent.strength + opponent.weapon.damage));
     });
 
     it('Should change the propertie "skillUsed" to true', () => {
@@ -105,9 +103,7 @@ describe('Knight class methods tests', () => {
 
     it('Health should icnrease', () => {
       newKnight.heal(10);
-      expect(newKnight.health).toBe(
-        75 - (opponent.strength - opponent.currentSkill!.buff!.strength + opponent.weapon.damage) + 10,
-      );
+      expect(newKnight.health).toBe(75 - (opponent.strength + opponent.weapon.damage) + 10);
     });
 
     it('Health should be equal initialHealth', () => {

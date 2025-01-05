@@ -18,11 +18,9 @@ export class Logger {
     console.log(logEntry);
   }
 
-  public attackLog(attacker: Player, defender: Player): void {
+  public attackLog(attacker: Player, defender: Player, damage: number): void {
     const timestamp: string = new Date().toISOString();
-    const message: string = `(${attacker.className}) ${attacker.name} наносит урон ${
-      attacker.strength + attacker.weapon!.damage!
-    } на ${defender.name} (${defender.className})`;
+    const message: string = `(${attacker.className}) ${attacker.name} наносит урон ${damage} на ${defender.name} (${defender.className})`;
     const logEntry: string = `${timestamp}: ${message}\n`;
     console.log(logEntry);
   }

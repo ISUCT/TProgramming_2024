@@ -113,7 +113,7 @@ export abstract class Player {
     }
   }
 
-  public attack(opponent: Player): void {
+  public attack(opponent: Player): number {
     if (this.countOfSkipingTurns > 0) {
       this._countOfSkipingTurns--;
       return;
@@ -127,9 +127,9 @@ export abstract class Player {
         this._updateSkills();
       }
 
-      opponent.takeDamage(this._strength + this._weapon.damage, this._currentSkill);
+      return opponent.takeDamage(this._strength + this._weapon.damage, this._currentSkill);
     } else {
-      opponent.takeDamage(this._strength + this._weapon.damage);
+      return opponent.takeDamage(this._strength + this._weapon.damage);
     }
   }
 
@@ -148,7 +148,7 @@ export abstract class Player {
     }
   }
 
-  public takeDamage(damage: number, skill: ISkill | undefined = undefined): void {
+  public takeDamage(damage: number, skill: ISkill | undefined = undefined): number {
     let currentDamage: number = damage;
     if (skill !== undefined && skill.buff) {
       currentDamage += skill.buff.strength;
@@ -158,6 +158,7 @@ export abstract class Player {
       this._health = 0;
       this._isAlive = false;
     }
+    return currentDamage;
   }
 
   public heal(amount: number) {
