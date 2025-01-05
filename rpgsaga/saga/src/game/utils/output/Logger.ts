@@ -1,16 +1,16 @@
 import { Player } from '../../abstract/Player';
 
 export class Logger {
-  //static _instance: Logger;
+  // static _instance: Logger;
 
   constructor() {}
 
-  //public get instance(): Logger {
-  //  if (!Logger._instance) {
-  //    Logger._instance = new Logger();
-  //  }
-  //  return Logger._instance;
-  //}
+  // public get instance(): Logger {
+  //   if (!Logger._instance) {
+  //     Logger._instance = new Logger();
+  //   }
+  //   return Logger._instance;
+  // }
 
   public messageLog(message: string): void {
     const timestamp: string = new Date().toISOString();

@@ -1,6 +1,7 @@
 import { Game } from '../../gameplay/Game';
 import { Logger } from '../output/Logger';
 import { readAnswer } from '../question/readAnswer';
+
 import { createCharacter } from './createCharacter';
 
 export function createGame(): void {

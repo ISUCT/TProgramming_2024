@@ -8,7 +8,7 @@ export class SkillFabric {
       isUsed: false,
       usageCount: 1,
       initialSkillUsage: 1,
-      effect: (caster: Player, opponent: Player) => {
+      effect: (caster: Player) => {
         caster.damageUp(2);
       },
       buff: {
@@ -22,7 +22,7 @@ export class SkillFabric {
       initialSkillUsage: 1,
       turns: 3,
       initialTurns: 3,
-      effect: (caster: Player, opponent: Player) => {
+      effect: (caster: Player) => {
         caster.damageUp(3);
       },
       buff: {

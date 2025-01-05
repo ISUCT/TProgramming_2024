@@ -3,6 +3,7 @@ import { ISkill } from '../../skills/ISkill';
 import { getRandomArrayElement, getRandomNumber } from '../../utils/randomization';
 import { IWeapon } from '../../weapon/IWeapon';
 import { WeaponFabric } from '../weaponsFabric/WeaponFabric';
+
 import { ArcherFabric } from './ArcherFabric';
 import { KnightFabric } from './KnightFabric';
 import { WizardFabric } from './WizardFabric';

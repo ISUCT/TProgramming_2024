@@ -16,8 +16,8 @@ export async function createCharacter(numberOfPlayers: number): Promise<void> {
   let playerHealth: number = 0;
   let playerStrength: number = 0;
   let playerWeapon: IWeapon;
-  let playerSkills: ISkill[] = [];
 
+  const playerSkills: ISkill[] = [];
   const playerFabric = new PlayerFabric();
   const types: string[] = ['Knight', 'Archer', 'Wizard'];
   const weapons: string[] = ['bow', 'sword', 'stick'];
