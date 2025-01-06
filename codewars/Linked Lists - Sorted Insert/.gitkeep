@@ -1,0 +1,35 @@
+class ListNode:
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
+
+
+def push(head, data):
+    new_node = ListNode(data)
+    new_node.next = head
+    return new_node
+
+
+def buildOneTwoThree():
+    head = None
+    head = push(head, 3)
+    head = push(head, 2)
+    head = push(head, 1)
+    return head
+
+
+def sorted_insert(head, data):
+    new_node = ListNode(data)
+
+    if head is None or data < head.data:
+        new_node.next = head
+        return new_node
+
+    current = head
+    while current.next is not None and current.next.data < data:
+        current = current.next
+
+    new_node.next = current.next
+    current.next = new_node
+
+    return head
