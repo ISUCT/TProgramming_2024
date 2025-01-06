@@ -3,74 +3,71 @@ import { RandomName } from './Const';
 import { Logger } from './logger';
 
 export class Character {
-    protected _health: number;
-    protected _damage: number;
-    protected _maxHealth: number;
-    protected _name: string;
-    protected _class: string;
-    protected _burn: boolean;
+  protected healthProtected: number;
+  protected damageProtected: number;
+  protected maxHealthProtected: number;
+  protected nameProtected: string;
+  protected classProtected: string;
+  protected burnProtected: boolean;
 
+  constructor() {
+    this.maxHealthProtected = Calculater.random(100, 250);
+    this.damageProtected = Calculater.random(50, 100);
+    this.nameProtected = RandomName[Calculater.random(0, RandomName.length - 1)];
+    this.healthProtected = this.maxHealthProtected;
+    this.burnProtected = false;
+  }
 
-    constructor() {
-        this._maxHealth = Calculater.random(100, 250);
-        this._damage = Calculater.random(50, 100);
-        this._name = RandomName[Calculater.random(0, RandomName.length - 1)];
-        this._health = this._maxHealth;
-        this._burn = false;
+  public get health() {
+    return this.healthProtected;
+  }
+
+  get damage() {
+    return this.damageProtected;
+  }
+
+  get name() {
+    return this.nameProtected;
+  }
+
+  public get class(): string {
+    return this.classProtected;
+  }
+  public;
+
+  public get burn(): boolean {
+    return this.burnProtected;
+  }
+
+  public reHealth() {
+    this.healthProtected = this.maxHealthProtected;
+    this.burnProtected = false;
+  }
+
+  public turn(oponent: Character) {
+    this.burning();
+    if (Calculater.booleanRandom()) {
+      this.useSkill(oponent);
+    } else {
+      oponent.fightDamager(this.damage);
+      Logger.logFight(this, oponent);
     }
+  }
+  public fightDamager(opDamager: number) {
+    this.healthProtected -= opDamager;
+  }
 
-    public get health() {
-        return this._health;
-    }
+  useSkill(oponent: Character) {
+    console.log(`Я тебя победюкаю, ${oponent.name}!`);
+  }
 
-    get damage() {
-        return this._damage;
+  burnActive() {
+    this.burnProtected = true;
+  }
+  burning() {
+    if (this.burnProtected) {
+      this.healthProtected -= 10;
+      Logger.logBurn(this);
     }
-
-    get name() {
-        return this._name;
-    }
-
-
-    public get class(): string {
-        return this._class;
-    }
-    public
-
-    public get burn(): boolean {
-        return this._burn;
-    }
-
-    public reHealth() {
-        this._health = this._maxHealth;
-        this._burn = false;
-    }
-
-    public turn(oponent: Character) {
-        this.burning();
-        if (Calculater.booleanRandom()) {
-            this.useSkill(oponent);
-        }
-        else {
-            oponent.fightDamager(this.damage);
-            Logger.logFight(this, oponent);
-        }
-
-    }
-    public fightDamager(opDamager: number) {
-        this._health -= opDamager;
-    }
-
-    useSkill(oponent: Character) {
-
-    }
-    burnActive() {
-        this._burn = true;
-    }
-    burning() {
-        if (this._burn) {
-            this._health -= 10;
-            Logger.logBurn(this);
-        }
-    }
+  }
 }
