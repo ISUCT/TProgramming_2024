@@ -1,14 +1,19 @@
 import { Calculater } from "./Calculater";
 import { Character } from "./Character";
 import * as readline from 'readline';
+import { Knight } from "./Classes/Knight";
+import { Mag } from "./Classes/Mag";
+import { Archer } from "./Classes/Archer";
+import { Logger } from "./logger";
 
-console.log('Hello world');
+
 class Game {
     players: Character[] = [];
     winners: Character[] = [];
 
+
     startGame() {
-        console.log("Игра началась");
+        Logger.logStartGame();
         let rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout
@@ -21,7 +26,7 @@ class Game {
 
             }
             else {
-                console.log("Введенно нечетное кол-во игроков. Игра не может начаться");
+                Logger.logNotEvenGamers();
             }
             rl.close();
 
@@ -31,52 +36,82 @@ class Game {
 
     generate(numChar: number) {
         for (let i: number = 0; i < numChar; i++) {
-            let person = new Character();
-            console.log(`Я ${person.name}. У меня ${person.health} здоровья. И я бью на ${person.damage} урона!`);
+            let person: Character;
+            let randomClass: number = Calculater.random(0, 2);
+            switch (randomClass) {
+                case 0:
+                    person = new Mag();
+                    break;
+
+                case 1:
+                    person = new Knight();
+                    break;
+                case 2:
+                    person = new Archer();
+                    break;
+            }
+            Logger.logRepresentation(person);
             this.players.push(person);
         }
-        this.sortPerson()
+        this.sortPerson();
     }
     sortPerson() {
-        let sortNum:number=this.players.length
-        if (Calculater.isEven(this.players.length) == false) {
-            this.winners.push(this.players[0]);
-            this.players.splice(0, 1);
+        let lengthWinner: number = 0;
+        let countTurn = 1;
+        while (true) {
+            Logger.logCountTurn(countTurn);
+            countTurn = 1 + countTurn;
+
+
+            if (Calculater.isEven(this.players.length) == false) {
+                this.winners.push(this.players[0]);
+                this.players.splice(0, 1);
+            }
+            let sortNum: number = this.players.length;
+            for (let i = 0; i < sortNum / 2; i++) {
+
+                let num1: number = Calculater.random(0, this.players.length - 1);
+                let oponent1: Character = this.players[num1];
+                this.players.splice(num1, 1);
+                let num2: number = Calculater.random(0, this.players.length - 1);
+                let oponent2: Character = this.players[num2];
+                this.players.splice(num2, 1);
+                this.fight(oponent1, oponent2);
+            }
+            if (this.winners.length == 1) {
+                Logger.logWinWin(this.winners[0]);
+                break;
+
+            }
+
+            this.players.length = 0;
+            this.players = this.winners.slice();
+            this.winners.length = 0;
+            Logger.logOverTurn();
         }
-        for (let i = 0; i < sortNum/2; i++) {
-            
-            let num1: number = Calculater.random(0, this.players.length - 1);
-            let oponent1: Character = this.players[num1];
-            this.players.splice(num1, 1);
-            let num2: number = Calculater.random(0, this.players.length - 1);
-            let oponent2: Character = this.players[num2];
-            this.players.splice(num2, 1);
-            this.fight(oponent1, oponent2);
-        }
+
     }
     fight(oponent1: Character, oponent2: Character) {
-        let priority: boolean = true
+        let priority: boolean = true;
         while (oponent1.health > 0 && oponent2.health > 0) {
             if (priority) {
-                oponent1.fightDamager(oponent2.damage);
-                console.log(`${oponent2.name} ударил на ${oponent2.damage}. У ${oponent1.name} осталось ${oponent1.health} здоровья`);
+                oponent1.turn(oponent2);
             }
             else {
-                oponent2.fightDamager(oponent1.damage);
-                console.log(`${oponent1.name} ударил на ${oponent1.damage}. У ${oponent2.name} осталось ${oponent2.health} здоровья`);
+                oponent2.turn(oponent1);
             }
             priority = !priority;
         }
         if (oponent1.health <= 0) {
-           
+            oponent2.reHealth();
             this.winners.push(oponent2);
-            console.log(`Победил ${oponent2.name}`);
+            Logger.logWinner(oponent2);
 
         }
         else {
-          
+            oponent1.reHealth();
             this.winners.push(oponent1);
-            console.log(`Победил ${oponent1.name}`);
+            Logger.logWinner(oponent1);
         }
     }
 }

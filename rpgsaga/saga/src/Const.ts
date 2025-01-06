@@ -28,5 +28,8 @@ export let RandomName: string[]=[
     "Erik",
     "Lena",
     "Lars",
-    "Mig"
+    "Mig",
+    "Morty",
+    "Rick",
+    "Сентябрь"
 ]
