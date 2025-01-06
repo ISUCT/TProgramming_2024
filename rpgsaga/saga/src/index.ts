@@ -36,3 +36,9 @@ console.log(Dog1);
 
 const Dog2 = new Dog('Bonya', 12, 15);
 console.log(Dog2);
+
+const Dog4 = new Dog('Borya', 10, 200);
+console.log(Dog4);
+
+const Dog3 = new Dog('Nyusha', 100, 5);
+console.log(Dog3);

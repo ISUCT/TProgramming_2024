@@ -46,10 +46,33 @@ describe('Constructor test', () => {
   });
 });
 
+describe('Constructor test', () => {
+  it('should create a dog', () => {
+    const dog = new Dog('Test', -10, 20);
+    expect(dog.name).toStrictEqual('Test');
+    expect(dog.age).toStrictEqual(-10);
+    expect(dog.weight).toStrictEqual(20);
+  });
+});
+
+describe('Constructor test', () => {
+  it('should create a dog', () => {
+    const dog = new Dog('Test', -10, -20);
+    expect(dog.name).toStrictEqual('Test');
+    expect(dog.age).toStrictEqual(-10);
+    expect(dog.weight).toStrictEqual(-20);
+  });
+});
+
 describe('SetAge func test', () => {
   it('should set 5', () => {
     const dog = new Dog('Test', 5, 2);
     expect(dog.age).toStrictEqual(5);
+  });
+  it('should throw error', () => {
+    expect(() => {
+      new Dog('Test', 100, 5);
+    }).toThrow('Wrong age');
   });
 });
 
@@ -57,5 +80,10 @@ describe('SetWeight func test', () => {
   it('should set 10', () => {
     const dog = new Dog('Test', 5, 10);
     expect(dog.weight).toStrictEqual(10);
+  });
+  it('should throw error', () => {
+    expect(() => {
+      new Dog('Test', 2, 200);
+    }).toThrow('Wrong weight');
   });
 });

@@ -4,17 +4,13 @@ export class Dog {
   private _weight: number;
 
   constructor(dogName: string, dogAge: number, dogWeight: number) {
-    this._name = dogName;
-    this._age = dogAge;
-    this._weight = dogWeight;
+    this.name = dogName;
+    this.age = dogAge;
+    this.weight = dogWeight;
   }
 
   public set name(name: string) {
     this._name = name;
-  }
-
-  public get name(): string {
-    return this._name;
   }
 
   public set age(age: number) {
@@ -25,16 +21,20 @@ export class Dog {
     }
   }
 
-  public get age(): number {
-    return this._age;
-  }
-
   public set weight(weight: number) {
     if (weight > 0 && weight <= 45) {
       this._weight = weight;
     } else {
       throw new Error('Wrong weight');
     }
+  }
+
+  public get name(): string {
+    return this._name;
+  }
+
+  public get age(): number {
+    return this._age;
   }
 
   public get weight(): number {
