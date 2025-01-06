@@ -1,15 +1,17 @@
-import { knight } from '../sagaCode/heroClasses/knight';
-import { archer } from '../sagaCode/heroClasses/archer';
-import { Weapons } from '../sagaCode/constElements';
-import { mage } from '../sagaCode/heroClasses/mage';
 import { game } from '../sagaCode/game';
-import { randomNumber } from '../sagaCode/randomizer';
+import { characterGenerator } from '../sagaCode/randomGenerator';
 
-const player_1 = new knight('Makus', 150,Weapons.sword,false);
-const player_2 = new archer('Леголас', 120,Weapons.icedBow,false);
-const player_3 = new mage('Колдун', 110,Weapons.wizardStuff,false);
+// const player_1 = new knight('Makus', 150, Weapons.sword, 2);
+// const player_2 = new archer('Леголас', 120, Weapons.icedBow, 1);
+// const player_3 = new mage('Колдун', 110, Weapons.wizardStuff, 1);
 
+const randomPlayer = new characterGenerator();
+const players = randomPlayer.initializePlayers(2);
+players.forEach(player => {
+  console.log(
+    `Игрок: ${player.name}, Класс: ${player.constructor.name}, Здоровье: ${player.health}, Оружие: ${player.weapon.type} (${player.weapon.damageAmount} урона), Кол-во эффектов за игру: ${player.statusEffect}`,
+  );
+});
 
-
-const fight = new game([player_2, player_3]);
+const fight = new game(players);
 fight.start();

@@ -1,10 +1,10 @@
 import { Player } from "../playerClass/player";
 import { Weapon } from "../weapon";
 import { Effect } from "../effectOfDamage/effect";
-import { randomNumber } from "../randomizer";
+import { randomNumber } from "../randomGenerator";
 
 export class knight extends Player {
-    constructor(name:string,health:number,weapon:Weapon,statusEffect: boolean) {
+    constructor(name:string, health:number, weapon:Weapon, statusEffect: number) {
         super(name, health, weapon, statusEffect);
     }
 
@@ -27,14 +27,14 @@ export class knight extends Player {
     }
 
       public useHealEffect() {
-        if (this.statusEffect) {
+        if (this.statusEffect == 0) {
             console.log(`${this.name} уже использовал способность лечения раннее!`);
             return;
         } else {
             const healAmount = 15;
             this.health += healAmount;
-            console.log(`${this.name} использует способность лечения и восстанавливает ${healAmount} здоровья. Текущее здоровье: ${this.health}`);
-            this.statusOfEffect = true;
+            this.statusEffectDown();
+            console.log(`${this.name} использует способность лечения и восстанавливает ${healAmount} здоровья. Текущее здоровье: ${this.health}. Оставшиеся применения: ${this.statusEffect}`);
         }
 
     }

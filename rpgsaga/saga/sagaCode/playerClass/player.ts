@@ -5,10 +5,10 @@ export abstract class Player {
     private _name: string;
     private _health: number;
     private _weapon: Weapon;
-    private _statusEffect: boolean;
+    private _statusEffect: number;
     private _activeEffect: Effect;
 
-    constructor(name:string, health: number,weapon: Weapon, statusEffect: boolean) {
+    constructor(name:string, health: number,weapon: Weapon, statusEffect: number) {
         this._name = name;
         this._health = health;
         this._weapon = weapon;
@@ -26,16 +26,20 @@ export abstract class Player {
         this._activeEffect = effect;
     }
 
-    public get statusEffect(): boolean {
+    public get statusEffect(): number {
         return this._statusEffect;
     }
 
-    public set statusOfEffect(effectStatus: boolean) {
-        if (this._statusEffect === true){
+    public set statusOfEffect(effectStatus: number) {
+        if (this._statusEffect == 0){
             console.log("Эффект уже был наложен");
         } else {
             this._statusEffect = effectStatus
         }
+    }
+
+    public statusEffectDown(): void {
+        this._statusEffect--;
     }
 
       

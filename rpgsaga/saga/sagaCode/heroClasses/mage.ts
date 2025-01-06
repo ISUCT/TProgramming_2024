@@ -3,8 +3,8 @@ import { Player } from "../playerClass/player";
 import { Weapon } from "../weapon";
 
 export class mage extends Player {
-    constructor(name:string,health:number,weapon:Weapon, statusEffect: boolean) {
-        super(name, health,weapon, statusEffect);
+    constructor(name:string,health:number,weapon:Weapon, statusEffect: number) {
+        super(name, health, weapon, statusEffect);
     }
 
     public attack(opponent: Player): string {
@@ -15,14 +15,14 @@ export class mage extends Player {
       }
       
     public useFireball(target: Player, effect: Effect) {
-        if (this.statusEffect) {
-            console.log(`${this.name} уже использовал ${this.activeEffect.type} раннее`);
+        if (this.statusEffect == 0) {
+            console.log(`${this.name} уже использовал Fireball раннее`);
             return;
         } else {
         this.activesEffect = new Effect(effect.type, effect.damagePerTurn, effect.duration, target);
         console.log(`${this.name} использует ${this.activeEffect.type}`);
         effect.applyEffect(target);
-        this.statusOfEffect = true;
+        this.statusEffectDown();
         }
     }  
 

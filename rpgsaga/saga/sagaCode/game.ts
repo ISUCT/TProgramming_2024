@@ -2,7 +2,7 @@ import { knight } from "./heroClasses/knight";
 import { archer } from "./heroClasses/archer";
 import { Player } from "./playerClass/player";
 import { mage } from "./heroClasses/mage";
-import { randomNumber } from "./randomizer";
+import { randomNumber } from "./randomGenerator";
 import { Effect } from "./effectOfDamage/effect";
 
 export class game {
@@ -64,8 +64,9 @@ export class game {
             console.log(`${player.name} выбирает атаковать!`);
             player.attack(target); 
           } else {
-            if (player.statusEffect === true ) {
+            if (player.statusEffect === 0 ) {
                 const target = this.getRandomTarget(player);
+                console.log(`${player.name} выбирает атаковать!`);
                 player.attack(target);
             } else {
                 const target = this.getRandomTarget(player);
@@ -80,8 +81,9 @@ export class game {
             console.log(`${player.name} выбирает атаковать!`);
             player.attack(target);
           } else {
-            if (player.statusEffect === true ) {
+            if (player.statusEffect === 0 ) {
                 const target = this.getRandomTarget(player);
+                console.log(`${player.name} выбирает атаковать!`);
                 player.attack(target);
             } else {
             const target = this.getRandomTarget(player);
@@ -91,7 +93,7 @@ export class game {
             }
           }
         } else if (player instanceof knight) {
-          if (randomNumber(1,5) !== 5) {
+          if (randomNumber(1,4) !== 4) {
             const target = this.getRandomTarget(player);
             console.log(`${player.name} выбирает атаковать!`);
             player.attack(target);

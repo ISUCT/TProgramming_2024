@@ -3,7 +3,7 @@ import { Weapon } from "../weapon";
 import { Effect } from "../effectOfDamage/effect";
 
 export class archer extends Player {
-    constructor(name:string,health:number,weapon:Weapon, statusEffect: boolean) {
+    constructor(name:string,health:number,weapon:Weapon, statusEffect: number) {
         super(name, health,weapon, statusEffect);
         
     }
@@ -16,14 +16,14 @@ export class archer extends Player {
       }
 
       useArrowEffect(target: Player, effect: Effect) {
-        if (this.statusEffect) {
+        if (this.statusEffect == 0) {
             console.log(`${this.name} уже использовал способность ранее!`);
             return;
         } else {
         this.activesEffect = new Effect(effect.type, effect.damagePerTurn, effect.duration, target);
         console.log(`${this.name} использует ${this.activeEffect.type}`);
         effect.applyEffect(target);
-        this.statusOfEffect = true;
+        this.statusEffectDown();
         }
       }
 
