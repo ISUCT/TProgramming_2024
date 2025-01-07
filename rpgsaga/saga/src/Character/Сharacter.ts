@@ -65,7 +65,9 @@ export abstract class Character {
 
   // Получение всех данных о классе
   public toString() {
-    console.log(`Name: ${this.name}, \nClass: ${this.class}, \nHealth: ${this.health}, \nStrength: ${this.strength}.\n`);
+    console.log(
+      `Name: ${this.name}, \nClass: ${this.class}, \nHealth: ${this.health}, \nStrength: ${this.strength}.\n`,
+    );
   }
 
   public attack() {

@@ -22,9 +22,11 @@ describe('Class Character', () => {
   it('Sets class', () => {
     arch.name = 'Robbin';
     arch.class = 'Lychnik';
-    arch.health = 1;
+    arch.health = 10;
+    arch.strength = 11;
     expect(arch.name).toEqual('Robbin');
     expect(arch.class).toEqual('Lychnik');
-    expect(arch.health).toEqual(1);
+    expect(arch.health).toEqual(10);
+    expect(arch.strength).toEqual(11);
   });
 });
