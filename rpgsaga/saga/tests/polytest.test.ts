@@ -41,13 +41,13 @@ describe('Entity', () => {
       const character = new Character('Алиса', 8, 7, 6, 9);
       const spy = jest.spyOn(console, 'log').mockImplementation();
       character.dance();
-      expect(spy).toHaveBeenCalledWith('Алиса танцует с легкостью и грацией!');
+      expect(spy).toHaveBeenCalledWith('Алиса танцует как в последний раз');
       spy.mockRestore();
     });
 
     it('should create a default character', () => {
       const character = Character.createDefaultCharacter();
-      expect(character.name).toBe('Аноним');
+      expect(character.name).toBe('Жан Викмар');
       expect(character.intellect).toBe(5);
       expect(character.psyche).toBe(5);
       expect(character.physique).toBe(5);
@@ -69,7 +69,7 @@ describe('Entity', () => {
       const enemy = new Enemy('Злодей', 5, 4, 7, 6);
       const spy = jest.spyOn(console, 'log').mockImplementation();
       enemy.dance();
-      expect(spy).toHaveBeenCalledWith('Злодей танцует неуклюже, но с опасной агрессией!');
+      expect(spy).toHaveBeenCalledWith('Злодей делает джагу джагу');
       spy.mockRestore();
     });
   });
@@ -79,7 +79,7 @@ describe('Entity', () => {
 describe('event method', () => {
     it('should pass the event if the sum is enough', () => {
       const character = new Character('Алиса', 10, 10, 10, 10);
-      const spy = jest.spyOn(Math, 'random').mockReturnValue(0); // Всегда выбрасываем минимальные значения
+      const spy = jest.spyOn(Math, 'random').mockReturnValue(0); 
       const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
   
       character.event();
@@ -94,7 +94,7 @@ describe('event method', () => {
   
     it('should fail the event if the sum is not enough', () => {
       const character = new Character('Алиса', 1, 1, 1, 1);
-      const spy = jest.spyOn(Math, 'random').mockReturnValue(1); // Всегда выбрасываем максимальные значения
+      const spy = jest.spyOn(Math, 'random').mockReturnValue(1);
       const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
   
       character.event();
