@@ -38,31 +38,6 @@ export abstract class Character {
     return this._strength;
   }
 
-  // (мутаторы)
-  public set name(newName: string) {
-    this._name = newName;
-  }
-
-  public set class(newClass: string) {
-    this._class = newClass;
-  }
-
-  public set health(newHealth: number) {
-    if (newHealth > 0) {
-      this._health = newHealth;
-      return;
-    }
-    throw new Error('Level out of range');
-  }
-
-  public set strength(newStrength: number) {
-    if (newStrength > 0) {
-      this._strength = newStrength;
-      return;
-    }
-    throw new Error('Level out of range');
-  }
-
   // Получение всех данных о классе
   public toString() {
     console.log(
