@@ -1,5 +1,5 @@
-import { Archer } from '../src/Character/Archer';
-import { Mage } from '../src/Character/Mage';
+import { Archer } from '../src/Characters/Archer';
+import { Mage } from '../src/Characters/Mage';
 
 describe('Class Character', () => {
   const arch = new Archer('Name', 'Archer', 0, 1);

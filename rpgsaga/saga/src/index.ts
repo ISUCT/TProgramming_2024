@@ -1,4 +1,4 @@
-import { Archer } from './Character/Archer';
+import { Archer } from './Characters/Archer';
 // import { Mage } from './Character/Mage';
 
 // // Попытка установления неверного заначения
