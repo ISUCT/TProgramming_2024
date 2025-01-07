@@ -1,7 +1,7 @@
 import { Archer } from "../src/nasledniki/Archer";
 import { Orc } from "../src/nasledniki/Orc";
-import { Knight } from "../src/nasledniki/Knight"; // Предполагаем, что у вас есть класс Рыцаря
-import { Wizard } from "../src/nasledniki/Wizard"; // Предполагаем, что у вас есть класс Мага
+import { Knight } from "../src/nasledniki/Knight";
+import { Wizard } from "../src/nasledniki/Wizard";
 
 describe('Битва между персонажами', () => {
     let archer: Archer;
