@@ -1,3 +1,5 @@
+import { Animal } from "../src/Animal";
+import { Cat } from "../src/Cat";
 import { Dog } from "../src/Dog";
 import { solution, taskA, taskB } from "../src/Laba1";
 
@@ -52,41 +54,93 @@ describe('Тесты для функций 1 лабораторной работ
     });
 })
 
-describe('Dog Class', () => {
-    const dog: Dog = new Dog('Buddy', 5, 'labrador retriever');
-    it('should create a dog with correct properties', () => {
-        expect(dog.name).toBe('Buddy');
-        expect(dog.age).toBe(5);
-        expect(dog.breed).toBe('labrador retriever');
+describe('Тесты для класса Dog Лаба №2', () => {
+    let rabbit: Dog = new Dog('Polkan', 5, 'male');
+
+    it('should return error for incorrect name', () => {
+        expect(() => {
+            rabbit.name = '';
+        }).toThrow('Incorrect name');
     });
-    it('should change the dog\'s name', () => {
-        dog.name = 'Max';
-        expect(dog.name).toBe('Max');
+    it('should return error for incorrect age', () => {
+        expect(() => {
+            rabbit.age = -12;
+        }).toThrow('Incorrect age');
     });
-    it('should throw an error for empty name', () => {
-        expect(() => { dog.name = ''; }).toThrow('Incorrect name');
+    it('should return error for incorrect sex', () => {
+        expect(() => {
+            rabbit.sex = 'baby';
+        }).toThrow('Incorrect sex');
     });
-    it('should change the dog\'s age', () => {
-        dog.age = 7;
-        expect(dog.age).toBe(7);
+    it('should return the correct routine', () => {
+        expect(rabbit.routine()).toBe('The dog Polkan loves to play and have fun with his master!');
+    });   
+    it('should return the correct voice', () => {
+        expect(rabbit.voice()).toBe('Polkan the dog says WOOF!');
     });
-    it('should throw an error for incorrect age', () => {
-        expect(() => { dog.age = 0; }).toThrow('Incorrect age');
-        expect(() => { dog.age = 16; }).toThrow('Incorrect age');
+    it('should return correct toString', () => {
+        expect(rabbit.toString()).toBe('Name: Polkan, Age: 5, Sex: male');
+    })
+    it('should return correct response for "sit" command', () => {
+        expect(rabbit.commands('sit')).toBe('Polkan sits down');
     });
-    it('should throw an error for incorrect breed', () => {
-        expect(() => { dog.breed = 'invalid breed'; }).toThrow('Incorrect breed');
+
+    it('should return correct response for "stay" command', () => {
+        expect(rabbit.commands('stay')).toBe('Polkan stays in place');
     });
-    it('should return correct response for known commands', () => {
-        expect(dog.dogCommands('bork')).toBe('Max says: Woof!');
-        expect(dog.dogCommands('sit')).toBe('Max sits down');
-        expect(dog.dogCommands('stay')).toBe('Max stays in place');
-        expect(dog.dogCommands('fetch stick')).toBe('Max fetches the stick');
+
+    it('should return correct response for "fetch stick" command', () => {
+        expect(rabbit.commands('fetch stick')).toBe('Polkan fetches the stick');
     });
-    it('should return unknown command response for unknown commands', () => {
-        expect(dog.dogCommands('jump')).toBe('The dog Max does not know such a command');
+
+    it('should return error message for unknown command', () => {
+        expect(rabbit.commands('jump')).toBe('The dog Polkan does not know such a command');
     });
-    it('should return correct routine message', () => {
-        expect(dog.dogRoutine()).toBe('The dog Max loves to play and have fun with his master!');
+});
+
+describe('Тесты для класса Cat Лаба №3', () => {
+    let cat: Cat = new Cat('Myrka', 6, 'female');
+
+    it('should return error for incorrect name', () => {
+        expect(() => {
+            cat.name = '';
+        }).toThrow('Incorrect name');
     });
+    it('should return error for incorrect age', () => {
+        expect(() => {
+            cat.age = -12;
+        }).toThrow('Incorrect age');
+    });
+    it('should return error for incorrect sex', () => {
+        expect(() => {
+            cat.sex = 'baby';
+        }).toThrow('Incorrect sex');
+    });
+    it('should return the correct routine', () => {
+        expect(cat.routine()).toBe("The cat Myrka likes to sleep and she doesn't care about her master");
+    });   
+    it('should return the correct voice', () => {
+        expect(cat.voice()).toBe('Myrka the cat says MEOW!');
+    });
+    it('should return correct toString', () => {
+        expect(cat.toString()).toBe('Name: Myrka, Age: 6, Sex: female');
+    })
+    it('should return error message for unknown command', () => {
+        expect(cat.commands('jump')).toBe('The cat Myrka does not know any command');
+    });
+});
+
+describe('list of classes (laba №3)', () => {
+    it('should return the correct methods for each element in list', () => {
+        const dog = new Dog('Rex', 6, 'male');
+        const cat = new Cat('Barsik', 8, 'male');
+        const animals: Animal[] = [dog, cat];
+        let answers: String[] = [];
+
+        for (const el of animals) {
+            answers.push(el.toString());
+        }
+        expect(answers[0]).toBe('Name: Rex, Age: 6, Sex: male');
+        expect(answers[1]).toBe('Name: Barsik, Age: 8, Sex: male');
+    })
 });

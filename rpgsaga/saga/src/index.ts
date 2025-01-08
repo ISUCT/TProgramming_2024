@@ -1,3 +1,5 @@
+import { Animal } from './Animal';
+import { Cat } from './Cat';
 import { Dog } from './Dog';
 import { taskA, taskB } from './Laba1';
 
@@ -22,4 +24,17 @@ try {
   console.log(`${dog.name} is ${dog.age} years old`);
 } catch (ex) {
   console.log(`Error creating dog: ${ex.message}`);
+}
+
+console.log('Лаба №3 Полиморфизм');
+try {
+  const dog = new Dog("Zhychka", 6, "male");
+  const cat = new Cat("Myska", 4, "female");
+  const animals: Animal[] = [dog, cat];
+
+  for (const el of animals) {
+    console.log(el.voice());
+  }
+} catch (ex) {
+  console.log(`Ошибка при создании класса: ${ex.message}`);
 }
