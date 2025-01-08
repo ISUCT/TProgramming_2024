@@ -1,23 +1,24 @@
-import { logger } from "../Logger";
-import { Player } from "../Players";
-import { FreezeEffect } from "../SideEffect";
-import { Ability } from "./Ability";
+import { logger } from '../Logger';
+import { Player } from '../Players';
+import { FreezeEffect } from '../SideEffect';
+
+import { Ability } from './Ability';
 
 export class MagicalFreeze extends Ability {
   constructor(player: Player) {
-    super(player, [new FreezeEffect()], 1)
+    super(player, [new FreezeEffect()], 1);
   }
 
   public activate(opponent: Player): void {
     logger.debug({
       message: 'MagicalFreeze active ulta',
-      metaInfo: `MagicalFreeze.activate(${opponent})`
-    })
+      metaInfo: `MagicalFreeze.activate(${opponent})`,
+    });
 
-    logger.info(`${this.player.getFullName()} использует ульту - Обворожение`)
+    logger.info(`${this.player.getFullName()} использует ульту - Обворожение`);
 
-    opponent.setSideEffects(this.opponentSideEffects)
+    opponent.setSideEffects(this.opponentSideEffects);
 
-    this._updateUsability()
+    this._updateUsability();
   }
 }

@@ -66,7 +66,7 @@ export abstract class Player {
 
   setAttackBehavior = (Behavior: new (pl: Player) => AttackBehavior) => {
     this._attackBehavior = new Behavior(this);
-  }
+  };
 
   public getFullName() {
     return `(${this._role}: id - ${this._id}) ${this._name}`;
@@ -78,7 +78,7 @@ export abstract class Player {
     this._health = health;
     this._power = power;
     this._isAlive = true;
-    this._role = ''
+    this._role = '';
 
     this._attackBehavior = new PlayerAttackImpl(this);
     this._id = getUniqId();
@@ -101,7 +101,7 @@ export abstract class Player {
 
   public setSideEffects(sideEffects: SideEffectBehavior | SideEffectBehavior[] = []) {
     if (Array.isArray(sideEffects) && sideEffects.length === 0) {
-      this.sideEffects = []
+      this.sideEffects = [];
     }
 
     const _sideEffects = Array.isArray(sideEffects) ? sideEffects : [sideEffects];
@@ -124,16 +124,16 @@ export abstract class Player {
 
   public useAbility = (opponent: Player, callback?: () => void) => {
     if (!this?.abilityManager) {
-      throw new Error('ERROR: установите способности игроку ' + this?.getFullName());
-      return
+      throw new Error(`ERROR: установите способности игроку ${this?.getFullName()}`);
+      return;
     }
 
-    this?.abilityManager.useAbility(opponent, callback)
-  }
+    this?.abilityManager.useAbility(opponent, callback);
+  };
 
   public resetToInitial() {
-    this._health = this._initialParams.health
-    this._power = this._initialParams.power
-    this.setSideEffects([])
+    this._health = this._initialParams.health;
+    this._power = this._initialParams.power;
+    this.setSideEffects([]);
   }
 }

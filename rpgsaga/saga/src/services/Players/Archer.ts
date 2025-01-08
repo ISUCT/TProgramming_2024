@@ -1,6 +1,7 @@
-import { Player } from './Player';
 import { logger } from '../Logger';
 import { FireArrows, IceArrows } from '../Ability';
+
+import { Player } from './Player';
 
 export class Archer extends Player {
   constructor() {

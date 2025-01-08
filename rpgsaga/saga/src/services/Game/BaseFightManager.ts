@@ -7,18 +7,17 @@ export class BaseFightManager implements FightManagerBehavior {
   public fight(firstPlayer: Player, secondPlayer: Player): Player {
     const getFighters = this.createBattleRole(firstPlayer, secondPlayer);
     while (firstPlayer.isAlive && secondPlayer.isAlive) {
-
       const [attacker, defender] = getFighters();
 
       attacker.attack(defender);
     }
 
-    const winner = this.getWinner(firstPlayer, secondPlayer)
-    logger.info(`И победитеель - ${winner?.getFullName()}`)
-    
-    winner?.resetToInitial()
+    const winner = this.getWinner(firstPlayer, secondPlayer);
+    logger.info(`И победитеель - ${winner?.getFullName()}`);
 
-    return winner
+    winner?.resetToInitial();
+
+    return winner;
   }
 
   private createBattleRole(firstPlayer: Player, secondPlayer: Player) {
@@ -32,7 +31,11 @@ export class BaseFightManager implements FightManagerBehavior {
   }
 
   private getWinner(first: Player, second: Player) {
-    if (first.isAlive) return first
-    if (second.isAlive) return second
+    if (first.isAlive) {
+      return first;
+    }
+    if (second.isAlive) {
+      return second;
+    }
   }
 }

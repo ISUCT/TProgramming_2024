@@ -33,10 +33,10 @@ describe('Game', () => {
   });
 
   it('should check and set the winner correctly', () => {
-    const mockCheckAndSetWinners = jest.spyOn(game, '_checkAndSetWinners' as any); // Шпионим за методом _checkAndSetWinners
+    const mockCheckAndSetWinners = jest.spyOn(game, '_checkAndSetWinnerGame' as any); // Шпионим за методом _checkAndSetWinners
     const mockWinnersInBattle = [[new Knight()]]; // Пример списка победителей
     game['_winnersInBattle'].push(mockWinnersInBattle[0]);
-    game['_checkAndSetWinners']();
+    game['_checkAndSetWinnerGame']();
     expect(mockCheckAndSetWinners).toHaveBeenCalledTimes(1); // Проверяем вызов метода _checkAndSetWinners
     expect(game['_winner']).toEqual(mockWinnersInBattle[0][0]); // Проверяем установку победителя
   });

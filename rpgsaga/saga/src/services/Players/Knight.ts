@@ -1,5 +1,6 @@
 import { SuperDamage } from '../Ability';
 import { logger } from '../Logger';
+
 import { Player } from './Player';
 
 export class Knight extends Player {

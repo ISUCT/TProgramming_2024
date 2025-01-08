@@ -15,7 +15,7 @@ export class BasePlayersManager implements PlayersManagerBehavior {
       throw new Error('Game: U have to choose only an even number of players');
     }
 
-    let players: Player[] = [];
+    const players: Player[] = [];
 
     logger.debug({
       message: `playersCount ${playersCount}`,

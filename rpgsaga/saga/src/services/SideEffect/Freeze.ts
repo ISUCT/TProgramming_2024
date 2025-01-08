@@ -1,16 +1,19 @@
 import { SideEffectBehavior } from '../../interfaces';
 import { logger } from '../Logger';
 import { Player } from '../Players';
+
 import { SideEffect } from './SideEffect';
 
 export class FreezeEffect extends SideEffect implements SideEffectBehavior {
   constructor() {
-    super(1)
-    this._isActiveEffect = true
+    super(1);
+    this._isActiveEffect = true;
   }
 
   activate(): void {
-    if (!this.checkUser()) return;
+    if (!this.checkUser()) {
+      return;
+    }
 
     const baseUseAbility = this._player.useAbility;
     this._player.useAbility = this.decorateAttack(baseUseAbility);
@@ -24,7 +27,7 @@ export class FreezeEffect extends SideEffect implements SideEffectBehavior {
         this._updateUsability();
       } else {
         // @ts-ignore
-        return fn(...args)
+        return fn(...args);
       }
     };
 }

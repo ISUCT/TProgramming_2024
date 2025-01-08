@@ -1,5 +1,6 @@
 import { SideEffectBehavior } from '../../interfaces';
 import { logger } from '../Logger';
+
 import { SideEffect } from './SideEffect';
 
 export class IceArrowDamageEffect extends SideEffect implements SideEffectBehavior {
@@ -15,12 +16,14 @@ export class IceArrowDamageEffect extends SideEffect implements SideEffectBehavi
   }
 
   activate(): void {
-    if (!this.checkUser()) return
+    if (!this.checkUser()) {
+      return;
+    }
 
     if (this._isActiveEffect) {
       this._player.health -= this._additionalDamage;
-      logger.info(`${this._player.getFullName()} теряет ${this._additionalDamage} так как замарозка херачит`)
-      logger.info(`${this._player.getFullName()}: Здоровье - ${this._player.health}`)
+      logger.info(`${this._player.getFullName()} теряет ${this._additionalDamage} так как замарозка херачит`);
+      logger.info(`${this._player.getFullName()}: Здоровье - ${this._player.health}`);
       this._updateUsability();
     }
   }

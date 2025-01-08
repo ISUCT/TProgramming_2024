@@ -13,7 +13,7 @@ export abstract class Ability {
   constructor(player: Player, sideEffects: SideEffectBehavior[] = [], maxUsage: number = 1) {
     this.opponentSideEffects = sideEffects;
     this.player = player;
-    this._maxUsageCount = maxUsage
+    this._maxUsageCount = maxUsage;
     this._usageCounter = 0;
     this._isActiveEffect = true;
   }
@@ -21,13 +21,13 @@ export abstract class Ability {
   public abstract activate(opponent: Player, callback?: () => void): void;
 
   public canUseAbility() {
-    let canUse = randomInt(0, 100) >= 70 ? true : false
+    let canUse = randomInt(0, 100) >= 70 ? true : false;
     logger.debug({
       message: `Получилось юзануть canUseAbility ${canUse}`,
       metaInfo: this.player.getFullName(),
     });
 
-    canUse = this._isActiveEffect ? canUse : false
+    canUse = this._isActiveEffect ? canUse : false;
 
     return canUse;
   }

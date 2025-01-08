@@ -5,7 +5,7 @@ import { Player } from '../Players';
 
 export class BasePairsManager implements PairsManagerBehavior {
   createPairs(players: Player[]): [Player, Player][] {
-    let battlePairs = [];
+    const battlePairs = [];
     const shuffledPlayers = shuffleArray(players);
     logger.debug({
       message: 'shuffledPlayers',

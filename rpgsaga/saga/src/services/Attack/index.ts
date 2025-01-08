@@ -1,2 +1,2 @@
-export { PlayerAttackImpl } from './PlayerAttackImpl'
-export { MageAttackImpl } from './MageAttackImpl'
+export { PlayerAttackImpl } from './PlayerAttackImpl';
+export { MageAttackImpl } from './MageAttackImpl';

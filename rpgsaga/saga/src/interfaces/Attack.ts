@@ -1,5 +1,5 @@
-import { Player } from "../services";
+import { Player } from '../services';
 
 export interface AttackBehavior {
-    attack(opponent: Player): void
+  attack(opponent: Player): void;
 }

@@ -1,3 +1,3 @@
-export { logger } from './Logger'
-export * from './Players'
-export * from './Game'
+export { logger } from './Logger';
+export * from './Players';
+export * from './Game';

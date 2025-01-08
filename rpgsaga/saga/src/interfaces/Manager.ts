@@ -1,13 +1,13 @@
-import { Player } from "../services"
+import { Player } from '../services';
 
 export interface FightManagerBehavior {
-  fight(firstPlayer: Player, secondPlayer: Player): Player
+  fight(firstPlayer: Player, secondPlayer: Player): Player;
 }
 
 export interface PlayersManagerBehavior {
-  createPlayers(players: number): Player[]
+  createPlayers(players: number): Player[];
 }
 
 export interface PairsManagerBehavior {
-  createPairs(players: Player[]): [Player, Player][]
+  createPairs(players: Player[]): [Player, Player][];
 }

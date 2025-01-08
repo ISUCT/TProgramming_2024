@@ -1,5 +1,6 @@
 import { MagicalFreeze, SuperDamage } from '../Ability';
 import { logger } from '../Logger';
+
 import { Player } from './Player';
 
 export class Mage extends Player {

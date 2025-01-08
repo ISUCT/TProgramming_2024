@@ -1,6 +1,7 @@
 import { AttackBehavior } from '../../interfaces';
 import { logger } from '../Logger';
 import { Player } from '../Players';
+
 import { Attack } from './AbstractAttack';
 
 export class PlayerAttackImpl extends Attack implements AttackBehavior {

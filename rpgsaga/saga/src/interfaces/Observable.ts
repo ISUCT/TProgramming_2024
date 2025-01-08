@@ -1,9 +1,9 @@
 export interface Observer {
-  update(): void
+  update(): void;
 }
 
 export interface Observable {
-  add(obs: Observer): void
-  remove(): void
-  notify(): void
+  add(obs: Observer): void;
+  remove(): void;
+  notify(): void;
 }

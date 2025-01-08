@@ -20,7 +20,9 @@ export class AbilityManager implements AbilityManagerBehavior {
 
   public useAbility = (opp: Player, baseAttack?: () => void) => {
     for (const ability of this._abilities) {
-      if (this._currentUsageAbility) break;
+      if (this._currentUsageAbility) {
+        break;
+      }
       if (ability.canUseAbility()) {
         ability.activate(opp, baseAttack);
         this._setCurrentUsageAbility(ability);
@@ -30,7 +32,7 @@ export class AbilityManager implements AbilityManagerBehavior {
     }
 
     if (!this._currentUsageAbility) {
-      baseAttack?.()
+      baseAttack?.();
     }
 
     this._setCurrentUsageAbility(null);
