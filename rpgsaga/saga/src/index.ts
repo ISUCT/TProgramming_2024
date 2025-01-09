@@ -1,5 +1,8 @@
-import { Archer } from './Characters/Archer';
+// import { FabricAbility } from './Ability/FabricAbility';
+// import { Archer } from './Characters/Archer';
 // import { Mage } from './Character/Mage';
+
+import { createGame } from './utils/input/createGame';
 
 // // Попытка установления неверного заначения
 // try {
@@ -8,9 +11,15 @@ import { Archer } from './Characters/Archer';
 //   console.log(err);
 // }
 
-const archer = new Archer('Charly', 200, 200, "");
+// const Fire = new FabricAbility()
+// Fire.createSkillFromTemplate('огненные стрелы')
 
-// console.log(warrior);
-archer.toString();
+// const Fire = new IAv
 
-archer.toString();
+// const archer = new Archer('Charly', 200, 200);
+
+// console.log(archer);
+
+// archer.toString();
+
+createGame();
