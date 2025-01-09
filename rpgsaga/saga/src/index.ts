@@ -8,11 +8,9 @@ import { Archer } from './Characters/Archer';
 //   console.log(err);
 // }
 
-const archer = new Archer('Charly', 'Archer', 200, 200);
+const archer = new Archer('Charly', 200, 200, "");
 
 // console.log(warrior);
 archer.toString();
-
-archer.health = 10;
 
 archer.toString();
