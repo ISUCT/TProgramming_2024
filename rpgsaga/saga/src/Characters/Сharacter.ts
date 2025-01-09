@@ -1,21 +1,33 @@
+import { IAbility } from "../Interfaces/Ability";
+
 export abstract class Character {
-  private _name: string;
-  private _class: string;
-  private _health: number;
-  private _strength: number;
-  // private _immunity: string[] = [];
+  protected _name: string;
+  protected _class: string;
+  protected _initialHealth: number;
+  protected _health: number;
+  protected _initialStrength: number;
+  protected _strength: number;
+  protected _abilities: IAbility[];
+  protected _currentAdility?: IAbility;
+  // protected _skillBuff: number = 0;
+  protected _isAbilityUsed: boolean = false;
+  // protected _isAlive: boolean = true;
+  protected _countOfSkipingTurns: number = 0;
+  // protected _weapon: IWeapon;
 
   constructor(
     characterName: string,
-    characterClass: string,
     characterHealth: number,
-    characterStrength: number /* , characterImmunity: string*/,
+    characterStrength: number,
+    characterAbylities: IAbility
   ) {
+    this._initialHealth = characterHealth;
+    this._health = this._initialHealth;
+    this._initialStrength = characterStrength;
+    this._strength = this._initialStrength;
     this._name = characterName;
-    this._class = characterClass;
-    this._health = characterHealth;
-    this._strength = characterStrength;
-    // this._immunity = characterImmunity;
+    // this._weapon = characterWeapon;
+    this._abilities = characterAbylities;
   }
 
   // Получить имя персонажа (акцессор)

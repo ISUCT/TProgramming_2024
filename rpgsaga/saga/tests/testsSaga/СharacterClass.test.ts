@@ -2,12 +2,11 @@ import { Archer } from '../../src/Characters/Archer';
 import { Mage } from '../../src/Characters/Mage';
 
 describe('Class Character', () => {
-  const arch = new Archer('Name', 'Archer', 0, 1);
+  const arch = new Archer('Name', 0, 1);
 
   it('create New Character', () => {
-    const magic = new Mage ('Zorian', 'Mag', 100, 50);
+    const magic = new Mage ('Zorian', 100, 50, 1);
     expect(magic.name).toEqual('Zorian');
-    expect(magic.class).toEqual('Mag');
     expect(magic.health).toEqual(100);
     expect(magic.strength).toEqual(50);
   });
