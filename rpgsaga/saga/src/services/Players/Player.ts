@@ -3,6 +3,7 @@ import { AttackBehavior, SideEffectBehavior } from '../../interfaces';
 import { getUniqId, randomInt } from '../../lib';
 import { Ability } from '../Ability';
 import { PlayerAttackImpl } from '../Attack';
+import { logger } from '../Logger';
 import { AbilityManager, AbilityManagerBehavior } from '../Managers/AbilityManager';
 
 interface PlayerParams {
@@ -136,4 +137,5 @@ export abstract class Player {
     this._power = this._initialParams.power;
     this.setSideEffects([]);
   }
+
 }

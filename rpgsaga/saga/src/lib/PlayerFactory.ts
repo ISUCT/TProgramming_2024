@@ -7,7 +7,7 @@ export const PlayerMap = {
   Archer: 'Archer',
 } as const;
 
-type PlayerType = keyof typeof PlayerMap;
+export type PlayerType = keyof typeof PlayerMap;
 
 export const PlayerTypeArray = Object.keys(PlayerMap) as PlayerType[];
 

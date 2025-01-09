@@ -13,7 +13,7 @@ export class BaseFightManager implements FightManagerBehavior {
     }
 
     const winner = this.getWinner(firstPlayer, secondPlayer);
-    logger.info(`И победитеель - ${winner?.getFullName()}`);
+    logger.info(`И победитель - ${winner?.getFullName()}`);
 
     winner?.resetToInitial();
 

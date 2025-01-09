@@ -1,7 +1,4 @@
 
-
-// Подставьте ваши импорты, если они отличаются от указанных выше.
-
 import { Game } from "../src/core/Game";
 import { Knight } from "../src/services";
 

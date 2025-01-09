@@ -7,7 +7,7 @@ export class Archer extends Player {
   constructor() {
     super();
     this.setRole('Лучник');
-    this.setAbilities([new FireArrows(this), new IceArrows(this, 3)]);
+    this.setAbilities([ new FireArrows(this), new IceArrows(this, 2)]);
 
     logger.info(`Создан игрок ${this.getFullName()}`);
   }
