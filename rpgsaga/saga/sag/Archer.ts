@@ -1,24 +1,55 @@
-import { Player } from './Player';
+import { Hero } from './Hero';
 import { Logger } from './Logger';
 
-export class Archer extends Player {
+export class Archer extends Hero {
     private fireArrowsUsed: boolean = false;
+    private fireArrowsActive: boolean = false;
+    private fireArrowsTarget: Hero | null = null;
 
-    constructor(name: string, health: number, strength: number) {
-        super(name, health, strength);
+    static className = 'Лучник';
+
+    constructor(health: number, strength: number, name: string) {
+        super(health, strength, name);
     }
 
-    useAbility(opponent: Player): void {
+    useAbility(opponent: Hero): void {
         if (!this.fireArrowsUsed) {
             this.fireArrowsUsed = true;
-            Logger.log(`${this.name} использует Огненные стрелы. Противник ${opponent.name} будет терять по 2 единицы здоровья каждый ход.`);
+            this.fireArrowsActive = true;
+            this.fireArrowsTarget = opponent;
+            Logger.log(`(${this.getClassName()}) ${this.name} использует огненные стрелы! ${opponent.getName()} подгорает!`);
+        } else if (this.canUseAbility()) {
+            const damage = this.calculateDamage();
+            opponent.takeDamage(damage);
+            this.useIceArrows(opponent);
+            this.fireArrowsActive = false;
+            Logger.log(`(${this.getClassName()}) ${this.name} использует ледяные стрелы и наносит ${damage} урона ${opponent.getName()}!`);
+        } else {
+            this.attack(opponent); 
         }
     }
 
-    takeDamage(damage: number): void {
-        if (this.fireArrowsUsed) {
-            damage += 2;
+    attack(opponent: Hero): void {
+        const damage = this.calculateDamage(); 
+        opponent.takeDamage(damage);
+        Logger.log(`(${this.getClassName()}) ${this.name} стреляет в (${opponent.getClassName()}) ${opponent.getName()} на ${damage} урона!`);
+
+        this.applyIceArrowDamage(opponent);
+    }
+
+    applyFireArrowsDamage(): void {
+        if (this.fireArrowsActive && this.fireArrowsTarget && this.fireArrowsTarget.isAlive()) {
+            const damage = 5; 
+            this.fireArrowsTarget.takeDamage(damage);
+            Logger.log(`Огненные стрелы (${this.getClassName()}) ${this.name} наносят ${damage} урона (${this.fireArrowsTarget.getClassName()}) ${this.fireArrowsTarget.getName()}!`);
         }
-        super.takeDamage(damage);
+    }
+
+    protected getMaxIceArrowsUses(): number {
+        return 2; 
+    }
+
+    protected canUseAbility(): boolean {
+        return this.iceArrowsUsed < this.getMaxIceArrowsUses();
     }
 }
