@@ -4,7 +4,7 @@ import { readAnswer } from './readAnswer';
 
 import { createCharacter } from './createCharacter';
 
-export function createGame(): void {
+export function startGame(): void {
   const logger = new Logger();
 
   let number: number;
@@ -20,18 +20,23 @@ export function createGame(): void {
   }
 
   async function askForCreating() {
-    const inputString: string = await readAnswer('Хотите ли вы создать своего персонажа? (да/нет) ');
+    const inputString: string = await readAnswer('\nХотите ли вы создать своего персонажа? (Yes/no) ');
     const game = new Game(number, undefined, logger);
     switch (inputString.toLowerCase()) {
-      case 'да':
+      case 'yes':
         createCharacter(number);
         break;
-      case 'нет':
+      case 'y':
+        createCharacter(number);
+        break;
+      case 'no':
+        await game.start();
+        break;
+      case 'n':
         await game.start();
         break;
       default:
-        console.log('Некорректный ввод. Пожалуйста, попробуйте снова.');
-        await askForCreating();
+        createCharacter(number);
         break;
     }
   }

@@ -5,7 +5,7 @@ import { FactoryMage as FactoryMage } from './FactoryMage';
 import { FactoryKnight as FactoryKnight } from './FactoryKnight';
 import { getRandomNumber, getRandomArrayElement} from '../utils/random/Random';
 
-export class FactryPlayer {
+export class FactoryCharacter {
   private factoryArcher = new FactoryArcher();
   private factoryknight = new FactoryKnight();
   private factoryMage = new FactoryMage();
@@ -50,7 +50,7 @@ export class FactryPlayer {
   }
 
   createRandomPlayer(): Character {
-    const playerFabric = new FactryPlayer();
+    const playerFabric = new FactoryCharacter();
     const classes: string[] = ['Knight', 'Archer', 'Mage'];
     const playerClass: string = getRandomArrayElement(classes)!;
     const health: number = getRandomNumber(125, 150);

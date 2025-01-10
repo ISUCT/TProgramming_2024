@@ -1,4 +1,4 @@
-import { FactryPlayer as FactryCharacter } from './Characters/FactoryCharacter';
+import { FactoryCharacter as FactryCharacter } from './Characters/FactoryCharacter';
 import { Character } from './Characters/Сharacter';
 import { Logger } from './utils/output/Logger';
 

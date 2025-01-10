@@ -25,7 +25,7 @@ export class Logger {
 
   public skillLog(attacker: Character, defender: Character): void {
     let message: string = '';
-    message += `(${attacker.className}) ${attacker.name} использует ${attacker.currentAbility?.name} на ${defender.name} (${defender.className}) `;
+    message += `(${attacker.className}) ${attacker.name} использует [${attacker.currentAbility?.name}] на ${defender.name} (${defender.className}) `;
     if (attacker.currentAbility?.damage) {
       message += `и наносит урон ${attacker.currentAbility.damage(attacker)}`;
     }
@@ -34,9 +34,7 @@ export class Logger {
   }
 
   public skipTurnLog(attacker: Character, defender: Character): void {
-    const message: string = `(${attacker.className}) ${attacker.name} пропускает ход из-за ${
-      defender.currentAbility!.name
-    }`;
+    const message: string = `(${attacker.className}) ${attacker.name} пропускает ход из-за [${defender.currentAbility!.name}]`;
     const logEntry: string = `${message}\n`;
     console.log(logEntry);
   }

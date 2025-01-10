@@ -1,5 +1,5 @@
-import { createGame } from './utils/input/createGame';
-createGame();
+import { startGame } from './utils/input/createGame';
+startGame();
 
 // import { FactoryAbility } from "./Ability/FabricAbility";
 // import { Archer } from "./Characters/Archer";
