@@ -1,15 +1,16 @@
 import { Hero } from '../lastlab/Hero';
 import { _Ability } from '../lastlab/ability';
+import { Logger } from '../lastlab/Logger';
 
 export class Wizard extends Hero {
-    private fasctinationActive: boolean;
+    public fasctinationActive: boolean;
 
     constructor(name: string, health: number, strength: number, mana: number) {
         super(name, 'Колдун', health, strength, mana);
         this.fasctinationActive = false;
     }
 
-    protected castFascination(enemy: Hero): string {
+    public castFascination(enemy: Hero): string {
         if (this.fasctinationActive = true) {
             return `Заворожение активно. Ждём следующего хода`;
         }
@@ -22,6 +23,7 @@ export class Wizard extends Hero {
         enemy.setFascination = true;
         this._mana -= 10;
 
+        Logger.logAbilityUse(this, enemy, "Заворожение", 0);
         return `[Колдун] ${this._name} использовал свою способность! [${enemy.getClassType}] ${enemy.getName} заворожён и пропускает следующий ход`;
 
     }
@@ -38,9 +40,11 @@ export class Wizard extends Hero {
         this._health -= damage;
         if (this._health <= 0) {
             this.isAlive = false;
+            // Logger.log(`[${this._classType}] ${this._name} погибает в бою`);
             return `[Колдун] ${this._name} погибает в бою`;
         }
-        
+
+        Logger.log(`[${this._classType}] ${this._name} получает урон в размере ${damage}. Его оставшееся здоровье: ${this._health}`);
         return `[Колдун] ${this._name} получает урон в размере ${damage}. Его оставшееся здоровье: ${this._health}`;
     }
 
@@ -52,12 +56,14 @@ export class Wizard extends Hero {
 
         const damage = this._strength;
         enemy.getDamage(damage);
+        // Logger.log(`[Колдун] ${this._name} использует способность против [${enemy.getClassType}] ${enemy.getName}`);
         return `[Колдун] ${this._name} наносит [${enemy.getClassType}] ${enemy.getName} ${damage} единицы урона `
     }
 
     //атака
     public attack(enemy: Hero): string {
-        enemy.getDamage(this._strength); 
-        return `${this._name} атакует ${enemy.getName}, нанося ${this._strength} урона.`;
+        enemy.getDamage(this._strength);
+        // Logger.logAttack(this, enemy, this._strength); 
+        return `[${this._classType}] ${this._name} атакует [${enemy.getClassType}] ${enemy.getName}, нанося ${this._strength} урона.`;
     }
 }
