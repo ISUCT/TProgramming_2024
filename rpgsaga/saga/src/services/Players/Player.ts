@@ -6,7 +6,7 @@ import { PlayerAttackImpl } from '../Attack';
 import { logger } from '../Logger';
 import { AbilityManager, AbilityManagerBehavior } from '../Managers/AbilityManager';
 
-interface PlayerParams {
+export interface PlayerParams {
   name: string;
   health: number;
   power: number;

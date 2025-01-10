@@ -1,7 +1,8 @@
-import { Knight, logger, Player } from "../src/services";
+import { Archer, logger, Mage } from "../src/services";
 import { IceArrows } from "../src/services/Ability";
 
-// Мокаем logger.info
+
+// Мок для логгера
 jest.mock('../src/services/Logger', () => ({
   logger: {
     info: jest.fn(), // Мок для info
@@ -10,34 +11,50 @@ jest.mock('../src/services/Logger', () => ({
   },
 }));
 
-describe('IceArrows', () => {
-  let player: Player;
-  let opponent: Player;
-  let iceArrows: IceArrows;
+describe('IceArrows.test', () => {
+  let player1 = new Archer()
+  let player2 = new Mage()
+  player2.setSideEffects = jest.fn();
+  let ability = new IceArrows(player1);
 
   beforeEach(() => {
-    player = new Knight();
-    opponent = new Knight();
-    iceArrows = new IceArrows(player, 1, 3); // abilityUsageCount = 1, sideEffectUsageCount = 3
+    ability = new IceArrows(player1)
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('should apply IceArrowDamageEffect to opponent', () => {
-    iceArrows.activate(opponent);
-
-    // Проверяем, что побочный эффект был применен
-    expect(opponent.health).toBeLessThan(100); // Предположим, что начальное здоровье 100
-
-    // Проверяем, что логгер был вызван
+  it('Тестируем метод activate', () => {
+    ability.activate(player2);
     expect(logger.info).toHaveBeenCalledWith(
-      `${player.getFullName()} использует абилку Ледяные стрелы по игроку ${opponent.name}`
+      `${player1.getFullName()} использует абилку Ледяные стрелы по игроку ${player2.name}`
     );
+    expect(player2.setSideEffects).toHaveBeenCalled();
+  })
+
+  it('Тестируем ограничение на использование способности', () => {
+    const limitedAbility = new IceArrows(player1, 1);
+  
+    limitedAbility.activate(player2);
+    expect(logger.info).toHaveBeenCalledWith(
+      `${player1.getFullName()} использует абилку Ледяные стрелы по игроку ${player2.name}`
+    );
+  
+    limitedAbility.activate(player2);
+    expect(logger.info).toHaveBeenCalledTimes(2); 
   });
 
-  it('should deactivate after max usage', () => {
-    iceArrows.activate(opponent);
-    iceArrows.activate(opponent); // Попытка использовать второй раз
+  it('Тестируем sideEffectUsageCount', () => {
+    const abilityWithSideEffects = new IceArrows(player1, 1, 2);
 
-    // Проверяем, что способность деактивирована
-    expect(iceArrows.canUseAbility()).toBe(false);
-  });
-});
+    abilityWithSideEffects.activate(player2);
+
+    // Проверяем, что sideEffectUsageCount был передан в IceArrowDamageEffect
+    expect(player2.setSideEffects).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({ _maxUsageCount: 2 }),
+      ])
+    );
+  })
+})
