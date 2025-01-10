@@ -1,4 +1,4 @@
-import { getRandomArrayElement, getRandomNumber } from '../../utils/randomization';
+import { getRandomNumber } from '../../utils/randomization';
 import { IWeapon } from '../../weapon/IWeapon';
 
 export class WeaponFabric {

@@ -144,11 +144,13 @@ export abstract class Player {
   }
 
   public takeDamage(damage: number, skill: ISkill | undefined = undefined): number {
-    let currentDamage: number = damage;
-    this._health -= currentDamage;
-    if (this._health <= 0) {
-      this._health = 0;
-      this._isAlive = false;
+    const currentDamage: number = damage;
+    if (skill === undefined) {
+      this._health -= currentDamage;
+      if (this._health <= 0) {
+        this._health = 0;
+        this._isAlive = false;
+      }
     }
     return currentDamage;
   }
