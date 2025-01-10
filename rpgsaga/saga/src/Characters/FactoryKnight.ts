@@ -1,5 +1,5 @@
 import { IAbility } from '../Ability/Ability';
-import { FactoryAbility } from '../Ability/FabricAbility';
+import { FactoryAbility } from '../Ability/FactoryAbility';
 import { getRandomArrayElement } from '../utils/randomization';
 
 import { Knight } from './Knight';

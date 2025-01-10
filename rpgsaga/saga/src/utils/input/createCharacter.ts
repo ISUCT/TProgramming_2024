@@ -1,5 +1,5 @@
 import { IAbility } from '../../Ability/Ability';
-import { FactoryAbility } from '../../Ability/FabricAbility';
+import { FactoryAbility } from '../../Ability/FactoryAbility';
 import { FactryPlayer } from '../../Characters/FactoryCharacter';
 import { Game } from '../../Game';
 import { Logger } from '../output/Logger';
