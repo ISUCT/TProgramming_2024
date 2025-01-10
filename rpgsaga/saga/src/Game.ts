@@ -65,7 +65,7 @@ export class Game {
           this.logger.skipTurnLog(attacker, defender);
         }
 
-        if (defender.health > 0) {
+        if (defender.health < 0) {
           this.logger.deathLog(defender);
           break;
         }
