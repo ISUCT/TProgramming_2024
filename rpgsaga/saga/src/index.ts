@@ -1,25 +1,14 @@
-// import { FabricAbility } from './Ability/FabricAbility';
-// import { Archer } from './Characters/Archer';
-// import { Mage } from './Character/Mage';
-
 import { createGame } from './utils/input/createGame';
+createGame();
 
-// // Попытка установления неверного заначения
-// try {
-//   warrior.health = -10;
-// } catch (err) {
-//   console.log(err);
-// }
+// import { FactoryAbility } from "./Ability/FabricAbility";
+// import { Archer } from "./Characters/Archer";
+// import { IAbility } from "./Ability/Ability";
 
-// const Fire = new FabricAbility()
-// Fire.createSkillFromTemplate('огненные стрелы')
+// const FireArch = new FactoryAbility();
+// const Fire: IAbility[] = [FireArch.createSkillFromTemplate('огненные стрелы')];
 
-// const Fire = new IAv
-
-// const archer = new Archer('Charly', 200, 200);
+// const archer = new Archer('Robin', 100, 100, Fire);
+// // const archer = new Archer('Robin', 100, 100, [FireArch.createSkillFromTemplate('огненные стрелы')]);
 
 // console.log(archer);
-
-// archer.toString();
-
-createGame();

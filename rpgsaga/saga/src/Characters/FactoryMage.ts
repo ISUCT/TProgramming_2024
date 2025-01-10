@@ -1,14 +1,14 @@
 import { IAbility } from '../Ability/Ability';
-import { FabricAbility } from '../Ability/FabricAbility';
+import { FactoryAbility } from '../Ability/FabricAbility';
 import { getRandomArrayElement } from '../utils/randomization';
 
-import { Knight } from './Knight';
+import { Mage } from './Mage';
 import { Character } from './Сharacter';
 
-export class KnightFabric {
-  private skillFabric = new FabricAbility();
+export class FactoryMage {
+  private factoryAbility = new FactoryAbility();
 
-  public createKnight(
+  public createMage(
     names: string[],
     playerHealth: number,
     playerStrength: number,
@@ -19,13 +19,13 @@ export class KnightFabric {
     const strength: number = playerStrength;
 
     if (playerSkills !== null) {
-      return new Knight(name, health, strength, playerSkills);
+      return new Mage(name, health, strength, playerSkills);
     } else {
       const skills: IAbility[] = [
-        this.skillFabric.createSkillFromTemplate('удар возмездия')!,
-        this.skillFabric.createSkillFromTemplate('ледяные стрелы')!,
+        this.factoryAbility.createSkillFromTemplate('заворожение')!,
+        this.factoryAbility.createSkillFromTemplate('ледяные стрелы')!,
       ];
-      return new Knight(name, health, strength, skills);
+      return new Mage(name, health, strength, skills);
     }
   }
 }

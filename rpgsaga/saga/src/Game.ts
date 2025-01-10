@@ -1,14 +1,14 @@
-import { PlayerFabric } from './Characters/FabricCharacter';
+import { FactryPlayer as FactryCharacter } from './Characters/FactoryCharacter';
 import { Character } from './Characters/Сharacter';
 import { Logger } from './utils/output/Logger';
 
 export class Game {
-  private characterFabric = new PlayerFabric();
+  private factoryCharacter = new FactryCharacter();
   private _characters: Character[] = [];
   private logger: Logger;
 
   constructor(characterCount: number, character: Character | undefined = undefined, logger: Logger) {
-    this._characters = this.characterFabric.createRandomPlayers(characterCount);
+    this._characters = this.factoryCharacter.createRandomPlayers(characterCount);
     this.logger = logger;
     if (character !== undefined) {
       this._characters.push(character);

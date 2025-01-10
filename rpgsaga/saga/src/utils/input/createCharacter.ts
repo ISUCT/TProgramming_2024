@@ -1,12 +1,12 @@
 import { IAbility } from '../../Ability/Ability';
-import { FabricAbility } from '../../Ability/FabricAbility';
-import { PlayerFabric } from '../../Characters/FabricCharacter';
+import { FactoryAbility } from '../../Ability/FabricAbility';
+import { FactryPlayer } from '../../Characters/FactoryCharacter';
 import { Game } from '../../Game';
 import { Logger } from '../output/Logger';
 import { readAnswer } from '../question/readAnswer';
 
 export async function createCharacter(numberOfPlayers: number): Promise<void> {
-  const skillFabric = new FabricAbility();
+  const skillFabric = new FactoryAbility();
   const logger = new Logger();
 
   let playerType: string;
@@ -14,7 +14,7 @@ export async function createCharacter(numberOfPlayers: number): Promise<void> {
   let playerStrength: number = 0;
 
   const playerSkills: IAbility[] = [];
-  const playerFabric = new PlayerFabric();
+  const playerFabric = new FactryPlayer();
   const types: string[] = ['Knight', 'Archer', 'Wizard'];
   const skillNames: string[] = ['огненные стрелы', 'ледяные стрелы', 'удар возмездия', 'заворожение'];
 

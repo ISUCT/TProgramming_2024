@@ -2,7 +2,7 @@ import { Character } from '../Characters/Сharacter';
 
 import { IAbility } from './Ability';
 
-export class FabricAbility {
+export class FactoryAbility {
   private templateAbility: IAbility[] = [
     {
       name: 'огненные стрелы',

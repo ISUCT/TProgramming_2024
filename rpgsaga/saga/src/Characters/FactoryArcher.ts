@@ -1,12 +1,12 @@
 import { IAbility } from '../Ability/Ability';
-import { FabricAbility } from '../Ability/FabricAbility';
+import { FactoryAbility } from '../Ability/FabricAbility';
 import { getRandomArrayElement } from '../utils/randomization';
 
 import { Archer } from './Archer';
 import { Character } from './Сharacter';
 
-export class ArcherFabric {
-  private skillFabric = new FabricAbility();
+export class FactoryArcher {
+  private Factoryskill = new FactoryAbility();
 
   public createArcher(
     names: string[],
@@ -21,10 +21,10 @@ export class ArcherFabric {
     if (playerSkills !== null) {
       return new Archer(name, health, strength, playerSkills);
     } else {
-      const firstSkill = this.skillFabric.createSkillFromTemplate('ледяные стрелы')!;
+      const firstSkill = this.Factoryskill.createSkillFromTemplate('ледяные стрелы')!;
       firstSkill.usageCount = 2;
       firstSkill.initialSkillUsage = 2;
-      const skills: IAbility[] = [firstSkill, this.skillFabric.createSkillFromTemplate('огненные стрелы')!];
+      const skills: IAbility[] = [firstSkill, this.Factoryskill.createSkillFromTemplate('огненные стрелы')!];
       return new Archer(name, health, strength, skills);
     }
   }
