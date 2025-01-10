@@ -38,9 +38,8 @@ export class Game {
       const player1 = players[i];
       const player2 = players[i + 1];
       const winner = await this.battle([player1, player2]);
+      winner.reset();
       nextRoundPlayers.push(winner);
-      player1.reset();
-      player2.reset();
     }
 
     return this.tournament(nextRoundPlayers);
@@ -73,8 +72,8 @@ export class Game {
 
       if (Math.random() < 0.4 && attacker.isAlive && defender.isAlive) {
         attacker.choseSkill();
-        if (attacker.currentSkill!.usageCount! > 0) {
-          attacker.useSkill(defender);
+        const isUsed: boolean = attacker.useSkill(defender);
+        if (isUsed) {
           this.logger.skillLog(attacker, defender);
         }
       }
@@ -90,6 +89,7 @@ export class Game {
   private delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
   private updatePlayersArray() {
     this._players = this._players.filter(player => player.isAlive);
   }

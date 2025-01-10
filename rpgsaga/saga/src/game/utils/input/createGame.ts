@@ -24,7 +24,7 @@ export function createGame(): void {
     const game = new Game(number, undefined, logger);
     switch (inputString.toLowerCase()) {
       case 'да':
-        createCharacter(number);
+        await createCharacter(number);
         break;
       case 'нет':
         await game.start();

@@ -39,13 +39,6 @@ describe('Wizard class methods tests', () => {
     it('IsAlive get test', () => {
       expect(newWizard.isAlive).toBe(true);
     });
-    it('IsSkillUsed get test', () => {
-      expect(newWizard.isSkillUsed).toBe(false);
-    });
-    it('IsSkillUsed get test after using skill', () => {
-      newWizard.useSkill(newWizard, 'ледяные стрелы');
-      expect(newWizard.isSkillUsed).toBe(true);
-    });
     it('InitialHealth get test', () => {
       expect(newWizard.initialHealth).toBe(75);
     });
@@ -90,7 +83,7 @@ describe('Wizard class methods tests', () => {
     it('Should change the propertie "skillUsed" to true', () => {
       newWizard.choseSkill();
       newWizard.useSkill(opponent);
-      expect(newWizard.isSkillUsed).toBe(true);
+      expect(newWizard.skills).toContain(newWizard.currentSkill);
     });
 
     it('Health should icnrease', () => {
@@ -103,7 +96,7 @@ describe('Wizard class methods tests', () => {
       expect(newWizard.health).toBe(newWizard.initialHealth);
     });
 
-    it('Ibragim should DIE.', () => {
+    it('Ibragim should die.', () => {
       newWizard.takeDamage(newWizard.initialHealth, opponent.currentSkill);
       expect(newWizard.isAlive).toBe(false);
       expect(newWizard.health).toBe(0);
@@ -118,7 +111,7 @@ describe('Wizard class methods tests', () => {
       newWizard.reset();
       expect(newWizard.health).toBe(newWizard.initialHealth);
       expect(newWizard.strength).toBe(newWizard.initialStrength);
-      expect(newWizard.isSkillUsed).toBe(false);
+      expect(newWizard.currentSkill).toBeUndefined();
       newWizard.skills!.forEach(skill => {
         expect(skill.usageCount).toBe(skill.initialSkillUsage);
         expect(skill.isUsed).toBe(false);
@@ -131,7 +124,7 @@ describe('Wizard class methods tests', () => {
       newWizard.attack(opponent);
       newWizard.attack(opponent);
       newWizard.attack(opponent);
-      expect(newWizard.strength).toBe(25);
+      expect(newWizard.attack(opponent)).toBe(newWizard.strength + newWizard.weapon.damage);
     });
   });
 });

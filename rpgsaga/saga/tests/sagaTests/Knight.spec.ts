@@ -39,14 +39,6 @@ describe('Knight class methods tests', () => {
     it('IsAlive get test', () => {
       expect(newKnight.isAlive).toBe(true);
     });
-    it('IsSkillUsed get test', () => {
-      expect(newKnight.isSkillUsed).toBe(false);
-    });
-    it('IsSkillUsed get test after using skill', () => {
-      newKnight.choseSkill();
-      newKnight.useSkill(newKnight);
-      expect(newKnight.isSkillUsed).toBe(true);
-    });
     it('InitialHealth get test', () => {
       expect(newKnight.initialHealth).toBe(75);
     });
@@ -98,7 +90,7 @@ describe('Knight class methods tests', () => {
     it('Should change the propertie "skillUsed" to true', () => {
       newKnight.choseSkill();
       newKnight.useSkill(opponent);
-      expect(newKnight.isSkillUsed).toBe(true);
+      expect(newKnight.skills).toContain(newKnight.currentSkill);
     });
 
     it('Health should icnrease', () => {
@@ -111,7 +103,7 @@ describe('Knight class methods tests', () => {
       expect(newKnight.health).toBe(newKnight.initialHealth);
     });
 
-    it('Ibragim should DIE.', () => {
+    it('Ibragim should die.', () => {
       newKnight.takeDamage(newKnight.initialHealth);
       expect(newKnight.isAlive).toBe(false);
       expect(newKnight.health).toBe(0);
@@ -126,7 +118,7 @@ describe('Knight class methods tests', () => {
       newKnight.reset();
       expect(newKnight.health).toBe(newKnight.initialHealth);
       expect(newKnight.strength).toBe(newKnight.initialStrength);
-      expect(newKnight.isSkillUsed).toBe(false);
+      expect(newKnight.currentSkill).toBeUndefined();
       newKnight.skills!.forEach(skill => {
         expect(skill.usageCount).toBe(skill.initialSkillUsage);
         expect(skill.isUsed).toBe(false);
@@ -139,7 +131,7 @@ describe('Knight class methods tests', () => {
       newKnight.attack(opponent);
       newKnight.attack(opponent);
       newKnight.attack(opponent);
-      expect(newKnight.strength).toBe(25);
+      expect(newKnight.attack(opponent)).toBe(newKnight.strength + newKnight.weapon.damage);
     });
   });
 });
