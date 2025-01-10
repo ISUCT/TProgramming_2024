@@ -1,5 +1,5 @@
 import { IAbility } from '../Ability/Ability';
-import { getRandomArrayElement } from '../utils/randomization';
+import { getRandomArrayElement} from '../utils/random/Random';
 
 export abstract class Character {
   protected _name: string;

@@ -3,7 +3,7 @@ import { FactoryAbility } from '../../Ability/FactoryAbility';
 import { FactryPlayer } from '../../Characters/FactoryCharacter';
 import { Game } from '../../Game';
 import { Logger } from '../output/Logger';
-import { readAnswer } from '../question/readAnswer';
+import { readAnswer } from './readAnswer';
 
 export async function createCharacter(numberOfPlayers: number): Promise<void> {
   const skillFabric = new FactoryAbility();

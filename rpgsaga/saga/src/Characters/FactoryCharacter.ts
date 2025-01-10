@@ -1,10 +1,9 @@
 import { IAbility } from '../Ability/Ability';
-import { getRandomArrayElement, getRandomNumber } from '../utils/randomization';
-
 import { Character } from './Сharacter';
 import { FactoryArcher } from './FactoryArcher';
 import { FactoryMage as FactoryMage } from './FactoryMage';
 import { FactoryKnight as FactoryKnight } from './FactoryKnight';
+import { getRandomNumber, getRandomArrayElement} from '../utils/random/Random';
 
 export class FactryPlayer {
   private factoryArcher = new FactoryArcher();

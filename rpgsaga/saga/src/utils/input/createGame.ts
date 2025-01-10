@@ -1,6 +1,6 @@
 import { Game } from '../../Game';
 import { Logger } from '../output/Logger';
-import { readAnswer } from '../question/readAnswer';
+import { readAnswer } from './readAnswer';
 
 import { createCharacter } from './createCharacter';
 

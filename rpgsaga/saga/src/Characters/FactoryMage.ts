@@ -1,6 +1,6 @@
 import { IAbility } from '../Ability/Ability';
 import { FactoryAbility } from '../Ability/FactoryAbility';
-import { getRandomArrayElement } from '../utils/randomization';
+import {getRandomArrayElement} from '../utils/random/Random';
 
 import { Mage } from './Mage';
 import { Character } from './Сharacter';

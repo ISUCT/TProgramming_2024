@@ -1,6 +1,6 @@
 import { IAbility } from '../Ability/Ability';
 import { FactoryAbility } from '../Ability/FactoryAbility';
-import { getRandomArrayElement } from '../utils/randomization';
+import { getRandomArrayElement} from '../utils/random/Random';
 
 import { Archer } from './Archer';
 import { Character } from './Сharacter';
