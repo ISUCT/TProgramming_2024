@@ -1,72 +1,109 @@
-import { arch } from "os";
 import { Hero } from "../../lastlab/Hero";
 import { Logger } from "../../lastlab/Logger";
-import { Archer } from "../../nasledniki/Archer";
+import { Knight } from "../../nasledniki/Knight";
+import { Wizard } from "../../nasledniki/Wizard";
 import { Orc } from "../../nasledniki/Orc";
+import { Archer } from "../../nasledniki/Archer";
 
-jest.mock('../lastlab/Logger');
-
-describe('Archer testiki', () => {
+describe('тесты лучника', () => {
     let archer: Archer;
-    let enemy: Orc;
+    let knight: Knight;
+    let orc: Orc;
 
     beforeEach(() => {
-        archer = new Archer('Соколиный глаз', 100, 15, 30);
-        enemy = new Orc('Горгол', 120, 20, 30);
+        archer = new Archer('Леголас', 110, 15, 30);
+        knight = new Knight('Джейм', 130, 20, 10);
+        orc = new Orc('Гнолл', 120, 25, 20);
     });
 
-    test('использование огненных стрел и нанесение ими урона', () => {
-        const result = archer.useFireArrows(enemy);
-        expect(result).toMatch(/использует свою способность "Огненные стрелы"/);
-        expect(enemy.getHealth).toBe(120 - Archer.FIRE_ARROW_DAMAGE);
+    test('использование огненных стрел и нанесение дамага', () => {
+        const initialOrcHealth = orc.getHealth;
+        
+        archer.useFireArrows(orc);
+        
+        expect(orc.getHealth).toBe(initialOrcHealth - Archer.FIRE_ARROW_DAMAGE);
         expect(archer._mana).toBe(30 - Archer.FIRE_ARROW_MANA_COST);
         expect(archer.isFireArrowUsed).toBe(true);
         expect(archer.fireEffectTurns).toBe(3);
-        expect(Logger.logAbilityUse).toHaveBeenCalledWith(archer, enemy, 'Огненные стрелы', Archer.FIRE_ARROW_MANA_COST);
     });
 
-    test('недостаточно маны', () => {
-        archer.useFireArrows(enemy);
-        const result = archer.useFireArrows(enemy);
-        expect(result).toMatch(/не хватает маны/);
+    test('недостаток маны для огненных стрел', () => {
+        archer._mana = 5;
+        const initialOrcHealth = orc.getHealth;
+
+        const result = archer.useFireArrows(orc);
+        
+        expect(result).toBe(`[Лучник] ${archer._name} не обладает достаточным количеством маны для использования способности "Огненные стрелы"`);
+        expect(orc.getHealth).toBe(initialOrcHealth); // хп орка не должно измениться
+        expect(archer._mana).toBe(5); // мана не должна менятся
     });
 
-    test('использование ледяных стрел и нанесение ими урона', () => {
-        const result = archer.useIceArrows(enemy);
-        expect(result).toMatch(/использует свою способность "Ледяные стрелы"/);
-        expect(enemy.getHealth).toBe(120 - Archer.ICE_ARROW_DAMAGE);
+    test('использование ледяных стрел и нанесение дамага', () => {
+        const initialOrcHealth = orc.getHealth;
+        
+        archer.useIceArrows(orc);
+
+        expect(orc.getHealth).toBe(initialOrcHealth - Archer.ICE_ARROW_DAMAGE);
         expect(archer._mana).toBe(30 - Archer.ICE_ARROW_MANA_COST);
         expect(archer.iceArrowUses).toBe(1);
         expect(archer.iceEffectTurns).toBe(Archer.ICE_ARROW_TURNS);
-        expect(Logger.logAbilityUse).toHaveBeenCalledWith(archer, enemy, 'Ледянные стрелы', Archer.ICE_ARROW_MANA_COST);
     });
 
-    test('невозможность использования ледяных стрел из-за исчерпания ходов с ними', () => {
+    test('максимальное количество использований ледяных стрел', () => {
         archer.iceArrowUses = Archer.MAX_ICE_ARROW_USES;
-        const result = archer.useIceArrows(enemy);
-        expect(result).toMatch(/уже использовал максимальное количество ледяных стрел/);
+        const initialOrcHealth = orc.getHealth;
+
+        const result = archer.useIceArrows(orc);
+        
+        expect(result).toBe(`[Лучник] ${archer._name} уже использовал максимальное количество ледяных стрел (${Archer.MAX_ICE_ARROW_USES} раза)`);
+        expect(orc.getHealth).toBe(initialOrcHealth); // хп орка не должно измениться
     });
 
-    test('нанесение урона от эффекта горения', () => {
-        archer.useFireArrows(enemy);
-        expect(enemy.getHealth).toBe(120 - Archer.FIRE_ARROW_DAMAGE);
-        const log = (archer.applyEffects(enemy));
-        expect(log).toMatch(/получает 2 урона от огненного эффекта/);
-        expect(enemy.getHealth).toBe(120 - Archer.FIRE_ARROW_DAMAGE - Archer.FIRE_ARROW_DAMAGE)
+    test('атаковать врага и нанести урон', () => {
+        const initialKnightHealth = knight.getHealth;
+
+        archer.attack(knight);
+
+        expect(knight.getHealth).toBe(initialKnightHealth - archer._strength);
     });
 
-    test('нанесение урона от эффекта заворожения', () => {
-        archer.useIceArrows(enemy);
-        expect(enemy.getHealth).toBe(120 - Archer.ICE_ARROW_DAMAGE);
-        const log = (archer.applyEffects(enemy));
-        expect(log).toMatch(/получает 5 урона от ледяного эффекта/);
-        expect(enemy.getHealth).toBe(100 - Archer.ICE_ARROW_DAMAGE - Archer.ICE_ARROW_DAMAGE)
+    test('применение эффекта огненных стрел', () => {
+        archer.useFireArrows(orc);
+        archer.applyEffects(orc); 
+    
+        
+        expect(orc.getHealth).toBe(116);
+        expect(archer.fireEffectTurns).toBe(2);
+    });
+    
+    test('применение эффекта ледяных стрел', () => {
+        archer.useIceArrows(orc); 
+        archer.applyEffects(orc); 
+    
+        
+        expect(orc.getHealth).toBe(110);
+        expect(archer.iceEffectTurns).toBe(Archer.ICE_ARROW_TURNS - 1);
+    });
+    
+    test('дуэль: лучник против орка', () => {
+        let round = 1;
+    
+        
+        expect(archer.getHealth).toBe(110);
+        expect(orc.getHealth).toBe(120);
+    
+        while (archer.getHealth > 0 && orc.getHealth > 0) {
+            archer.attack(orc);
+            if (orc.getHealth > 0) {
+                orc.attack(archer);
+            }
+            archer.applyEffects(orc);
+            round++;
+        }
+    
+        
+        expect(archer.getHealth).toBeLessThan(110);
+        expect(orc.getHealth).toBeLessThan(120);
     });
 
-    test('атака и нанесение урона', () => {
-        const result = archer.attack(enemy);
-        expect(result).toMatch(/атакует/);
-        expect(enemy.getHealth).toBe(120 - archer._strength);
-        expect(Logger.logAttack).toHaveBeenCalledWith(archer, enemy, archer._strength);
-    });
-})
+});

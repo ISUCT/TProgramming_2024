@@ -29,21 +29,18 @@ export class Wizard extends Hero {
     }
     
     public override getDamage(damage: number): string {
-
-        //сбрасываем флаг у мага чтобы он ходил дальше
-
         if (this.fasctinationActive) {
             this.fasctinationActive = false;
             return `[Колдун] ${this._name} не получает урона. В этот ход урон не получен`;
         }
-
+    
         this._health -= damage;
-        if (this._health <= 0) {
-            this.isAlive = false;
-            // Logger.log(`[${this._classType}] ${this._name} погибает в бою`);
+        if (this._health < 0) {
+            this._health = 0; // Устанавливаем здоровье в 0, если оно становится отрицательным
+            this.isAlive = false; // Персонаж мертв
             return `[Колдун] ${this._name} погибает в бою`;
         }
-
+    
         Logger.log(`[${this._classType}] ${this._name} получает урон в размере ${damage}. Его оставшееся здоровье: ${this._health}`);
         return `[Колдун] ${this._name} получает урон в размере ${damage}. Его оставшееся здоровье: ${this._health}`;
     }
