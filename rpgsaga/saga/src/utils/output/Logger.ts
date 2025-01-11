@@ -23,7 +23,7 @@ export class Logger {
     console.log(logEntry);
   }
 
-  public skillLog(attacker: Character, defender: Character): void {
+  public abilityLog(attacker: Character, defender: Character): void {
     let message: string = '';
     message += `(${attacker.className}) ${attacker.name} использует [${attacker.currentAbility?.name}] на ${defender.name} (${defender.className}) `;
     if (attacker.currentAbility?.damage) {

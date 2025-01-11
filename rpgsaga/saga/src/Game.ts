@@ -8,7 +8,7 @@ export class Game {
   private logger: Logger;
 
   constructor(characterCount: number, character: Character | undefined = undefined, logger: Logger) {
-    this._characters = this.factoryCharacter.createRandomPlayers(characterCount);
+    this._characters = this.factoryCharacter.createRandomCharacters(characterCount);
     this.logger = logger;
     if (character !== undefined) {
       this._characters.push(character);
@@ -75,7 +75,7 @@ export class Game {
         attacker.choseAbility();
         if (attacker.currentAbility!.usageCount! > 0) {
           attacker.useAbility(defender);
-          this.logger.skillLog(attacker, defender);
+          this.logger.abilityLog(attacker, defender);
         }
       }
 

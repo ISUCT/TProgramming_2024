@@ -5,9 +5,9 @@ export interface IAbility {
   damage?: (caster: Character) => number | undefined;
   isUsed: boolean;
   usageCount: number;
-  initialSkillUsage: number;
+  maxAbilityUsage: number;
   turns?: number;
-  initialTurns?: number;
+  maxTurns?: number;
   effect?: (caster: Character, opponent: Character) => void;
   buff?: {
     strength: number;

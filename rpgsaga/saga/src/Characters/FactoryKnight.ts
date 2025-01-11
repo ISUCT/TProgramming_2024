@@ -1,6 +1,6 @@
 import { IAbility } from '../Ability/Ability';
 import { FactoryAbility } from '../Ability/FactoryAbility';
-import { getRandomArrayElement} from '../utils/random/Random';
+import { getRandomArrayElement } from '../utils/random/Random';
 
 import { Knight } from './Knight';
 import { Character } from './Сharacter';
@@ -10,22 +10,22 @@ export class FactoryKnight {
 
   public createKnight(
     names: string[],
-    playerHealth: number,
-    playerStrength: number,
-    playerSkills: IAbility[] | null = null,
+    characterHealth: number,
+    characterStrength: number,
+    characterAbilitys: IAbility[] | null = null,
   ): Character {
     const name: string = getRandomArrayElement(names)!;
-    const health: number = playerHealth;
-    const strength: number = playerStrength;
+    const health: number = characterHealth;
+    const strength: number = characterStrength;
 
-    if (playerSkills !== null) {
-      return new Knight(name, health, strength, playerSkills);
+    if (characterAbilitys !== null) {
+      return new Knight(health, strength, name, characterAbilitys);
     } else {
-      const skills: IAbility[] = [
-        this.factoryAbility.createSkillFromTemplate('удар возмездия')!,
-        this.factoryAbility.createSkillFromTemplate('ледяные стрелы')!,
+      const abilities: IAbility[] = [
+        this.factoryAbility.createAbilityFromTemplate('удар возмездия')!,
+        this.factoryAbility.createAbilityFromTemplate('ледяные стрелы')!,
       ];
-      return new Knight(name, health, strength, skills);
+      return new Knight(health, strength, name, abilities);
     }
   }
 }

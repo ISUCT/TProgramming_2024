@@ -1,20 +1,21 @@
 import { IAbility } from '../Ability/Ability';
+import { getRandomNumber, getRandomArrayElement } from '../utils/random/Random';
+
 import { Character } from './Сharacter';
 import { FactoryArcher } from './FactoryArcher';
 import { FactoryMage as FactoryMage } from './FactoryMage';
 import { FactoryKnight as FactoryKnight } from './FactoryKnight';
-import { getRandomNumber, getRandomArrayElement} from '../utils/random/Random';
 
 export class FactoryCharacter {
   private factoryArcher = new FactoryArcher();
   private factoryknight = new FactoryKnight();
   private factoryMage = new FactoryMage();
 
-  public createPlayer(
-    playerClass: string,
-    playerHealth: number,
-    playerStrength: number,
-    playerSkills: IAbility[] | null = null,
+  public createCharacter(
+    characterClass: string,
+    characterHealth: number,
+    characterStrength: number,
+    characterAbilitys: IAbility[] | null = null,
   ): Character | undefined {
     const names: string[] = [
       'Эльдар',
@@ -39,30 +40,30 @@ export class FactoryCharacter {
       'Лилия',
       'Мира',
     ];
-    switch (playerClass) {
+    switch (characterClass) {
       case 'Knight':
-        return this.factoryknight.createKnight(names, playerHealth, playerStrength, playerSkills);
+        return this.factoryknight.createKnight(names, characterHealth, characterStrength, characterAbilitys);
       case 'Archer':
-        return this.factoryArcher.createArcher(names, playerHealth, playerStrength, playerSkills);
+        return this.factoryArcher.createArcher(names, characterHealth, characterStrength, characterAbilitys);
       case 'Mage':
-        return this.factoryMage.createMage(names, playerHealth, playerStrength, playerSkills);
+        return this.factoryMage.createMage(names, characterHealth, characterStrength, characterAbilitys);
     }
   }
 
-  createRandomPlayer(): Character {
-    const playerFabric = new FactoryCharacter();
+  createRandomCharacter(): Character {
+    const characterFactory = new FactoryCharacter();
     const classes: string[] = ['Knight', 'Archer', 'Mage'];
-    const playerClass: string = getRandomArrayElement(classes)!;
+    const characterClass: string = getRandomArrayElement(classes)!;
     const health: number = getRandomNumber(125, 150);
     const strength: number = getRandomNumber(10, 15);
-    return playerFabric.createPlayer(playerClass, health, strength)!;
+    return characterFactory.createCharacter(characterClass, health, strength)!;
   }
 
-  createRandomPlayers(playersCount: number): Character[] {
-    const players: Character[] = [];
-    for (let i = 0; i < playersCount; i++) {
-      players.push(this.createRandomPlayer());
+  createRandomCharacters(charactersCount: number): Character[] {
+    const characters: Character[] = [];
+    for (let i = 0; i < charactersCount; i++) {
+      characters.push(this.createRandomCharacter());
     }
-    return players;
+    return characters;
   }
 }

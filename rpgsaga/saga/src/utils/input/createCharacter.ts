@@ -3,29 +3,30 @@ import { FactoryAbility } from '../../Ability/FactoryAbility';
 import { FactoryCharacter } from '../../Characters/FactoryCharacter';
 import { Game } from '../../Game';
 import { Logger } from '../output/Logger';
+
 import { readAnswer } from './readAnswer';
 
-export async function createCharacter(numberOfPlayers: number): Promise<void> {
-  const skillFabric = new FactoryAbility();
+export async function createCharacter(numberOfCharacters: number): Promise<void> {
+  const abilityFactory = new FactoryAbility();
   const logger = new Logger();
 
-  let playerType: string;
-  let playerHealth: number;
-  let playerStrength: number;
+  let characterType: string;
+  let characterHealth: number;
+  let characterStrength: number;
 
-  const playerSkills: IAbility[] = [];
-  const playerFabric = new FactoryCharacter();
+  const characterAbilitys: IAbility[] = [];
+  const characterFactory = new FactoryCharacter();
   const types: string[] = ['Knight', 'Archer', 'Mage'];
-  const skillNames: string[] = ['огненные стрелы', 'ледяные стрелы', 'удар возмездия', 'заворожение'];
+  const abilityNames: string[] = ['огненные стрелы', 'ледяные стрелы', 'удар возмездия', 'заворожение'];
 
   async function askForClass(): Promise<void> {
-    const playerClass: string = await readAnswer('\nВыберите класс своего героя: 1. Knight, 2. Archer, 3. Mage: ');
-    const number: number = parseInt(playerClass);
+    const characterClass: string = await readAnswer('\nВыберите класс своего героя: 1. Knight, 2. Archer, 3. Mage: ');
+    const number: number = parseInt(characterClass);
     if (isNaN(number) || number < 1 || number > 3) {
       console.log('Некорректный ввод. Пожалуйста, попробуйте снова.');
       await askForClass();
     } else {
-      playerType = types[number - 1];
+      characterType = types[number - 1];
       await askForHealth();
     }
   }
@@ -37,7 +38,7 @@ export async function createCharacter(numberOfPlayers: number): Promise<void> {
       console.log('Некорректный ввод. Пожалуйста, попробуйте снова.');
       await askForHealth();
     } else {
-      playerHealth = number;
+      characterHealth = number;
       await askForStrength();
     }
   }
@@ -49,32 +50,32 @@ export async function createCharacter(numberOfPlayers: number): Promise<void> {
       console.log('Некорректный ввод. Пожалуйста, попробуйте снова.');
       await askForStrength();
     } else {
-      playerStrength = number;
-      await askForSkills();
+      characterStrength = number;
+      await askForAbilitys();
     }
   }
 
-  async function askForSkills(): Promise<void> {
-    const playerClass: string = await readAnswer(
+  async function askForAbilitys(): Promise<void> {
+    const characterClass: string = await readAnswer(
       '\nВыберите скиллы своего героя: 1. огненные стрелы, 2. ледяные стрелы, 3. удар возмездия, 4. заворожение. \nДля старта со стандартными навыками класса, напишите 5. Для выхода напишите 6 : ',
     );
-    const number: number = parseInt(playerClass);
+    const number: number = parseInt(characterClass);
     if (isNaN(number) || number < 1 || number > 6) {
       console.log('Некорректный ввод. Пожалуйста, попробуйте снова.');
-      await askForSkills();
+      await askForAbilitys();
     } else if (number < 5 && number > 0) {
-      if (playerSkills.length > 2) {
+      if (characterAbilitys.length > 2) {
         console.log('У вас уже максимальное количество скиллов');
       } else {
-        playerSkills.push(skillFabric.createSkillFromTemplate(skillNames[number - 1])!);
+        characterAbilitys.push(abilityFactory.createAbilityFromTemplate(abilityNames[number - 1])!);
       }
-      await askForSkills();
+      await askForAbilitys();
     } else if (number === 6) {
-      if (playerSkills.length > 0) {
+      if (characterAbilitys.length > 0) {
         return;
       } else {
         console.log('Выберите хотя бы один скилл');
-        await askForSkills();
+        await askForAbilitys();
       }
     } else {
       return;
@@ -83,17 +84,17 @@ export async function createCharacter(numberOfPlayers: number): Promise<void> {
 
   await askForClass();
 
-  if (playerSkills.length !== 0) {
+  if (characterAbilitys.length !== 0) {
     const game = new Game(
-      numberOfPlayers - 1,
-      playerFabric.createPlayer(playerType!, playerHealth, playerStrength, playerSkills),
+      numberOfCharacters - 1,
+      characterFactory.createCharacter(characterType!, characterHealth, characterStrength, characterAbilitys),
       logger,
     );
     await game.start();
   } else {
     const game = new Game(
-      numberOfPlayers - 1,
-      playerFabric.createPlayer(playerType!, playerHealth, playerStrength),
+      numberOfCharacters - 1,
+      characterFactory.createCharacter(characterType!, characterHealth, characterStrength),
       logger,
     );
     await game.start();

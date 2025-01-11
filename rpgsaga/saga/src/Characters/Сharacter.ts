@@ -1,5 +1,5 @@
 import { IAbility } from '../Ability/Ability';
-import { getRandomArrayElement} from '../utils/random/Random';
+import { getRandomArrayElement } from '../utils/random/Random';
 
 export abstract class Character {
   protected _name: string;
@@ -14,9 +14,9 @@ export abstract class Character {
   protected _countOfSkipingTurns: number = 0;
 
   constructor(
-    characterName: string,
     characterHealth: number,
     characterStrength: number,
+    characterName: string,
     characterAbylities: IAbility[],
   ) {
     this._maxHealth = characterHealth;
@@ -72,15 +72,15 @@ export abstract class Character {
     this._currentAbility = getRandomArrayElement(this.abilities);
   }
 
-  public useAbility(opponent: Character, skillName: string | null = null): void {
+  public useAbility(opponent: Character, abilityName: string | null = null): void {
     if (this.abilities.length === 0) {
       return;
     }
 
-    if (skillName !== null) {
-      this.abilities.forEach(skill => {
-        if (skill.name === skillName.toLowerCase()) {
-          this._currentAbility = skill;
+    if (abilityName !== null) {
+      this.abilities.forEach(ability => {
+        if (ability.name === abilityName.toLowerCase()) {
+          this._currentAbility = ability;
           return;
         }
       });
@@ -91,9 +91,9 @@ export abstract class Character {
         this._currentAbility.effect(this, opponent);
       }
       this._currentAbility.usageCount--;
-      this.abilities.forEach(skill => {
-        if (skill.name === this._currentAbility!.name) {
-          skill.usageCount--;
+      this.abilities.forEach(ability => {
+        if (ability.name === this._currentAbility!.name) {
+          ability.usageCount--;
         }
       });
       this._isAbilityUsed = true;
@@ -107,10 +107,10 @@ export abstract class Character {
     }
 
     if (this._currentAbility) {
-      const skillIndex = this._abilities.findIndex(skill => skill.name === this._currentAbility!.name);
+      const abilityIndex = this._abilities.findIndex(ability => ability.name === this._currentAbility!.name);
 
-      if (skillIndex !== -1) {
-        this._abilities[skillIndex].isUsed = true;
+      if (abilityIndex !== -1) {
+        this._abilities[abilityIndex].isUsed = true;
         this._updateAbilities();
       }
 
@@ -121,16 +121,16 @@ export abstract class Character {
   }
 
   protected _updateAbilities(): void {
-    for (const skill of this._abilities) {
-      if (skill.isUsed) {
-        if (skill.turns! <= 0) {
-          if (skill.buff) {
-            this._strength -= skill.buff.strength;
+    for (const ability of this._abilities) {
+      if (ability.isUsed) {
+        if (ability.turns! <= 0) {
+          if (ability.buff) {
+            this._strength -= ability.buff.strength;
           }
-          skill.isUsed = false;
-          skill.turns = skill.initialTurns;
+          ability.isUsed = false;
+          ability.turns = ability.maxTurns;
         }
-        skill.turns--;
+        ability.turns--;
       }
     }
   }
@@ -159,10 +159,10 @@ export abstract class Character {
     this._health = this.maxHealth;
     this._strength = this.maxStrength;
     this._isAbilityUsed = false;
-    this._abilities.forEach(skill => {
-      skill.usageCount = skill.initialSkillUsage;
-      skill.isUsed = false;
-      skill.turns = skill.initialTurns;
+    this._abilities.forEach(ability => {
+      ability.usageCount = ability.maxAbilityUsage;
+      ability.isUsed = false;
+      ability.turns = ability.maxTurns;
     });
   }
 
