@@ -6,7 +6,7 @@ import { Archer } from './Archer';
 import { Character } from './Сharacter';
 
 export class FactoryArcher {
-  private Factoryability = new FactoryAbility();
+  private factoryability = new FactoryAbility();
 
   public createArcher(
     names: string[],
@@ -21,10 +21,10 @@ export class FactoryArcher {
     if (characterAbilitys !== null) {
       return new Archer(health, strength, name, characterAbilitys);
     } else {
-      const firstAbility = this.Factoryability.createAbilityFromTemplate('ледяные стрелы')!;
+      const firstAbility = this.factoryability.createAbilityFromTemplate('ледяные стрелы')!;
       firstAbility.usageCount = 2;
       firstAbility.maxAbilityUsage = 2;
-      const abilities: IAbility[] = [firstAbility, this.Factoryability.createAbilityFromTemplate('огненные стрелы')!];
+      const abilities: IAbility[] = [firstAbility, this.factoryability.createAbilityFromTemplate('огненные стрелы')!];
       return new Archer(health, strength, name, abilities);
     }
   }

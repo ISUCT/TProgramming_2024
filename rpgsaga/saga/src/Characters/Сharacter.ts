@@ -2,16 +2,16 @@ import { IAbility } from '../Ability/Ability';
 import { getRandomArrayElement } from '../utils/random/Random';
 
 export abstract class Character {
-  protected _name: string;
-  protected _className: string;
-  protected _maxHealth: number;
-  protected _health: number;
-  protected _maxStrength: number;
-  protected _strength: number;
-  protected _abilities: IAbility[];
-  protected _currentAbility?: IAbility;
-  protected _isAbilityUsed: boolean = false;
-  protected _countOfSkipingTurns: number = 0;
+  protected nameProtected: string;
+  protected classNameProtected: string;
+  protected maxHealthProtected: number;
+  protected healthProtected: number;
+  protected maxStrengthProtected: number;
+  protected strengthProtected: number;
+  protected abilitiesProtected: IAbility[];
+  protected currentAbilityProtected?: IAbility;
+  protected isAbilityUsedProtected: boolean = false;
+  protected countOfSkipingTurnsProtected: number = 0;
 
   constructor(
     characterHealth: number,
@@ -19,57 +19,57 @@ export abstract class Character {
     characterName: string,
     characterAbylities: IAbility[],
   ) {
-    this._maxHealth = characterHealth;
-    this._health = this.maxHealth;
-    this._maxStrength = characterStrength;
-    this._strength = this.maxStrength;
-    this._name = characterName;
-    this._abilities = characterAbylities;
+    this.maxHealthProtected = characterHealth;
+    this.healthProtected = this.maxHealth;
+    this.maxStrengthProtected = characterStrength;
+    this.strengthProtected = this.maxStrength;
+    this.nameProtected = characterName;
+    this.abilitiesProtected = characterAbylities;
   }
 
   // Акцессоры
   public get name(): string {
-    return this._name;
+    return this.nameProtected;
   }
 
   public get className(): string | undefined {
     /* string | undefined */
-    return this._className;
+    return this.classNameProtected;
   }
 
   public get maxHealth(): number {
-    return this._maxHealth;
+    return this.maxHealthProtected;
   }
 
   public get health(): number {
-    return this._health;
+    return this.healthProtected;
   }
 
   public get maxStrength(): number {
-    return this._maxStrength;
+    return this.maxStrengthProtected;
   }
 
   public get strength(): number {
-    return this._strength;
+    return this.strengthProtected;
   }
 
   public get abilities(): IAbility[] {
-    return this._abilities;
+    return this.abilitiesProtected;
   }
 
   public get currentAbility(): IAbility | undefined {
-    return this._currentAbility;
+    return this.currentAbilityProtected;
   }
 
   public get isAbilityUsed(): boolean {
-    return this._isAbilityUsed;
+    return this.isAbilityUsedProtected;
   }
 
   public get countOfSkipingTurns(): number {
-    return this._countOfSkipingTurns;
+    return this.countOfSkipingTurnsProtected;
   }
   public choseAbility(): void {
-    this._currentAbility = getRandomArrayElement(this.abilities);
+    this.currentAbilityProtected = getRandomArrayElement(this.abilities);
   }
 
   public useAbility(opponent: Character, abilityName: string | null = null): void {
@@ -80,52 +80,54 @@ export abstract class Character {
     if (abilityName !== null) {
       this.abilities.forEach(ability => {
         if (ability.name === abilityName.toLowerCase()) {
-          this._currentAbility = ability;
+          this.currentAbilityProtected = ability;
           return;
         }
       });
     }
 
-    if (this._currentAbility !== undefined && this._currentAbility.usageCount > 0) {
-      if (this._currentAbility.effect) {
-        this._currentAbility.effect(this, opponent);
+    if (this.currentAbilityProtected !== undefined && this.currentAbilityProtected.usageCount > 0) {
+      if (this.currentAbilityProtected.effect) {
+        this.currentAbilityProtected.effect(this, opponent);
       }
-      this._currentAbility.usageCount--;
+      this.currentAbilityProtected.usageCount--;
       this.abilities.forEach(ability => {
-        if (ability.name === this._currentAbility!.name) {
+        if (ability.name === this.currentAbilityProtected!.name) {
           ability.usageCount--;
         }
       });
-      this._isAbilityUsed = true;
+      this.isAbilityUsedProtected = true;
     }
   }
 
   public attack(opponent: Character): number {
     if (this.countOfSkipingTurns > 0) {
-      this._countOfSkipingTurns--;
+      this.countOfSkipingTurnsProtected--;
       return;
     }
 
-    if (this._currentAbility) {
-      const abilityIndex = this._abilities.findIndex(ability => ability.name === this._currentAbility!.name);
+    if (this.currentAbilityProtected) {
+      const abilityIndex = this.abilitiesProtected.findIndex(
+        ability => ability.name === this.currentAbilityProtected!.name,
+      );
 
       if (abilityIndex !== -1) {
-        this._abilities[abilityIndex].isUsed = true;
-        this._updateAbilities();
+        this.abilitiesProtected[abilityIndex].isUsed = true;
+        this.updateAbilitiesProtected();
       }
 
-      return opponent.damage(this._strength, this._currentAbility);
+      return opponent.damage(this.strengthProtected, this.currentAbilityProtected);
     } else {
-      return opponent.damage(this._strength);
+      return opponent.damage(this.strengthProtected);
     }
   }
 
-  protected _updateAbilities(): void {
-    for (const ability of this._abilities) {
+  protected updateAbilitiesProtected(): void {
+    for (const ability of this.abilitiesProtected) {
       if (ability.isUsed) {
         if (ability.turns! <= 0) {
           if (ability.buff) {
-            this._strength -= ability.buff.strength;
+            this.strengthProtected -= ability.buff.strength;
           }
           ability.isUsed = false;
           ability.turns = ability.maxTurns;
@@ -140,26 +142,26 @@ export abstract class Character {
     if (ability !== undefined && ability.buff) {
       currentDamage += ability.buff.strength;
     }
-    this._health -= currentDamage;
-    if (this._health <= 0) {
-      this._health = 0;
+    this.healthProtected -= currentDamage;
+    if (this.healthProtected <= 0) {
+      this.healthProtected = 0;
     }
     return currentDamage;
   }
 
   public heal(amount: number) {
-    if (this._health + amount > this.maxHealth) {
-      this._health = this.maxHealth;
+    if (this.healthProtected + amount > this.maxHealth) {
+      this.healthProtected = this.maxHealth;
     } else {
-      this._health = this._health + amount;
+      this.healthProtected = this.healthProtected + amount;
     }
   }
 
   public reset(): void {
-    this._health = this.maxHealth;
-    this._strength = this.maxStrength;
-    this._isAbilityUsed = false;
-    this._abilities.forEach(ability => {
+    this.healthProtected = this.maxHealth;
+    this.strengthProtected = this.maxStrength;
+    this.isAbilityUsedProtected = false;
+    this.abilitiesProtected.forEach(ability => {
       ability.usageCount = ability.maxAbilityUsage;
       ability.isUsed = false;
       ability.turns = ability.maxTurns;
@@ -167,7 +169,7 @@ export abstract class Character {
   }
 
   public skipTurns(value: number): void {
-    this._countOfSkipingTurns = value;
+    this.countOfSkipingTurnsProtected = value;
   }
 
   // Получение всех данных о классе

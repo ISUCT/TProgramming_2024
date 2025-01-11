@@ -42,7 +42,7 @@ class MockMageFactory extends FactoryMage {
 class MockCharacter extends Character {
   constructor(className: string, health: number, strength: number, abilities: IAbility[] | null = null) {
     super(health, strength, '', abilities!);
-    this._className = className;
+    this.classNameProtected = className;
   }
 }
 

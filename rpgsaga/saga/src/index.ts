@@ -3,13 +3,16 @@ import { startGame } from './utils/input/createGame';
 startGame();
 
 // import { FactoryAbility } from "./Ability/FactoryAbility";
-// import { Archer } from "./Characters/Archer";
 // import { IAbility } from "./Ability/Ability";
+// import { Knight } from "./Characters/Knight";
 
 // const FireArch = new FactoryAbility();
-// const Fire: IAbility[] = [FireArch.createAbilityFromTemplate('огненные стрелы')];
+// const Fire: IAbility[] = [FireArch.createAbilityFromTemplate('удар возмездия')];
 
-// const archer = new Archer('Robin', 100, 100, Fire);
-// // const archer = new Archer('Robin', 100, 100, [FireArch.createAbilityFromTemplate('огненные стрелы')]);
+// const test = new Knight(100, 10, 'Robin', Fire);
+// const test1 = new Knight(100, 10, 'Robin', Fire);
 
-// console.log(archer);
+// test.useAbility(test1, 'удар возмездия')
+// // archer.attack(archer1);
+// console.log(test);
+// console.log(test1);

@@ -1,15 +1,15 @@
 import { Character } from '../../Characters/Сharacter';
 
 export class Logger {
-  static _instance: Logger;
+  static instanceProtected: Logger;
 
   constructor() {}
 
   public get instance(): Logger {
-    if (!Logger._instance) {
-      Logger._instance = new Logger();
+    if (!Logger.instanceProtected) {
+      Logger.instanceProtected = new Logger();
     }
-    return Logger._instance;
+    return Logger.instanceProtected;
   }
 
   public messageLog(message: string): void {
