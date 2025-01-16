@@ -1,4 +1,4 @@
-import { formulaMain,taskA,taskB } from "../src/formulaLab";   
+import { formulaMain,taskA,taskB } from "../../src/Labs/formulaLab";   
 
 describe('formulamain function', () => {
   it('should return the correct result for x <= 5', () => {

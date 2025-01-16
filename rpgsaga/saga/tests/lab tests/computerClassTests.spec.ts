@@ -1,4 +1,5 @@
-import { Computer } from "../src/computerClass";
+import { Computer } from "../../src/Labs/computerClass";
+
 describe('Constructor tests', () => {
     let computer: Computer;
     beforeEach(() => {

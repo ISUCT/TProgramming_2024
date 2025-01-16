@@ -1,4 +1,4 @@
-import { Phone } from "../src/phoneClass";
+import { Phone } from "../../src/Labs/phoneClass";
 describe('Phone constructor tests', () => {
     let phone: Phone;
     beforeEach(() => {
