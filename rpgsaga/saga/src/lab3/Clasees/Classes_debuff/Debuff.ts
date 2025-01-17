@@ -1,6 +1,6 @@
 import { Hit } from "../Class_hit";
 
-export abstract class Debuff{
+export class Debuff{
     private _name_debuff: String;
     private _total_duration: number;
     private _duration: number;

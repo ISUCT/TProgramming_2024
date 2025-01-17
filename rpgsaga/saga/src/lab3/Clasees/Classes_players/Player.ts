@@ -5,7 +5,7 @@ import { activation_ability } from "../Classes_abilities/using_abilities";
 import { Debuff } from "../Classes_debuff/Debuff";
 import { damage_types } from "../../Enums/enum_damage_types";
 
-export abstract class Player{
+export class Player{
     private _name: String;
     private _role: String;
     private _weapon: Weapon; 

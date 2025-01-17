@@ -1,4 +1,4 @@
-import { Volleyball_Player } from "../src/Lab2/Volleyball_player_Class";
+import { Volleyball_Player } from "../../src/Lab2/Volleyball_player_Class";
 
 describe("Volleyball_Player constructor  tests", () => {
     let person: Volleyball_Player;

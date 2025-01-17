@@ -1,4 +1,4 @@
-import { formula } from "../src/Lab1/formuls";
+import { formula } from "../../src/Lab1/formuls";
 
 describe('Test of func formul', () => {
     it('Func "formul" return undefind if x = 0', () => {
