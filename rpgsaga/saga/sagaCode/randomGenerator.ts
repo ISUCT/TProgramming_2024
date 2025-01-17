@@ -1,6 +1,6 @@
-import { knight } from "./heroClasses/knight";
-import { archer } from "./heroClasses/archer";
-import { mage } from "./heroClasses/mage";
+import { Knight } from "./heroClasses/knight";
+import { Archer } from "./heroClasses/archer";
+import { Mage } from "./heroClasses/mage";
 import { Weapon } from "./weapon";
 import { Player } from "./playerClass/player";
 
@@ -10,26 +10,26 @@ export function randomNumber(min: number, max: number): number {
   }
 
   export class characterGenerator {
-    private knightNames: string[] = ["ChaosKnight", "DragonKnight", "Fighter", "GorillaWarrior", "JohnWick"];
-    private archerNames: string[] = ["Legolas", "Robin", "SokolEye", "ArrowMan", "Makus"];
-    private mageNames: string[] = ["DarkMage", "Gandalf", "Dumbledore", "SaintMage", "Wizard"];
+    private knightNames: string[] = ["ChaosKnight", "DragonKnight", "Fighter", "GorillaWarrior", "JohnWick", "Johanson", "MonkeySoldier", "CaptainBanana"];
+    private archerNames: string[] = ["Legolas", "Robin", "SokolEye", "ArrowMan", "Makus", "Strelok", "Shooter", "GhettoGunner"];
+    private mageNames: string[] = ["DarkMage", "Gandalf", "Dumbledore", "SaintMage", "Wizard","Coldun", "Magician","MagicEnjoyer"];
 
     private knightWeapons: Weapon[] = [
-        new Weapon("Sword", 30),
-        new Weapon("Axe", 35),
-        new Weapon("Rapier", 27)
+        new Weapon("Меч", 30),
+        new Weapon("Топор", 35),
+        new Weapon("Рапира", 27)
     ];
 
     private archerWeapons: Weapon[] = [
-        new Weapon("Longbow", 25),
-        new Weapon("Crossbow", 28),
-        new Weapon("ClassicBow", 20)
+        new Weapon("Длинный лук", 25),
+        new Weapon("Арбалет", 28),
+        new Weapon("Лук", 20)
     ];
 
     private mageWeapons: Weapon[] = [
-        new Weapon("Staff", 12),
-        new Weapon("Wand", 17),
-        new Weapon("MagickStick", 22)
+        new Weapon("Посох", 12),
+        new Weapon("Жезл", 17),
+        new Weapon("Волшнебная палочка", 22)
     ];
 
     createRandomPlayer(): Player {
@@ -40,24 +40,24 @@ export function randomNumber(min: number, max: number): number {
                 const weapon = this.knightWeapons[randomNumber(0, this.knightWeapons.length - 1)];
                 const health = randomNumber(100, 200); 
                 const statusEffect = 2; 
-                return new knight(name, health, weapon, statusEffect);
+                return new Knight(name, health, weapon, statusEffect);
             }
             case 2: {
                 const name = this.archerNames[randomNumber(0, this.archerNames.length - 1)];
                 const weapon = this.archerWeapons[randomNumber(0, this.archerWeapons.length - 1)];
                 const health = randomNumber(80, 150); 
                 const statusEffect = 1; 
-                return new archer(name, health, weapon, statusEffect);
+                return new Archer(name, health, weapon, statusEffect);
             }
             case 3: {
                 const name = this.mageNames[randomNumber(0, this.mageNames.length - 1)];
                 const weapon = this.mageWeapons[randomNumber(0, this.mageWeapons.length - 1)];
                 const health = randomNumber(60, 120); 
                 const statusEffect = 1; 
-                return new mage(name, health, weapon, statusEffect);
+                return new Mage(name, health, weapon, statusEffect);
             }
             default:
-                throw new Error("Invalid player type generated.");
+                throw new Error("Неверный тип персонажа сгенерирован");
         }
     }
 

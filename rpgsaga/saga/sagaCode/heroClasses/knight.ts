@@ -1,9 +1,8 @@
 import { Player } from "../playerClass/player";
 import { Weapon } from "../weapon";
-import { Effect } from "../effectOfDamage/effect";
 import { randomNumber } from "../randomGenerator";
 
-export class knight extends Player {
+export class Knight extends Player {
     constructor(name:string, health:number, weapon:Weapon, statusEffect: number) {
         super(name, health, weapon, statusEffect);
     }

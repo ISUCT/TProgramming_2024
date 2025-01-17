@@ -4,6 +4,7 @@ import { Effect } from "../effectOfDamage/effect";
 export abstract class Player {
     private _name: string;
     private _health: number;
+    private _maxHealth: number;
     private _weapon: Weapon;
     private _statusEffect: number;
     private _activeEffect: Effect;
@@ -11,12 +12,17 @@ export abstract class Player {
     constructor(name:string, health: number,weapon: Weapon, statusEffect: number) {
         this._name = name;
         this._health = health;
+        this._maxHealth = health;
         this._weapon = weapon;
         this._statusEffect = statusEffect;
     }
-    protected set health(value) {
+    public set health(value: number) {
         this._health = value;
       }
+
+      public get maxHealth(): number {
+        return this._maxHealth;
+    }
 
     public get activeEffect(): Effect {
         return this._activeEffect;
@@ -31,11 +37,7 @@ export abstract class Player {
     }
 
     public set statusOfEffect(effectStatus: number) {
-        if (this._statusEffect == 0){
-            console.log("Эффект уже был наложен");
-        } else {
-            this._statusEffect = effectStatus
-        }
+        this._statusEffect = effectStatus
     }
 
     public statusEffectDown(): void {

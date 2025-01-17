@@ -2,7 +2,7 @@ import { Effect } from "../effectOfDamage/effect";
 import { Player } from "../playerClass/player";
 import { Weapon } from "../weapon";
 
-export class mage extends Player {
+export class Mage extends Player {
     constructor(name:string,health:number,weapon:Weapon, statusEffect: number) {
         super(name, health, weapon, statusEffect);
     }
