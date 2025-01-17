@@ -41,10 +41,12 @@ export class Player {
   updateDebuffs(): void {
     this.canAttack = true;
     this.debuffs = this.debuffs.filter(debuff => {
-      debuff.duration--;
+      debuff.effect(this);
+      --debuff.duration;
       if (debuff.duration <= 0) {
         return false;
       }
+
       if (debuff.affectsAttack) {
         this.canAttack = false;
       }
@@ -82,15 +84,9 @@ export class Player {
     if (ability.usageLimit <= 0) {
       return `${this.name} can no longer use the ability ${ability.name}!`;
     }
-
     const debuff = ability.effect(target);
     target.applyDebuff(debuff);
     ability.usageLimit--;
     return `${this.name} use the ability ${ability.name} on ${target.name}!`;
-  }
-
-  getInfo(): string {
-    const abilitiesList = this.abilities.map(ability => ability.name).join(', ') || 'Нет способностей';
-    return `${this.name} |${this.playerClass}| have ${this.health} health, ${this.currentMana} mana, can attack: ${this.canAttack ? 'Yes' : 'No'}. Abilities: ${abilitiesList}.`;
   }
 }

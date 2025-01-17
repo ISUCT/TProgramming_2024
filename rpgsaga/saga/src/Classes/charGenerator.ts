@@ -71,6 +71,5 @@ export class CharacterGenerator {
 export const Weapons = {
   sword: new Weapon('Excalibur', 25, DamageType.Physical),
   bankai: new Weapon('Bankai', 30, DamageType.Magic),
-  shikai: new Weapon('Shikai', 15, DamageType.Magic),
   bow: new Weapon('Bow', 20, DamageType.Physical),
 };

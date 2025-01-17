@@ -48,7 +48,6 @@ export class Tournament {
         return `--------${player1.name} |${player1.playerClass}| wins!--------`;
       }
 
-      // Действие второго игрока
       if (action2 === 'attack') {
         message = player2.attack(player1);
       } else {

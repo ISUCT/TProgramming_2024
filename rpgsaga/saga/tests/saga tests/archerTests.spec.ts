@@ -17,13 +17,11 @@ describe('Archer Class', () => {
 
     it('should extend Player class', () => {
         const archer = new Archer('lefogids');
-
         expect(archer).toBeInstanceOf(Player);
     });
 
     it('should correctly set weapon to bow', () => {
         const archer = new Archer('lefogids');
-
         expect(archer.weapon).toBe(Weapons.bow);
     });
 });

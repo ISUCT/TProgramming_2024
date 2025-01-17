@@ -27,7 +27,7 @@ export const abilities: Ability[] = [
     'The One Who Saw It All',
     () => ({
       name: 'The One Who Saw It All',
-      duration: 2,
+      duration: 1,
       effect: player => {
         player.canAttack = false;
       },
@@ -41,7 +41,19 @@ export const abilities: Ability[] = [
       name: 'Golden Rule',
       duration: 1,
       effect: player => {
-        player.health -= 15;
+        player.health -= 10;
+      },
+      affectsAttack: false,
+    }),
+    1,
+  ),
+  new Ability(
+    'Final Flash',
+    () => ({
+      name: 'Final Flash',
+      duration: 3,
+      effect: player => {
+        player.health -= 4;
       },
       affectsAttack: false,
     }),
