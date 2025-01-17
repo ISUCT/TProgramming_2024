@@ -2,6 +2,7 @@ import { Sword } from '../weapons/swordClass';
 import { getRandom } from '../necessary/getRandomNumber';
 
 import { Warrior } from './warriorClass';
+import { Player } from './playerClass';
 
 let warriorNames: string[] = [
   'Сэр (re)emzy',
@@ -46,24 +47,28 @@ let swordNames: string[] = [
   'Тицона',
   'Куртане',
   'Аскалон',
-];
-
+]; 
+function getSword(): Sword {
+    const swordic = new Sword(
+        swordNames[getRandom(0, swordNames.length - 1)],
+        'Рубящее',
+        getRandom(10, 20),
+        getRandom(0, 45),
+      )
+    return swordic
+}
 export function getWarriors(neededWarriors: number): Warrior[] {
   const allWarriors = [];
   while (neededWarriors != 0) {
-    const swordic = new Sword(
-      swordNames[getRandom(0, swordNames.length - 1)],
-      'Рубящее',
-      getRandom(10, 20),
-      getRandom(0, 45),
-    );
     const priziwnik = new Warrior(
       true,
       false,
+      [],
+      [0,0],
       'Воин',
       warriorNames[getRandom(0, warriorNames.length - 1)],
       getRandom(320, 380),
-      swordic,
+      getSword(),
       getRandom(1, 3), // сила
       getRandom(1, 3), // выносливость
       getRandom(1, 3), // интеллект
@@ -74,4 +79,9 @@ export function getWarriors(neededWarriors: number): Warrior[] {
     neededWarriors--;
   }
   return allWarriors;
+}
+
+export function getCustomWarrior(name: string, healthPoints: number, strength: number, agility: number, intelligence: number): Player{
+    const priziwnik = new Warrior(true, false, [], [0, 0], 'Воин', name, healthPoints, getSword(), strength, agility, intelligence)
+    return priziwnik
 }

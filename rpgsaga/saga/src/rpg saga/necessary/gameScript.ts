@@ -14,41 +14,37 @@ export class Game {
     this._allArchers = allArchers;
     this._allWizards = AllWizards;
   }
-  public oneRound(Char1: Player, Char2: Player, numberOfRound: number, kd1: number, kd2: number): number[] {
-    let dmg1 = 0;
-    let doSilence1 = '';
-    let doSilence2 = '';
-    let dmg2 = 0;
+  public oneRound(Char1: Player, Char2: Player, numberOfRound: number): void {
     console.log(`Начался раунд ${numberOfRound}`);
     const whoIsFirst = getRandom(1, 2);
+
     if (whoIsFirst == 1) {
-      [kd1, dmg1, doSilence1] = Char1.attack(kd1);
-      console.log(Char2.takeDamage(dmg1, doSilence1));
+      Char1.getDamagedByPassive();
+      Char2.getDamagedByPassive();
+      Char1.attack(Char2);
       Char2.checkLiveStatus();
-      [kd2, dmg2, doSilence2] = Char2.attack(kd2);
-      console.log(Char1.takeDamage(dmg2, doSilence2));
+      Char2.attack(Char1);
       Char1.checkLiveStatus();
     } else {
-      [kd2, dmg2, doSilence2] = Char2.attack(kd2);
-      console.log(Char1.takeDamage(dmg2, doSilence2));
+      Char1.getDamagedByPassive();
+      Char2.getDamagedByPassive();
+      Char2.attack(Char1);
       Char1.checkLiveStatus();
-      [kd1, dmg1, doSilence1] = Char1.attack(kd1);
-      console.log(Char2.takeDamage(dmg1, doSilence1));
+      Char1.attack(Char2);
       Char2.checkLiveStatus();
     }
     console.log(Char1.playerRoundResults());
     console.log(Char2.playerRoundResults());
     console.log(`Закончился раунд ${numberOfRound}`);
-    return [kd1, kd2];
   }
   public allRoundsOfFight(Char1: Player, Char2: Player): [Player, Player] {
     const oldHp1 = Char1._healthPoints;
     const oldHp2 = Char1._healthPoints;
+    Char1._kdlist = [0,0];
+    Char2._kdlist = [0,0];
     let numberOfRounds = 1;
-    let kd1 = 0;
-    let kd2 = 0;
     while (Char1._alive == true && Char2._alive == true) {
-      [kd1, kd2] = this.oneRound(Char1, Char2, numberOfRounds, kd1, kd2);
+      this.oneRound(Char1, Char2, numberOfRounds);
       numberOfRounds++;
     }
     if (Char1._alive) {
@@ -94,10 +90,10 @@ export class Game {
         nextTour = [];
       }
     }
+    // console.log();
+    // console.log('финальный бой!');
     console.log();
-    console.log('финальный бой!');
-    console.log();
-    [winner, loser] = this.allRoundsOfFight(currentTour[0], nextTour[0]);
+    // [winner, loser] = this.allRoundsOfFight(currentTour[0], nextTour[0]);
     console.log(`🏆Победителем битвы стал ${winner._rpgClass}, известный как ${winner._name}.🏆`);
   }
 }

@@ -2,6 +2,7 @@ import { Bow } from '../weapons/bowClass';
 import { getRandom } from '../necessary/getRandomNumber';
 
 import { Archer } from './archerClass';
+import { Player } from './playerClass';
 
 let archerNames: string[] = [
   'Робин Гуд',
@@ -60,6 +61,8 @@ export function getArchers(neededArchers: number): Archer[] {
     const priziwnik = new Archer(
       true,
       false,
+      [],
+      [0,0],
       'Лучник',
       archerNames[getRandom(0, archerNames.length - 1)],
       getRandom(280, 320),
@@ -74,4 +77,14 @@ export function getArchers(neededArchers: number): Archer[] {
     neededArchers--;
   }
   return allWarriors;
+}
+export function getCustomWizard(name: string, healthPoints: number, strength: number, agility: number, intelligence: number): Player{
+    const swordic = new Bow(
+        bowNames[getRandom(0, bowNames.length - 1)],
+        'Магическое',
+        getRandom(15, 30),
+        getRandom(0, 45),
+      );
+    const priziwnik = new Archer(true, false, [], [0,0], 'Лучник', name, healthPoints, swordic, strength, agility, intelligence)
+    return priziwnik
 }

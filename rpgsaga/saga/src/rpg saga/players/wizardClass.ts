@@ -4,10 +4,12 @@ import { solveCritChance } from '../necessary/critChance';
 import { Player } from './playerClass';
 
 export class Wizard extends Player {
-  private _weaponOfPerson: Wand;
+  _weaponOfPerson: Wand;
   constructor(
     alive: boolean,
     silence: boolean,
+    debufflist: any[],
+    kdlist: any[],
     rpgClass: string,
     name: string,
     healthPoints: number,
@@ -16,42 +18,36 @@ export class Wizard extends Player {
     agility: number,
     intelligence: number,
   ) {
-    super(alive, silence, rpgClass, name, healthPoints, strength, agility, intelligence);
-    this._weaponOfPerson = weaponOfPerson;
+    super(alive, silence, debufflist, kdlist, rpgClass, name, healthPoints,weaponOfPerson, strength, agility, intelligence);
   }
-  public checkLiveStatus(): void {
-    if (this._healthPoints > 0) {
-    } else {
-      this._alive = false;
-    }
-  }
-  public silence(): string {
-    // дает безмолвие противнику(противник пропускает ход). сам маг не наносит урон
-    console.log(`${this._name} обезмолвил врага.`);
-    return 'silence';
-  }
-  public defaultAttack(): number {
+
+  private defaultAttack(opp: Player): void {
     const damageGiven =
       this._intelligence * this._weaponOfPerson._valueOfDamage * solveCritChance(this._weaponOfPerson._chanceOfCrit);
     console.log(`${this._name} выстрелил сгустком магии из ${this._weaponOfPerson._name}`);
-    return damageGiven;
+    opp.takeDamage(damageGiven)
   }
-  public attack(kd: number): [number, number, string] {
-    let newkd: number;
+  private hahaTrolled(opp: Player): void {
+    console.log(`${this._name} обезмолвил противника`);
+    opp._silence = true;
+  }
+  public attack(opp: Player): void {
     if (this._alive && !this._silence) {
-      if (kd > 0) {
-        newkd = kd--;
-        return [newkd, this.defaultAttack(), ''];
+      if (this._kdlist[0] <= 0) { // атака маг стрелами
+        this.reloadCooldown()
+        this._kdlist[0] = 2;
+        this.magicArrows(opp);
+      } else  if (this._kdlist[1]<= 0){ // nalozhit' silence
+        this.reloadCooldown()
+        this._kdlist[1] = 3;
+        this.hahaTrolled(opp)
       } else {
-        newkd = 3;
-        return [newkd, null, this.silence()];
+        this.reloadCooldown()
+        this.defaultAttack(opp)
       }
     } else if (this._alive && this._silence) {
-      newkd--;
-      this._silence = !this._silence;
-      return [newkd, null, ''];
-    } else {
-      return [null, null, ''];
-    }
+        this.reloadCooldown()
+        this._silence = !this._silence;
+    } 
   }
 }

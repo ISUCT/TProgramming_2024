@@ -2,6 +2,7 @@ import { Wand } from '../weapons/wandClass';
 import { getRandom } from '../necessary/getRandomNumber';
 
 import { Wizard } from './wizardClass';
+import { Player } from './playerClass';
 
 let wizardNames: string[] = [
   'Аларик',
@@ -59,6 +60,8 @@ export function getWizards(neededWizards: number): Wizard[] {
     const priziwnik = new Wizard(
       true,
       false,
+      [],
+      [0,0],
       'Маг',
       wizardNames[getRandom(0, wizardNames.length - 1)],
       getRandom(320, 380),
@@ -73,4 +76,15 @@ export function getWizards(neededWizards: number): Wizard[] {
     neededWizards--;
   }
   return allWizards;
+}
+
+export function getCustomWizard(name: string, healthPoints: number, strength: number, agility: number, intelligence: number): Player{
+    const swordic = new Wand(
+        wandNames[getRandom(0, wandNames.length - 1)],
+        'Магическое',
+        getRandom(30, 50),
+        getRandom(0, 45),
+      );
+    const priziwnik = new Wizard(true, false, [], [0,0], 'Маг', name, healthPoints, swordic, strength, agility, intelligence)
+    return priziwnik
 }

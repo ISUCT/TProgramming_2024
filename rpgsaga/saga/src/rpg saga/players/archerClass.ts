@@ -2,65 +2,58 @@ import { Sword } from '../weapons/swordClass';
 import { solveCritChance } from '../necessary/critChance';
 
 import { Player } from './playerClass';
+import { Bow } from '../weapons/bowClass';
 
 export class Archer extends Player {
-  private _weaponOfPerson: Sword;
+    _weaponOfPerson: Bow;
   constructor(
     alive: boolean,
     silence: boolean,
+    debufflist: any[],
+    kdlist: any[],
     rpgClass: string,
     name: string,
     healthPoints: number,
-    weaponOfPerson: Sword,
+    weaponOfPerson: Bow,
     strength: number,
     agility: number,
     intelligence: number,
   ) {
-    super(alive, silence, rpgClass, name, healthPoints, strength, agility, intelligence);
-    this._weaponOfPerson = weaponOfPerson;
+    super(alive, silence, debufflist, kdlist, rpgClass, name, healthPoints,weaponOfPerson, strength, agility, intelligence);
   }
-  public checkLiveStatus(): void {
-    if (this._healthPoints > 0) {
-    } else {
-      this._alive = false;
-    }
-  }
-  public fireShot(): number {
-    // наносит 15 урона единоразово, и 8 урона каждый следующий раунд
+  private powerShot(opp: Player): void {
+    // наносит дамаг +15%
     const damageGiven = Math.round(
-      15 + this._agility * this._weaponOfPerson._valueOfDamage * solveCritChance(this._weaponOfPerson._chanceOfCrit),
+      1.15*this._agility * this._weaponOfPerson._valueOfDamage * solveCritChance(this._weaponOfPerson._chanceOfCrit),
     );
     console.log(
-      `${this._name} Использовал огненный выстрел из ${this._weaponOfPerson._name}. Теперь враг получает 8 урона каждый следующий раунд`,
+      `${this._name} Использовал усиленный выстрел из ${this._weaponOfPerson._name}`,
     );
-    return damageGiven;
+    opp.takeDamage(damageGiven)
   }
-  public defaultAttack(kd): number {
-    if (kd > 100000) {
-      const damageGiven =
-        5 + this._agility * this._weaponOfPerson._valueOfDamage * solveCritChance(this._weaponOfPerson._chanceOfCrit);
-    }
+  private defaultAttack(opp: Player): void {
     const damageGiven =
       this._agility * this._weaponOfPerson._valueOfDamage * solveCritChance(this._weaponOfPerson._chanceOfCrit);
     console.log(`${this._name} выстрелил из лука ${this._weaponOfPerson._name}`);
-    return damageGiven;
+    opp.takeDamage(damageGiven)
   }
-  public attack(kd: number): [number, number, string] {
-    let newkd: number;
+  public attack(opp: Player): void {
     if (this._alive && !this._silence) {
-      if (kd > 0) {
-        newkd = kd--;
-        return [newkd, this.defaultAttack(kd), ''];
-      } else {
-        newkd = 999999999999;
-        return [newkd, this.fireShot(), ''];
+        if (this._kdlist[0] <= 0) { // атака маг стрелами
+            this.reloadCooldown()
+            this._kdlist[0] = 2;
+            this.magicArrows(opp);
+          } else  if (this._kdlist[1]<= 0){
+            this.reloadCooldown()
+            this._kdlist[1] = 3;
+            this.powerShot(opp)
+        } else {
+            this.reloadCooldown()
+            this.defaultAttack(opp)
       }
     } else if (this._alive && this._silence) {
-      newkd--;
-      this._silence = !this._silence;
-      return [newkd, null, ''];
-    } else {
-      return [null, null, ''];
-    }
+        this.reloadCooldown()
+        this._silence = !this._silence;
+    } 
   }
 }
