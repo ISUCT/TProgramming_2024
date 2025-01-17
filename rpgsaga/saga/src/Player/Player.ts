@@ -40,18 +40,17 @@ export class Player {
 
   updateDebuffs(): void {
     this.canAttack = true;
-    this.debuffs = this.debuffs.filter(debuff => {
-      debuff.effect(this);
-      --debuff.duration;
+    this.debuffs.forEach(debuff => {
+      debuff.duration--;
       if (debuff.duration <= 0) {
-        return false;
+        return;
       }
-
-      if (debuff.affectsAttack) {
+      debuff.effect(this);
+      if (debuff.duration > 0 && debuff.affectsAttack) {
         this.canAttack = false;
       }
-      return true;
     });
+    this.debuffs = this.debuffs.filter(debuff => debuff.duration > 0);
   }
 
   attack(target: Player): string {

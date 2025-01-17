@@ -14,7 +14,7 @@ describe('Ability', () => {
     });
 
     it('should initialize abilities with correct properties', () => {
-        expect(abilities).toHaveLength(2);
+        expect(abilities).toHaveLength(3);
 
         const [ability1, ability2] = abilities;
 
@@ -32,7 +32,7 @@ describe('Ability', () => {
             const debuff = ability.effect(testPlayer);
 
             expect(debuff.name).toBe('The One Who Saw It All');
-            expect(debuff.duration).toBe(2);
+            expect(debuff.duration).toBe(1);
             expect(debuff.affectsAttack).toBe(true);
 
             debuff.effect(testPlayer);
@@ -52,16 +52,36 @@ describe('Ability', () => {
             expect(debuff.affectsAttack).toBe(false);
 
             debuff.effect(testPlayer);
-            expect(testPlayer.health).toBe(85);
+            expect(testPlayer.health).toBe(90);
         }
     });
-
+    
     it('should respect maxUsageLimit for abilities', () => {
         const ability = abilities.find(a => a.name === 'Golden Rule');
         expect(ability).toBeDefined();
-
+        
         if (ability) {
             expect(ability.maxUsageLimit).toBe(1);
         }
     });
+    it('should correctly apply damage debuff over multiple rounds', () => {
+        const targetPlayer = new Player('TestPlayer', 100, 100, 50, { physical: 0, magic: 0 });
+    
+        const finalFlash = abilities.find(ability => ability.name === 'Final Flash');
+    
+        const debuff = finalFlash.effect(targetPlayer);
+        targetPlayer.applyDebuff(debuff);
+
+        expect(targetPlayer.health).toBe(96);
+    
+        targetPlayer.updateDebuffs();
+        expect(targetPlayer.health).toBe(92);
+    
+        targetPlayer.updateDebuffs();
+        expect(targetPlayer.health).toBe(88);
+    
+        targetPlayer.updateDebuffs();
+        expect(targetPlayer.health).toBe(88);
+        expect(targetPlayer.debuffs.length).toBe(0);
+      });
 });

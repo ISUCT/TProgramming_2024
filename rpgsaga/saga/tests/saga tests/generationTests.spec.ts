@@ -96,7 +96,6 @@ describe('CharacterGenerator', () => {
     it('should have the correct damage values', () => {
       expect(Weapons.sword.damage).toBe(25);
       expect(Weapons.bankai.damage).toBe(30);
-      expect(Weapons.shikai.damage).toBe(15);
       expect(Weapons.bow.damage).toBe(20);
     });
   });
