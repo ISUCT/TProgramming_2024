@@ -3,12 +3,13 @@ import { Hit } from "../Class_hit";
 import { Ability } from "../Classes_abilities/Ability";
 import { activation_ability } from "../Classes_abilities/using_abilities";
 import { Debuff } from "../Classes_debuff/Debuff";
-import { damage_types } from "../Utils/list_damage_types";
+import { damage_types } from "../../Utils/enum_damage_types";
 
 export abstract class Player{
     private _name: String;
     private _role: String;
     private _weapon: Weapon; 
+    private _mx_health: number;
     private _health: number;
     private _physical_resistance: number;
     private _magic_resistance: number;
@@ -27,6 +28,7 @@ export abstract class Player{
         this._name = name;
         this._role = role;
         this._weapon = weapon;
+        this._mx_health = health;
         this._health = health;
         this._physical_resistance = (physical_resistance + weapon.increase_phys_resist) * weapon.multiplier_phys_resist;
         this._magic_resistance = (magic_resistance + weapon.increase_magic_resist) * weapon.multiplier_magic_resist;
@@ -97,6 +99,10 @@ export abstract class Player{
         return this._debuffs
     }
 
+    public role_name(): String {
+        return `${this._role} '${this._name}'`
+    }
+
     public attack(): Hit {
         let hit = new Hit(this._weapon.damage, this._weapon.type_damage, false);
         hit = activation_ability([this._ability, this._weapon.ability], this, hit);
@@ -134,7 +140,7 @@ export abstract class Player{
             hit.damage = Math.floor(hit.damage * ((100 - this.magic_resistance) / 100));
         }
         this._health -= hit.damage;
-        console.log(`${this.role} (${this._health} HP) получил ${hit.damage} урона от ${debuff.name_debuff} (до окончания ${debuff.duration} ход(a)))`);
+        console.log(`${this.role} (${this._health} HP) получил ${hit.damage} урона от ${debuff.name_debuff} (до окончания ${debuff.duration} ход(a))`);
     }
 
     public activate_debaffs() {
@@ -144,5 +150,14 @@ export abstract class Player{
                 this.taking_damage_from_debuff(debuff, debuff.activate_debuff());
             }
         }
+    }
+
+    public clear_hero() {
+        this._health = this._mx_health;
+        this._debuffs = [];
+    }
+
+    public view_info() {
+        return `Роль: ${this._role}, имя: '${this._name}', оружие: ${this._weapon.name} (урон: ${this._weapon.damage})`
     }
 }

@@ -1,6 +1,3 @@
-import { fight } from "./fight";
-import { Player } from "./Classes_players/Player";
-import { create_player } from "./create_player";
-const pers_1: Player = create_player();
-const pers_2: Player = create_player(); 
-fight(pers_1, pers_2);
+import { battle } from "./Clasees/Classes_Battle";
+const battle_1 = new battle(2);
+battle_1.start_game();
