@@ -1,4 +1,8 @@
-import { animalsOutput } from "./SuperClass";
+import { animalsOutput } from './SuperClass';
+import { Tournament } from './rpg_saga/Tournament';
+
 console.log('Hello world');
 
-animalsOutput()
+animalsOutput();
+const battle = new Tournament();
+battle.duel();
