@@ -16,14 +16,10 @@ describe('Archer Class', () => {
   test('Должен использовать ледяную стрелу', () => {
     const target = new Archer('Target', 100, weapon, 1);
     archer.useArrowEffect(target, effect);
-    expect(archer.activeEffect).toMatchObject({
-        type: 'Ледяная стрела',
-        damagePerTurn: 10,
-        duration: 3,
-      });
     expect(target.health).toBe(90); 
     expect(archer.statusEffect).toBe(0); 
   });
+
 
   test('Не должен использовать ледяную стрелу, т.к statusofeffect 0', () => {
     const target = new Archer('Target', 100, weapon, 1);

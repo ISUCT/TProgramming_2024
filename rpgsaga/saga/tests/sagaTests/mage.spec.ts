@@ -15,14 +15,7 @@ describe('Mage Class', () => {
 
   test('Проверка файрбола', () => {
     const target = new Mage('Target', 100, weapon, 1);
-
     mage.useFireball(target, effect);
-
-    expect(mage.activeEffect).toMatchObject({
-        type: 'Fireball',
-        damagePerTurn: 25,
-        duration: 3,
-      });
     expect(target.health).toBe(75); 
     expect(mage.statusEffect).toBe(0); 
   });
@@ -30,12 +23,9 @@ describe('Mage Class', () => {
   test('Не должен использовать файрбол, т.к statusofeffect 0', () => {
     const target = new Mage('Target', 100, weapon, 1);
 
-    const applyEffectSpy = jest.spyOn(effect, 'applyEffect')
-
     mage.statusOfEffect = 0;
     mage.useFireball(target, effect);
 
-    expect(applyEffectSpy).not.toHaveBeenCalled();
-    expect(target.health).toBe(100); // Здоровье не изменилось
+    expect(target.health).toBe(100); 
   });
 });

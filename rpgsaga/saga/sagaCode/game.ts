@@ -10,8 +10,8 @@ export class Game {
     round: number;
 
     constructor(players: Player[]) {
-        if (players.length % 2 !== 0) {
-            throw new Error("Количество игроков должно быть четным!");
+        if (players.length !== 2 && players.length % 4 !== 0) {
+            throw new Error("Количество игроков должно быть равно двум или быть кратно 4!");
         }
         this.players = players;
         this.round = 1;

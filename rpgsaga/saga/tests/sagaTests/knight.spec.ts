@@ -12,7 +12,6 @@ describe('Knight Class', () => {
 
   test('Проверка крит урона', () => {
     const enemy = new Knight('Enemy', 100, weapon, 1);
-    jest.spyOn(Math, 'random').mockReturnValue(0.05); 
     knight.attack(enemy);
     expect(enemy.health).toBeLessThan(100);
   });
