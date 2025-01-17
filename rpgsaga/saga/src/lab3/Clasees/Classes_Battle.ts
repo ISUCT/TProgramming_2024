@@ -37,7 +37,8 @@ export class battle{
             }
 
         }
-        console.log(`${this._arr_players[0].role_name()} - единственный выживший`)
+        console.log();
+        console.log(`${this._arr_players[0].role_name()} - единственный выживший`);
     }
 
     public fight(pers_1: Player, pers_2: Player) {

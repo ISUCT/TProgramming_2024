@@ -1,7 +1,7 @@
 import { Player } from "../Classes_players/Player";
 import { Ability } from "../Classes_abilities/Ability";
 
-export class Weapon{
+export abstract class Weapon{
     private _name: string;
     private _damage: number;
     private _type_damage: String;
