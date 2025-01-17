@@ -1,6 +1,6 @@
 import { Player } from "./Classes_players/Player";
 import { Hit } from "./Class_hit";
-import { create_player } from "../create_player";
+import { create_player } from "../Utils/create_player";
 
 export class battle{
     private _count_players: number;
@@ -20,13 +20,15 @@ export class battle{
         let count: number = 0;
         while (this._arr_players.length != 1) {
             count++;
-            console.log(`Раунд номер ${count}`);
+            console.log();
+            console.log(`--------------Раунд номер ${count}--------------`);
+            console.log();
             let winner: Player[] = [];
-            for (let i = 0; i < this._count_players; i += 2) {
+            for (let i = 0; i < this._count_players - 1; i += 2) {
                 winner.push(this.fight(this._arr_players[i], this._arr_players[i + 1]))
             }
             if (this._count_players % 2 != 0) {
-                winner.push(this._arr_players[-1])
+                winner.push(this._arr_players[this._count_players - 1])
             }
             this._arr_players = winner;
             this._count_players = this._arr_players.length;
@@ -39,8 +41,10 @@ export class battle{
     }
 
     public fight(pers_1: Player, pers_2: Player) {
+        console.log();
         console.log(`${pers_1.role_name()} VS ${pers_2.role_name()}`);
-        let count: number = 1
+        console.log();
+        let count: number = 1;
         while (true) {
             if (count % 2 != 0) {
                 count = this.one_hit(count, pers_1, pers_2);
@@ -80,7 +84,8 @@ export class battle{
             }
         } else {
             attacker.stuuned_states = false;
-            console.log(`${attacker.role} '${attacker.name}' пропускает ход`)
+            console.log(`${attacker.role} '${attacker.name}' (${attacker.health}) пропускает ход`)
+            defending.activate_debaffs();
         }
         return count;
     }

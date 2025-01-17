@@ -1,4 +1,4 @@
-import { weapons_names } from "./list_weapons";
+import { weapons_names } from "../Enums/enum_weapons";
 
 export function random_weapon(): string {
     const weapons = Object.values(weapons_names).filter(key => isNaN(Number(key)));

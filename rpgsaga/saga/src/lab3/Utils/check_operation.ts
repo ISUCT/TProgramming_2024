@@ -1,13 +1,20 @@
-import { random_value_array } from "./random_v_arr";
-
 export function check_operation(chance_trigger: number): boolean {
-    const arr = new Array(100 - chance_trigger).fill(0);
-    const ones = new Array(chance_trigger).fill(1);
-    arr.push(...ones);
-    const fact: number = random_value_array(arr);
-    if (fact == 1) {
+    const value: number = Math.floor(Math.random() * 100) + 1
+    if (value <= chance_trigger) {
         return true;
     } else {
         return false;
     }
 }
+
+// let all_sum: number = 0
+// for (let j = 0; j < 1000; j++) {
+//     let count: number = 0;
+//     for (let i = 0; i < 100; i++) {
+//         if (check_operation(20)) {
+//             count++;
+//         }
+//     }
+//     all_sum += count
+// }
+// console.log(all_sum / 1000)

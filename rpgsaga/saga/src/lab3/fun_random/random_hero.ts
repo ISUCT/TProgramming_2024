@@ -1,4 +1,4 @@
-import { role_names } from "./list_roles";
+import { role_names } from "../Enums/enum_roles";
 
 export function random_hero() {
     const players = Object.values(role_names).filter(key => isNaN(Number(key)));

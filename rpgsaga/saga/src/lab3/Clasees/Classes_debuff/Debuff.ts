@@ -9,14 +9,13 @@ export abstract class Debuff{
     private _stunning: boolean;
     constructor(
         name_debuff: String,
-        total_duration: number,
         duration: number,
         damage: number,
         type_damage: String,
         stunning: boolean
     ) {
         this._name_debuff = name_debuff;
-        this._total_duration = total_duration;
+        this._total_duration = duration;
         this._duration = duration;
         this._damage = damage;
         this._type_damage = type_damage;

@@ -6,7 +6,7 @@ import { activation_archer_ability } from "./Abilities/Archer_ability";
 import { activation_mage_ability } from "./Abilities/Mage_ability";
 import { activation_staff_santa_ability } from "./Abilities/Staff_Santa_ability";
 import { activation_warriro_ability } from "./Abilities/Warrior_ability";
-import { ability_names } from "../../Utils/enum_abilities";
+import { ability_names } from "../../Enums/enum_abilities";
 
 export function activation_ability(abilities: (Ability)[], player: Player, hit: Hit) {
     for (let ability of abilities) {

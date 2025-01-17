@@ -3,7 +3,7 @@ import { Hit } from "../Class_hit";
 import { Ability } from "../Classes_abilities/Ability";
 import { activation_ability } from "../Classes_abilities/using_abilities";
 import { Debuff } from "../Classes_debuff/Debuff";
-import { damage_types } from "../../Utils/enum_damage_types";
+import { damage_types } from "../../Enums/enum_damage_types";
 
 export abstract class Player{
     private _name: String;
