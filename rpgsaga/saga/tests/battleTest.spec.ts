@@ -1,4 +1,4 @@
-import { Tournament } from '../src/rpg_saga/Tournament';
+import { Duel } from '../src/rpg_saga/Duel';
 import { Character } from '../src/rpg_saga/character';
 import { Archer } from '../src/rpg_saga/Classes/archer';
 import { Sorcerer } from '../src/rpg_saga/Classes/sorcerer';
@@ -6,10 +6,11 @@ import { Warrior } from '../src/rpg_saga/Classes/warrior';
 import { ArcherArsenal, SorcererArsenal, WarriorArsenal } from '../src/rpg_saga/Weapon/weapon';
 
 describe('Tournament class', () => {
-    let tournament: Tournament;
-  
+    let tournament: Duel;
+    let winner: Character
     beforeEach(() => {
-      tournament = new Tournament();
+      tournament = new Duel();
+      winner = tournament.duel()
     });
   
     it('should create two contestants', () => {
@@ -26,4 +27,9 @@ describe('Tournament class', () => {
         expect(archerCount + sorcererCount + warriorCount).toBe(2);
     });
 
+    it('should return Winner', () => {
+        expect(tournament.duel()).toBeInstanceOf(Character);
+        expect(winner.isStillAlive()).toBe(true);
+      });
+    
 })

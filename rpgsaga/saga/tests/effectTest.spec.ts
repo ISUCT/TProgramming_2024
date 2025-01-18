@@ -24,7 +24,8 @@ describe('Status Effect class', () => {
   test('should apply damage to the player when the effect is applied', () => {
     opponent.addStatusEffect(statusEffect)
     expect(opponent.statusEffect[0]).toBeInstanceOf(StatusEffect);
-    //expect(opponent.containStatusEffects).toBe(`Opponent находится под действием Test Name. Оставшееся количество ходов: 2`);
+    statusEffect.applyEffectDamage(opponent);
+    expect(opponent.healthPoints).toBeCloseTo((opponent.healthAmount)-5);
   });
 
   test('should reduce the duration of the effect', () => {

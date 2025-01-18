@@ -1,6 +1,7 @@
 import { WarriorSkills } from "../src/rpg_saga/Mechanics/skills";
 import { Warrior } from "../src/rpg_saga/Classes/warrior";
 import { Weapon } from "../src/rpg_saga/Weapon/weapon";
+import { StatusEffect } from "../src/rpg_saga/Mechanics/statusEffect";
 
 describe('Warrior Class', () => {
     let warrior: Warrior;
@@ -30,7 +31,12 @@ describe('Warrior Class', () => {
         expect(opponent.healthPoints).toBeCloseTo((opponent.healthAmount)-(weapon.damage));
       });
     test('Should perform Mastery correctly', () => {
-            warrior.performSkill(warrior,opponent,WarriorSkills[0]);
+            warrior.performSkill(warrior,opponent,WarriorSkills[1]);
             expect(opponent.healthPoints).toBeCloseTo((opponent.healthAmount)-(weapon.damage+10));
+        })
+    test('Should perform bleeding stike correctly', () => {
+            warrior.performSkill(warrior,opponent,WarriorSkills[0]);
+            expect(opponent.statusEffect[0]).toBeInstanceOf(StatusEffect);
+            expect(opponent.statusEffect[0].effectName).toBe('Кровотечение');
         })  
   });

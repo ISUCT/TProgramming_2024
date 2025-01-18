@@ -24,12 +24,12 @@ export const SorcererSkills: Skill[] = [
 ];
 
 export const WarriorSkills: Skill[] = [
-  new Skill('Мастерство', 5, (user, target) => {
-    target.receiveDamage(user.damage + 10);
-    return `${user.characterName} нанёс по ${target.characterName} Мастерский удар с уроном ${user.damage + 10}.`;
-  }),
-  new Skill('Мастерство', 5, (user, target) => {
-    target.receiveDamage(user.damage + 10);
-    return `${user.characterName} нанёс по ${target.characterName} Мастерский удар с уроном ${user.damage + 10}.`;
-  }),
+    new Skill('Ранящий удар', 2, (user, target) => {
+        target.addStatusEffect(new StatusEffect('Кровотечение', 2, damageTic => damageTic.receiveDamage(15)));
+        return `${user.characterName} использовал Ранящий удар. ${target.characterName} будет получать по 15 урона 2 хода.`;
+    }),
+    new Skill('Мастерство', 5, (user, target) => {
+        target.receiveDamage(user.damage + 10);
+        return `${user.characterName} нанёс по ${target.characterName} Мастерский удар с уроном ${user.damage + 10}.`;
+    }),
 ];

@@ -4,7 +4,7 @@ import { Sorcerer } from './Classes/sorcerer';
 import { Warrior } from './Classes/warrior';
 import { ArcherArsenal, SorcererArsenal, WarriorArsenal } from './Weapon/weapon';
 
-export class Tournament {
+export class Duel {
   contestants: Character[] = [];
   participants: number = 2;
 
@@ -27,7 +27,7 @@ export class Tournament {
     console.log(message);
   }
 
-  duel(): void {
+  duel(): Character {
     const contestantOne: Character = this.contestants[0];
     const contestantTwo: Character = this.contestants[1];
     this.logMessage(
@@ -53,5 +53,6 @@ export class Tournament {
     }
     const duelWinner = contestantOne.isStillAlive() ? contestantOne : contestantTwo;
     this.logMessage(`${duelWinner.characterName} won the duel!`);
+    return duelWinner
   }
 }
