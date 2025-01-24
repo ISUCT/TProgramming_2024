@@ -1,4 +1,4 @@
-import { taskA, taskB, calc } from "../src/laba1";
+import { taskA, taskB, calc } from "../../src/lab1and2/laba1";
 
 
 describe('calc function', () => {

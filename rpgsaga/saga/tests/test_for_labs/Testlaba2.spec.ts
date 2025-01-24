@@ -1,4 +1,4 @@
-import { Car } from "../src/laba2";
+import { Car } from "../../src/lab1and2/laba2";
 
 
 describe('Car Class Tests', () => {
