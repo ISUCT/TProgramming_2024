@@ -4,7 +4,7 @@ import { Logger } from '../output/Logger';
 import { readAnswer } from './readAnswer';
 import { createCharacter } from './createCharacter';
 
-export function startGame(): void {
+export function creatGame(): void {
   const logger = new Logger();
 
   let number: number;
