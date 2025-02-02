@@ -1,30 +1,18 @@
-import { getTaskA, getTaskB } from './CalcOfFunc';
-import { Character } from './Сharacter';
+// import { creatGame } from './utils/input/createGame';
 
-// Константы для Лабы 1(CalcOfFunc)
-const xN = 0.26;
-const xK = 0.66;
-const xD = 0.08;
-const numbersX = [0.1, 0.35, 0.4, 0.55, 0.6];
-// Вычисления и вывод для Лабы 1 (CalcOfFunc)
-console.log(getTaskA(xN, xK, xD));
-console.log(getTaskB(numbersX));
+// creatGame();
 
-// Создание класса "воин" и вывод его
-const warrior = new Character('Charly', 'Voin', 1);
-console.log('Класс воин:');
-console.log(`Name: ${warrior.name}, class: ${warrior.class}, level: ${warrior.level}`);
-// Получение имени (get - получить)
-console.log(`Name: ${warrior.name}`);
+import { FactoryAbility } from './Ability/FactoryAbility';
+import { IAbility } from './Ability/Ability';
+import { Knight } from './Characters/Knight';
 
-// Изменение уровня (как пример)
-console.log(`level: ${warrior.level}`);
-warrior.level = 5;
-console.log(`level: ${warrior.level}`);
+const FireArch = new FactoryAbility();
+const Fire: IAbility[] = [FireArch.createAbilityFromTemplate('удар возмездия')];
 
-// Попытка установления неверного заначения уровня
-try {
-  warrior.level = -10;
-} catch (err) {
-  console.log(err);
-}
+const test = new Knight(100, 10, 'Robin', Fire);
+const test1 = new Knight(100, 10, 'Robin', Fire);
+
+test.useAbility(test1, 'удар возмездия');
+// archer.attack(archer1);
+console.log(test);
+console.log(test1);
