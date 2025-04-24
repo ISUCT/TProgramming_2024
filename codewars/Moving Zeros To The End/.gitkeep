@@ -1,0 +1,13 @@
+def movingZeros(list):
+    finalList = list()
+    for el in list:
+        if el != 0:
+            finalList.append(el)
+    
+    while len(finalList) < len(list):
+        finalList.append(0)
+    
+    return finalList
+
+if __name__ == "__main__":
+    print(movingZeros(input()))

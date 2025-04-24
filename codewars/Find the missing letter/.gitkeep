@@ -1,0 +1,10 @@
+def findLetter(symbols):
+    missing_char = ""
+    for i in range(len(symbols) - 1):
+        if ord(symbols[i]) + 1 != ord(symbols[i + 1]):
+            missing_char = chr(ord(symbols[i]) + 1)
+
+    return missing_char
+
+if __name__ == '__main__':
+    print(findLetter(input()))

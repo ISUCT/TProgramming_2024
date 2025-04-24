@@ -1,0 +1,14 @@
+function duplicateEncode(word){
+    word = word.toLowerCase();
+    const deathSymbol = {};
+    for (const death of word) {
+      deathSymbol[death] =  (deathSymbol[death] || 0) + 1;
+    }
+    
+    let result = "";
+    for (const death of word) {
+      result += deathSymbol[death] === 1 ? "(" : ")";
+    }
+
+    return result;
+}

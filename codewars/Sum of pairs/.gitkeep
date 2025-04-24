@@ -1,0 +1,12 @@
+def summPairs(ints, s):
+    seen = {}
+    for i, number in enumerate(ints):
+        purpose = s - number
+        if purpose in seen:
+            return [purpose, number]
+        seen[number] = i
+
+    return None
+
+if __name__ == "__main__":
+    print(summPairs(input(), input()))

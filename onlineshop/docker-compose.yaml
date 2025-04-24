@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - sample:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:5432"
 
@@ -21,4 +21,5 @@ services:
     links:
       - db
 
-
+volumes:
+  sample:

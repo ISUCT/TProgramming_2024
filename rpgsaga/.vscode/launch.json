@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/saga/src/index.ts",
+            "program": "${workspaceFolder}\\saga\\src\\index.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
