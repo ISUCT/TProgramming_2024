@@ -1,75 +1,107 @@
-import { Сharacter } from './Character'
-import { Calculator } from './Calculator';
-import * as readline from 'readline'
+import * as readline from 'readline';
+
+import { Calculater } from './Calculater';
+import { Character } from './Character';
+import { Knight } from './Classes/Knight';
+import { Mag } from './Classes/Mag';
+import { Archer } from './Classes/Archer';
+import { Logger } from './logger';
 
 class Game {
+  players: Character[] = [];
+  winners: Character[] = [];
 
-    gamers: Сharacter[] = [];
-    winners: Сharacter[] = [];
+  startGame() {
+    Logger.logStartGame();
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
 
-    startgame() {
-        console.log("Game started");
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
-        });
+    rl.question('Введите кол-во игроков ', answer => {
+      if (Calculater.isEven(Number(answer))) {
+        const charNum: number = Number(answer);
+        this.generate(charNum);
+      } else {
+        Logger.logNotEvenGamers();
+      }
+      rl.close();
+    });
+  }
 
-        rl.question('введите кол-во игроков', charactersCount => {
-            if (Calculator.isEven(charactersCount) == true) { this.generateChar(Number(charactersCount)); }
-            else { console.log("ВВЕДЕНО НЕЧЕТНОЕ КОЛ-ВО ИГРОКОВ"); }
+  generate(numChar: number) {
+    for (let i: number = 0; i < numChar; i++) {
+      let person: Character;
+      const randomClass: number = Calculater.random(0, 2);
+      switch (randomClass) {
+        case 0:
+          person = new Mag();
+          break;
 
-            rl.close();
-        });
+        case 1:
+          person = new Knight();
+          break;
+        case 2:
+          person = new Archer();
+          break;
+      }
+      Logger.logRepresentation(person);
+      this.players.push(person);
     }
+    this.sortPerson();
+  }
+  sortPerson() {
+    let countTurn = 1;
+    while (true) {
+      Logger.logCountTurn(countTurn);
+      countTurn = 1 + countTurn;
 
-    generateChar(numPlayer: number) {
-        for (let i = 0; i < numPlayer; i++) {
-            let char = new Сharacter();
-            this.gamers.push(char);
-        }
-this.sortChar()
+      if (Calculater.isEven(this.players.length) === false) {
+        this.winners.push(this.players[0]);
+        this.players.splice(0, 1);
+      }
+      const sortNum: number = this.players.length;
+      for (let i = 0; i < sortNum / 2; i++) {
+        const num1: number = Calculater.random(0, this.players.length - 1);
+        const oponent1: Character = this.players[num1];
+        this.players.splice(num1, 1);
+        const num2: number = Calculater.random(0, this.players.length - 1);
+        const oponent2: Character = this.players[num2];
+        this.players.splice(num2, 1);
+        this.fight(oponent1, oponent2);
+      }
+      if (this.winners.length === 1) {
+        Logger.logWinWin(this.winners[0]);
+        break;
+      }
+
+      this.players.length = 0;
+      this.players = this.winners.slice();
+      this.winners.length = 0;
+      Logger.logOverTurn();
     }
-
-    fight(opponent1: Сharacter, opponent2: Сharacter): Сharacter {
-        let priority: boolean = true;
-        while(true){
-            if (priority == true) {
-                opponent2.takeDamage(opponent1.getDamage());
-
-            }
-            else {
-                opponent1.takeDamage(opponent2.getDamage());
-            } 
-            priority = !priority; 
-              if (opponent1.lookHears() < 0) { return opponent2; }
-        else if(opponent2.lookHears() < 0) { return opponent1; }
-        }
-     
+  }
+  fight(oponent1: Character, oponent2: Character) {
+    let priority: boolean = true;
+    while (oponent1.health > 0 && oponent2.health > 0) {
+      if (priority) {
+        oponent1.turn(oponent2);
+      } else {
+        oponent2.turn(oponent1);
+      }
+      priority = !priority;
     }
-
-    sortChar() {
-        if (!Calculator.isEven(this.gamers.length) == true) {
-            this.winners.push(this.gamers[0]);
-            this.gamers.splice(0, 1);
-        }
-        for (let i = 0; i < (this.gamers.length / 2); i++) {
-            let index1: number = Calculator.random(0, this.gamers.length - 1);
-            let opponent1: Сharacter = this.gamers[index1];
-            this.gamers.splice(index1, 1);
-            let index2: number = Calculator.random(0, this.gamers.length - 1);
-            let opponent2: Сharacter = this.gamers[index2];
-            this.gamers.splice(index2, 1);
-            let winner: Сharacter = this.fight(opponent1, opponent2);
-            winner.reHealth();
-            this.winners.push(winner);
-            console.log(`победил ${winner.getName()}`);
-
-        }
-
+    if (oponent1.health <= 0) {
+      oponent2.reHealth();
+      this.winners.push(oponent2);
+      Logger.logWinner(oponent2);
+    } else {
+      oponent1.reHealth();
+      this.winners.push(oponent1);
+      Logger.logWinner(oponent1);
     }
+  }
 }
 
-
 const game = new Game();
-game.startgame();
-
+game.startGame();
