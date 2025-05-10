@@ -1,4 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  InternalServerErrorException,
+  Put,
+  NotFoundException,
+} from '@nestjs/common';
+
 import { DogsService } from './dogs.service';
 import { CreateDogDto } from './dto/create-dog.dto';
 import { UpdateDogDto } from './dto/update-dog.dto';
@@ -9,7 +21,12 @@ export class DogsController {
 
   @Post()
   create(@Body() createDogDto: CreateDogDto) {
-    return this.dogsService.create(createDogDto);
+    try {
+      return this.dogsService.create(createDogDto);
+    } catch (err) {
+      console.log(err);
+      throw new InternalServerErrorException('something went wrong');
+    }
   }
 
   @Get()
@@ -22,9 +39,14 @@ export class DogsController {
     return this.dogsService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDogDto: UpdateDogDto) {
-    return this.dogsService.update(+id, updateDogDto);
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() updateDogDto: UpdateDogDto) {
+    try {
+      const dog = await this.dogsService.update(+id, updateDogDto);
+      return dog;
+    } catch (err) {
+      throw new NotFoundException(err.message);
+    }
   }
 
   @Delete(':id')

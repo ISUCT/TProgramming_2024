@@ -20,6 +20,18 @@ services:
     - "8000:8080"
     links:
       - db
+  server:
+    env_file: .env
+    build: 
+      context: ./source/server/
+      dockerfile: ./Dockerfile
+    image: isuct/web-app:server
+    environment:
+      - SOME_VAR=my_var
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
 
 volumes:
   sample:
