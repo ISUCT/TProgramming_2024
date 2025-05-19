@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BooksModule } from './books/books.module';
 
+console.log(process.env.DB_HOST,process.env.DB_PASSWORD,process.env.DB_USER,process.env.DB_NAME,process.env.DB_PORT)
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
