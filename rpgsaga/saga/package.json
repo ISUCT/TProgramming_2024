@@ -6,14 +6,13 @@
   "scripts": {
     "dev": "ts-node --script-mode src/index.ts",
     "test": "jest",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
-    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+    "lint": "eslint \"{src,apps,libs,test}//*.ts\"",
+    "lint:fix": "eslint \"{src,apps,libs,test}//*.ts\" --fix"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
-    "@eslint/compat": "^1.2.0",
+    "@eslint/compat": "^1.2.1",
     "@types/jest": "^29.5.13",
     "@types/node": "^22.7.4",
     "@typescript-eslint/eslint-plugin": "^8.8.0",

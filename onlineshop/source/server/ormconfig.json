@@ -1,0 +1,13 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "1296",
+  "database": "tours_db2",
+  "entities": ["src/**/*.entity.ts"],
+  "migrations": ["src/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "src/migrations"
+  }
+}
